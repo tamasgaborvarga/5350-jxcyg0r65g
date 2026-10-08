@@ -265,57 +265,45 @@
   .chooser small{ font-weight:600; font-size:.8rem; opacity:.7; }
 
   /* ============ ÉTLAP ============ */
-  .cat{ padding-top:var(--s8); }
-  .cat-head{ display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:.3rem var(--s4); margin-bottom:var(--s5); }
+  .cat{ padding-top:var(--s6); }
+  .cat-head{ display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:.3rem var(--s4); margin-bottom:var(--s4); }
   .cat-head h3{ font-size:clamp(1.8rem,3.8vw,2.6rem); }
   .cat-head .note{ font-weight:600; color:var(--ink-soft); }
-  .sub-head{ font-size:1.35rem; margin:var(--s6) 0 var(--s4); display:flex; align-items:center; gap:.5rem; }
+  .sub-head{ font-size:1.2rem; margin:var(--s5) 0 var(--s3); display:flex; align-items:center; gap:.5rem; }
   .sub-head:first-of-type{ margin-top:0; }
 
-  /* kiemelt: Pizza 5350 — tipográfiai kártya, mert a pizzáról nincs valódi fotó */
-  .feature{ position:relative; overflow:hidden; border-radius:var(--r-lg); background:var(--tomato); color:#fff;
-    padding:clamp(1.5rem,4vw,3rem); margin-bottom:var(--s5); display:grid; gap:var(--s5); align-items:end; }
-  @media(min-width:760px){ .feature{ grid-template-columns:1.4fr 1fr; } }
-  .feature .ghost{ position:absolute; right:-.06em; top:-.18em; font-family:var(--f-head); font-weight:800;
-    font-size:clamp(9rem,30vw,22rem); line-height:1; font-weight:900; color:rgba(255,255,255,.1); pointer-events:none;
-    transform:scale(1.06); transition:transform 1.2s var(--ease); }
-  .feature.in .ghost{ transform:scale(1); }
-  .feature .kick{ display:inline-flex; align-items:center; gap:.5rem; background:#fff; color:var(--tomato-ink); font-weight:700; font-size:.9rem;
-    padding:.35rem .85rem; border-radius:var(--r-pill); }
-  .feature h4{ font-size:clamp(2.2rem,5.5vw,4rem); margin-top:var(--s4); position:relative; }
-  .feature h4 small{ display:block; font-family:var(--f-body); font-size:1rem; font-weight:600; letter-spacing:0; opacity:.85; margin-bottom:.4rem; }
-  .feature p{ font-size:1.12rem; max-width:40ch; margin-top:var(--s3); position:relative; color:rgba(255,255,255,.95); }
-  .feature-buy{ position:relative; display:flex; flex-direction:column; align-items:flex-start; gap:var(--s4); }
-  @media(min-width:760px){ .feature-buy{ align-items:flex-end; text-align:right; } }
-  .feature .price{ font-family:var(--f-head); font-weight:800; font-size:clamp(1.9rem,3.6vw,2.4rem); }
+  /* kiemelt: Pizza 5350 — tömör piros sáv, ugyanolyan szerkezettel, mint a többi tétel */
+  .feature{ position:relative; overflow:hidden; border-radius:var(--r-md); background:var(--tomato); color:#fff;
+    padding:var(--s4) var(--s5); margin-bottom:var(--s3); display:grid; grid-template-columns:1fr auto; gap:.3rem var(--s4); align-items:center; }
+  .feature .ghost{ position:absolute; right:7rem; top:50%; font-family:var(--f-head); font-size:6.5rem; line-height:1; font-weight:900;
+    color:rgba(255,255,255,.1); pointer-events:none; transform:translateY(-50%) scale(1.06); transition:transform 1.2s var(--ease); }
+  .feature.in .ghost{ transform:translateY(-50%) scale(1); }
+  .feature .kick{ display:inline-flex; align-items:center; gap:.4rem; background:#fff; color:var(--tomato-ink); font-weight:700; font-size:.78rem;
+    padding:.2rem .65rem; border-radius:var(--r-pill); }
+  .feature h4{ font-size:clamp(1.4rem,2.6vw,1.75rem); margin-top:.4rem; position:relative; }
+  .feature p{ font-size:.97rem; line-height:1.4; max-width:60ch; margin-top:.2rem; position:relative; color:rgba(255,255,255,.95); }
+  .feature-buy{ position:relative; align-self:start; }
+  .feature .price{ font-size:1.35rem; }
+  @media(max-width:520px){ .feature .ghost{ display:none; } }
 
-  .grid{ display:grid; gap:var(--s4); grid-template-columns:1fr; }
+  /* tömör tételsor: szám · név · ár egy sorban, alatta az összetevők — egy képernyőn sok fér el */
+  .grid{ display:grid; gap:var(--s2); grid-template-columns:1fr; }
   @media(min-width:640px){ .grid{ grid-template-columns:repeat(2,1fr); } }
-  @media(min-width:1000px){ .grid{ grid-template-columns:repeat(3,1fr); gap:var(--s5); } }
-  .card{ position:relative; display:flex; flex-direction:column; background:var(--paper); border-radius:var(--r-md);
-    box-shadow:var(--sh-sm); overflow:hidden;
-    transition:transform var(--t-card) var(--ease), box-shadow var(--t-card) var(--ease); }
-  .card-body{ flex:1; display:flex; flex-direction:column; padding:var(--s5) var(--s5) var(--s4); }
-  .card .no{ font-family:var(--f-head); font-weight:800; font-size:.85rem; color:var(--tomato-ink); }
-  .card h4{ font-size:1.2rem; font-weight:700; line-height:1.18; margin-top:.25rem; }
-  .card .desc{ color:var(--ink-soft); font-size:.97rem; line-height:1.45; margin-top:.45rem; }
-  .card-foot{ display:flex; align-items:center; justify-content:flex-start; gap:var(--s3); margin-top:auto; padding-top:var(--s4); }
-  .price{ font-family:var(--f-head); font-weight:700; font-size:1.18rem; white-space:nowrap; font-variant-numeric:tabular-nums; }
-  .card-media{ overflow:hidden; aspect-ratio:16/10; background:var(--cream-2); }
-  .card-media img{ width:100%; height:100%; object-fit:cover; transition:transform 320ms var(--ease); }
-  /* fotós kártya: széles, kép balra (csak ahol tényleg van saját fotó) */
-  @media(min-width:640px){
-    .card.wide{ grid-column:span 2; flex-direction:row; }
-    .card.wide .card-media{ flex:0 0 46%; aspect-ratio:auto; min-height:230px; }
-  }
-  .card .photo-cap{ font-size:.78rem; color:var(--ink-soft); font-weight:600; margin-top:.5rem; }
+  @media(min-width:1000px){ .grid{ grid-template-columns:repeat(3,1fr); gap:var(--s3); } }
+  .card{ background:var(--paper); border-radius:var(--r-sm); box-shadow:var(--sh-sm); }
+  .card-body{ display:grid; grid-template-columns:1.7rem 1fr auto; column-gap:.5rem; align-items:baseline; padding:.75rem 1rem .8rem .85rem; }
+  .card .no{ grid-column:1; grid-row:1; font-family:var(--f-head); font-weight:800; font-size:.85rem; color:var(--tomato-ink); }
+  .card h4{ grid-column:2; grid-row:1; font-size:1.02rem; font-weight:700; line-height:1.25; }
+  .card-foot{ grid-column:3; grid-row:1; }
+  .card .desc{ grid-column:2 / 4; grid-row:2; color:var(--ink-soft); font-size:.88rem; line-height:1.4; margin-top:.15rem; }
+  .price{ font-family:var(--f-head); font-weight:700; font-size:1rem; white-space:nowrap; font-variant-numeric:tabular-nums; }
 
   /* extrák */
   .extras{ display:grid; gap:var(--s5); grid-template-columns:1fr; }
   @media(min-width:760px){ .extras{ grid-template-columns:1fr 1fr; } }
   .extras-col{ background:var(--paper); border-radius:var(--r-md); padding:var(--s4) var(--s5); box-shadow:var(--sh-sm); }
   .extras-col h4{ font-size:1.3rem; padding:var(--s2) 0 var(--s3); }
-  .addon{ display:flex; align-items:center; gap:var(--s3); padding:.35rem 0; border-top:1px solid var(--line); min-height:56px; }
+  .addon{ display:flex; align-items:center; gap:var(--s3); padding:.35rem 0; border-top:1px solid var(--line); min-height:40px; }
   .addon .nm{ flex:1; font-weight:500; }
   .addon .pr{ font-weight:700; margin-left:auto; font-variant-numeric:tabular-nums; white-space:nowrap; }
   .info{ display:flex; gap:.6rem; align-items:flex-start; font-size:.95rem; color:var(--ink-soft); line-height:1.45; }
@@ -577,11 +565,7 @@
         <article class="card" data-reveal style="--i:1"><div class="card-body"><span class="no">8</span><h4>Pizza Quattro Stagioni</h4><p class="desc">Mozzarella, sonka, szalámi, gomba, articsóka</p><div class="card-foot"><span class="price">3 990 Ft</span></div></div></article>
         <article class="card" data-reveal style="--i:2"><div class="card-body"><span class="no">9</span><h4>Pizza Quattro Formaggi</h4><p class="desc">Mozzarella, márványsajt, feta, reszelt parmezán</p><div class="card-foot"><span class="price">3 990 Ft</span></div></div></article>
         <article class="card" data-reveal style="--i:0"><div class="card-body"><span class="no">10</span><h4>Pizza Hawaii</h4><p class="desc">Mozzarella, sonka, édes ananászkarikák</p><div class="card-foot"><span class="price">3 790 Ft</span></div></div></article>
-        <!-- az egyetlen pizza, amelyről saját fotó van → széles, képes kártya -->
-        <article class="card wide" data-reveal style="--i:1">
-          <div class="card-media"><picture><source type="image/webp" srcset="img/opt/magyaros-pizza-480.webp 480w, img/opt/magyaros-pizza-800.webp 800w" sizes="(min-width:1000px) 360px, (min-width:640px) 45vw, 100vw"><img src="img/opt/magyaros-pizza-800.jpg" srcset="img/opt/magyaros-pizza-480.jpg 480w, img/opt/magyaros-pizza-800.jpg 800w" sizes="(min-width:1000px) 360px, (min-width:640px) 45vw, 100vw" width="800" height="737" loading="lazy" decoding="async" alt="Pizza Ungherese a teraszon"></picture></div>
-          <div class="card-body"><span class="no">11</span><h4>Pizza Ungherese</h4><p class="desc">Mozzarella, bacon, lilahagyma, kolbász, erőspaprika</p><div class="card-foot"><span class="price">4 290 Ft</span></div></div>
-        </article>
+        <article class="card" data-reveal style="--i:1"><div class="card-body"><span class="no">11</span><h4>Pizza Ungherese</h4><p class="desc">Mozzarella, bacon, lilahagyma, kolbász, erőspaprika</p><div class="card-foot"><span class="price">4 290 Ft</span></div></div></article>
         <article class="card" data-reveal style="--i:0"><div class="card-body"><span class="no">13</span><h4>Pizza Frutti di Mare</h4><p class="desc">Mozzarella, tenger gyümölcsei válogatás</p><div class="card-foot"><span class="price">4 290 Ft</span></div></div></article>
         <article class="card" data-reveal style="--i:1"><div class="card-body"><span class="no">14</span><h4>Pizza Firenze</h4><p class="desc">Mozzarella, feketeerdő sonka, gomba, articsóka, olívabogyó</p><div class="card-foot"><span class="price">4 290 Ft</span></div></div></article>
         <article class="card" data-reveal style="--i:2"><div class="card-body"><span class="no">15</span><h4>Pizza Genovese</h4><p class="desc">Mozzarella, spenót, illatos fokhagyma, tükörtojás</p><div class="card-foot"><span class="price">3 590 Ft</span></div></div></article>

@@ -223,10 +223,10 @@
   /* ============ HANGULAT: PIZZA. TISZA. NYÁR. ============ */
   .mood{ position:relative; min-height:clamp(420px,72vh,640px); display:flex; align-items:flex-end; color:#fff; overflow:hidden; background:var(--tomato-dark); }
   .mood picture, .mood img{ position:absolute; inset:0; width:100%; height:100%; }
-  .mood img{ object-fit:cover; object-position:30% 35%; transform:scale(1.04); transition:transform 1.4s var(--ease); }
+  .mood img{ object-fit:cover; object-position:0% 0%; transform:scale(1.04); transition:transform 1.4s var(--ease); }
   .mood.in img{ transform:scale(1); }
   .mood::after{ content:""; position:absolute; inset:0;
-    background:linear-gradient(180deg, rgba(176,22,15,.05) 25%, rgba(176,22,15,.6) 58%, rgba(150,18,12,.94) 100%); }
+    background:linear-gradient(180deg, rgba(176,22,15,0) 38%, rgba(176,22,15,.55) 55%, rgba(150,18,12,.95) 72%); }
   .mood-in{ position:relative; z-index:1; padding-block:var(--s10) var(--s8); width:100%; }
   .mood h2{ font-size:clamp(2.8rem,8.5vw,6.2rem); line-height:.98; font-weight:900; letter-spacing:.01em; text-transform:uppercase; }
   .mood h2 span{ display:block; }
@@ -236,10 +236,10 @@
   @media(min-width:900px){
     .mood{ min-height:600px; align-items:center; }
     .mood picture{ left:50%; }
-    .mood::after{ background:linear-gradient(90deg, #C81E16 50%, rgba(200,30,22,.35) 58%, rgba(200,30,22,0) 70%); }
+    .mood::after{ background:linear-gradient(90deg, #C81E16 50%, rgba(200,30,22,.25) 53%, rgba(200,30,22,0) 56%); }
     .mood-in{ padding-block:var(--s10); }
     .mood-in > *{ max-width:46%; }
-    .mood img{ object-position:50% 40%; }
+    .mood img{ object-position:0% 35%; }
   }
   .mood .cap{ position:absolute; right:16px; top:16px; z-index:1; font-size:.78rem; font-weight:600; background:rgba(28,22,17,.72); padding:.3rem .7rem; border-radius:var(--r-pill); }
 
@@ -611,7 +611,7 @@
     <h2 id="gal-title" class="h2">Így néz ki nálunk</h2>
     <div class="gallery">
       <figure class="g-wide" data-reveal><picture><source type="image/webp" srcset="img/opt/etterem-asztalok-tisza-to-800.webp 800w, img/opt/etterem-asztalok-tisza-to-1024.webp 1024w" sizes="(min-width:860px) 60vw, 100vw"><img src="img/opt/etterem-asztalok-tisza-to-800.jpg" srcset="img/opt/etterem-asztalok-tisza-to-800.jpg 800w, img/opt/etterem-asztalok-tisza-to-1024.jpg 1024w" sizes="(min-width:860px) 60vw, 100vw" width="1024" height="683" loading="lazy" decoding="async" alt="Stégre épített terasz asztalokkal a víz felett"></picture><figcaption>Asztalaink a Tisza-tó felett</figcaption></figure>
-      <figure class="g-tall" data-reveal style="--i:1"><picture><source type="image/webp" srcset="img/opt/5350-etterem-bejarat-480.webp 480w, img/opt/5350-etterem-bejarat-800.webp 800w" sizes="(min-width:860px) 26vw, 50vw"><img src="img/opt/5350-etterem-bejarat-480.jpg" srcset="img/opt/5350-etterem-bejarat-480.jpg 480w, img/opt/5350-etterem-bejarat-800.jpg 800w" sizes="(min-width:860px) 26vw, 50vw" width="800" height="829" loading="lazy" decoding="async" alt="Az 5350 Biciklis Megálló Pont bejárata"></picture><figcaption>Bejárat</figcaption></figure>
+      <figure class="g-tall" data-reveal style="--i:1"><picture><source type="image/webp" srcset="img/opt/5350-etterem-bejarat-480.webp 480w, img/opt/5350-etterem-bejarat-800.webp 800w" sizes="(min-width:860px) 26vw, 50vw"><img src="img/opt/5350-etterem-bejarat-480.jpg" srcset="img/opt/5350-etterem-bejarat-480.jpg 480w, img/opt/5350-etterem-bejarat-800.jpg 800w" sizes="(min-width:860px) 26vw, 50vw" width="800" height="829" loading="lazy" decoding="async" alt="Az 5350 Biciklis Megálló Pont bejárata" style="object-position:0% 40%"></picture><figcaption>Bejárat</figcaption></figure>
       <figure class="g-a" data-reveal style="--i:2"><picture><source type="image/webp" srcset="img/opt/magyaros-pizza-480.webp 480w, img/opt/magyaros-pizza-800.webp 800w" sizes="(min-width:860px) 30vw, 50vw"><img src="img/opt/magyaros-pizza-480.jpg" srcset="img/opt/magyaros-pizza-480.jpg 480w, img/opt/magyaros-pizza-800.jpg 800w" sizes="(min-width:860px) 30vw, 50vw" width="800" height="737" loading="lazy" decoding="async" alt="Pizza Ungherese fokhagymás és csípős olívaolajjal"></picture><figcaption>Pizza Ungherese</figcaption></figure>
       <figure class="g-b" data-reveal style="--i:3"><picture><source type="image/webp" srcset="img/opt/bar-480.webp"><img src="img/opt/bar-480.jpg" width="480" height="640" loading="lazy" decoding="async" alt="A bár pultja hűtőkkel" style="object-position:50% 40%"></picture><figcaption>Bár</figcaption></figure>
     </div>

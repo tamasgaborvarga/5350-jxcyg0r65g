@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>5350 Biciklis Megálló Pont — Pizzéria, Jászkeszeg Kikötő, Tiszafüred</title>
 <meta name="description" content="5350 Biciklis Megálló Pont — kézzel nyújtott pizza a Tisza-parton, a Jászkeszeg Kikötőnél, Tiszafüreden. Pizzák, tészták, saláták helyben vagy elvitelre; rendelés pár kattintással, WhatsAppon.">
-<meta name="theme-color" content="#FBF4E6">
+<meta name="theme-color" content="#1C1611">
 <!-- pizzaszelet-favicon, külön fájl nélkül -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 7.5c6-3.2 12-3.2 18 0L12 21.5z' fill='%23D92B1C'/%3E%3Ccircle cx='12' cy='9' r='1' fill='%23fff'/%3E%3Ccircle cx='9.6' cy='12.4' r='1' fill='%23fff'/%3E%3Ccircle cx='14.4' cy='12.4' r='1' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 7.5c6-3.2 12-3.2 18 0L12 21.5z' fill='%23E2231A'/%3E%3Ccircle cx='12' cy='9' r='1' fill='%23fff'/%3E%3Ccircle cx='9.6' cy='12.4' r='1' fill='%23fff'/%3E%3Ccircle cx='14.4' cy='12.4' r='1' fill='%23fff'/%3E%3C/svg%3E">
 
 <!-- ==========================================================================
      MEGOSZTÁS (Facebook / Messenger)
@@ -57,32 +57,35 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,600..800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Prompt:wght@600;700;800;900&display=swap" rel="stylesheet">
 <style>
   /* ==========================================================================
      DESIGN TOKENS
-     Egy akcentus (paradicsom) + meleg semlegesek. A „folyó” (sötét zöldes)
-     a sötét felületek semleges tónusa, a WhatsApp-zöld KIZÁRÓLAG a WA-gombon.
+     Az eredeti márkapaletta: piros = hangulat/márka, zöld = MINDEN vásárlás-művelet,
+     borostyán = meleg kiegészítő, sötét tinta a fejlécen/láblécen.
      ========================================================================== */
   :root{
-    --tomato:#D92B1C;        /* akcentus — fehér szöveg rajta 4,9:1 */
-    --tomato-ink:#B5200F;    /* paradicsom KIS szövegnek krémen (6,0:1) */
-    --tomato-dark:#A81D0E;
-    --tomato-tint:#FBE3DC;
-    --wa:#167A41;            /* csak a WhatsApp-gomb (fehér rajta 5,4:1) */
-    --wa-dark:#0F6334;
+    --tomato:#E2231A;        /* pizza-piros — hangulat/márka */
+    --tomato-ink:#C11A12;    /* piros KIS szövegnek krémen (5,7:1) */
+    --tomato-dark:#B0160F;
+    --tomato-tint:#FCEBEA;
+    --wa:#25843E;            /* zöld — MINDEN vásárlás-művelet (fehér rajta 4,7:1) */
+    --wa-dark:#1D6B32;
+    --action-hi:#2FA24C;     /* világos zöld: jelzőpont */
+    --amber:#F4A81D;         /* meleg kiegészítő (sötét szöveggel / sötét háttéren) */
+    --amber-dark:#D68E08;
 
-    --cream:#FBF4E6;         /* alap háttér — napfényes törtfehér */
-    --cream-2:#F4EAD6;
-    --paper:#FFFDF8;         /* kártyák */
-    --ink:#1D1B17;           /* szöveg */
-    --ink-soft:#5E574D;      /* másodlagos szöveg (6,6:1 krémen) */
-    --line:#E7DCC6;
-    --river:#11332F;         /* sötét felület: Tisza-víz tónus */
-    --river-2:#1B4842;
+    --cream:#FBF6EC;
+    --cream-2:#F3EBDD;
+    --paper:#FFFFFF;
+    --ink:#1C1611;           /* elsődleges szöveg + sötét felületek */
+    --ink-soft:#6E6258;
+    --line:#ECE5D9;
+    --river:#1C1611;         /* sötét felület (a fejléc/lábléc tónusa) */
+    --river-2:#2C241D;
 
-    --f-head:'Bricolage Grotesque','Arial Narrow',system-ui,sans-serif;
-    --f-body:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;
+    --f-head:'Prompt','Gill Sans MT',sans-serif;
+    --f-body:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
 
     --s1:.25rem; --s2:.5rem; --s3:.75rem; --s4:1rem; --s5:1.5rem;
     --s6:2rem; --s8:3rem; --s10:4.5rem; --s12:7rem;
@@ -101,7 +104,7 @@
   html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
   body{ margin:0; background:var(--cream); color:var(--ink); font-family:var(--f-body); font-size:1rem; line-height:1.6;
     -webkit-font-smoothing:antialiased; font-synthesis:none; overflow-x:hidden; }
-  h1,h2,h3,h4{ font-family:var(--f-head); margin:0; line-height:1.02; font-weight:800; letter-spacing:-.015em; }
+  h1,h2,h3,h4{ font-family:var(--f-head); margin:0; line-height:1.08; font-weight:800; letter-spacing:0; }
   p{ margin:0; }
   a{ color:inherit; text-decoration:none; }
   button{ font-family:inherit; font-size:inherit; color:inherit; cursor:pointer; border:none; background:none; padding:0; }
@@ -125,18 +128,18 @@
 
   /* ============ BUTTONS ============ */
   .btn{ display:inline-flex; align-items:center; justify-content:center; gap:.55rem; min-height:48px;
-    font-weight:700; font-size:1rem; padding:.8rem 1.4rem; border-radius:var(--r-pill);
+    font-family:var(--f-head); font-weight:700; font-size:.85rem; letter-spacing:.03em; text-transform:uppercase; padding:.8rem 1.5rem; border-radius:var(--r-pill);
     transition:transform var(--t-btn) var(--ease), background-color var(--t-btn) var(--ease), box-shadow var(--t-btn) var(--ease), color var(--t-btn) var(--ease); }
   .btn .arr{ transition:transform var(--t-btn) var(--ease); }
   .btn:hover .arr{ transform:translateX(4px); }
   .btn:active{ transform:scale(.98); }
-  .btn-red{ background:var(--tomato); color:#fff; box-shadow:0 8px 22px rgba(217,43,28,.28); }
+  .btn-red{ background:var(--tomato); color:#fff; box-shadow:0 10px 26px rgba(226,35,26,.26); }
   .btn-red:hover{ background:var(--tomato-dark); }
   .btn-line{ background:transparent; color:var(--ink); box-shadow:inset 0 0 0 2px var(--ink); }
   .btn-line:hover{ background:var(--ink); color:var(--cream); }
   .btn-white{ background:#fff; color:var(--ink); }
   .btn-white:hover{ background:var(--cream); }
-  .btn-wa{ background:var(--wa); color:#fff; box-shadow:0 8px 22px rgba(22,122,65,.28); font-size:1.05rem; min-height:54px; }
+  .btn-wa{ background:var(--wa); color:#fff; box-shadow:0 8px 20px rgba(47,162,76,.28); font-size:.92rem; min-height:54px; }
   .btn-wa:hover{ background:var(--wa-dark); }
   .btn-block{ width:100%; }
   .btn[disabled]{ opacity:.42; pointer-events:none; box-shadow:none; }
@@ -145,29 +148,29 @@
   .status{ display:inline-flex; align-items:center; gap:.5rem; font-weight:600; font-size:.9rem; line-height:1.2;
     padding:.45rem .85rem .45rem .7rem; border-radius:var(--r-pill); background:var(--paper); box-shadow:var(--sh-sm); }
   .status .dot{ width:9px; height:9px; border-radius:50%; background:var(--ink-soft); flex:none; }
-  .status[data-open="true"] .dot{ background:#1E9E52; box-shadow:0 0 0 4px rgba(30,158,82,.18); }
+  .status[data-open="true"] .dot{ background:var(--action-hi); box-shadow:0 0 0 4px rgba(47,162,76,.2); }
   .status[data-open="false"] .dot{ background:var(--tomato); }
   .status b{ font-weight:700; }
 
   /* ============ NAV ============ */
-  .nav{ position:sticky; top:0; z-index:40; height:var(--nav-h); background:rgba(251,244,230,.94);
+  .nav{ position:sticky; top:0; z-index:40; height:var(--nav-h); background:rgba(28,22,17,.97); color:#fff;
     border-bottom:1px solid transparent; transition:border-color .2s, background-color .2s; }
-  .nav.scrolled{ border-bottom-color:var(--line); background:rgba(251,244,230,.98); }
+  .nav.scrolled{ border-bottom-color:rgba(255,255,255,.08); }
   .nav-in{ height:100%; display:flex; align-items:center; justify-content:space-between; gap:var(--s4); }
   .brand{ display:flex; align-items:center; gap:.6rem; min-height:44px; }
-  .brand b{ font-family:var(--f-head); font-weight:800; font-size:1.6rem; letter-spacing:-.02em; color:var(--tomato); font-stretch:85%; }
-  .brand span{ font-weight:600; font-size:.85rem; line-height:1.15; color:var(--ink); }
+  .brand b{ font-family:var(--f-head); font-weight:800; font-size:1.5rem; font-weight:900; letter-spacing:.04em; color:#fff; }
+  .brand span{ font-family:var(--f-head); font-weight:600; font-size:.8rem; line-height:1.15; letter-spacing:.03em; color:var(--amber); }
   .nav-right{ display:flex; align-items:center; gap:var(--s5); }
   .nav-links{ display:flex; gap:var(--s2); }
-  .nav-links a{ font-weight:600; font-size:.95rem; padding:.6rem .7rem; border-radius:var(--r-pill); transition:background-color var(--t-btn); }
-  .nav-links a:hover{ background:var(--cream-2); }
-  .nav .status{ box-shadow:none; background:transparent; padding-inline:.2rem; }
-  .cart-btn{ position:relative; display:inline-flex; align-items:center; gap:.5rem; min-height:44px; background:var(--ink); color:#fff;
-    font-weight:700; font-size:.95rem; padding:.55rem 1.05rem; border-radius:var(--r-pill); transition:background-color var(--t-btn), transform var(--t-btn) var(--ease); }
-  .cart-btn:hover{ background:#000; }
+  .nav-links a{ font-family:var(--f-head); font-weight:600; font-size:.82rem; letter-spacing:.03em; text-transform:uppercase; color:#EDE6DA; padding:.6rem .7rem; border-radius:var(--r-pill); transition:background-color var(--t-btn); }
+  .nav-links a:hover{ color:var(--amber); }
+  .nav .status{ box-shadow:none; background:transparent; padding-inline:.2rem; color:#EDE6DA; }
+  .cart-btn{ position:relative; display:inline-flex; align-items:center; gap:.5rem; min-height:44px; background:var(--amber); color:var(--ink);
+    font-family:var(--f-head); font-weight:700; font-size:.82rem; text-transform:uppercase; letter-spacing:.03em; padding:.55rem 1.05rem; border-radius:var(--r-pill); transition:background-color var(--t-btn), transform var(--t-btn) var(--ease); }
+  .cart-btn:hover{ background:var(--amber-dark); }
   .cart-badge{ position:absolute; top:-6px; right:-6px; min-width:22px; height:22px; padding:0 6px;
     background:var(--tomato); color:#fff; font-size:.72rem; font-weight:700; border-radius:var(--r-pill);
-    display:flex; align-items:center; justify-content:center; box-shadow:0 0 0 2px var(--cream); }
+    display:flex; align-items:center; justify-content:center; box-shadow:0 0 0 2px var(--ink); }
   .cart-badge[data-zero="true"]{ display:none; }
   .cart-badge.pulse{ animation:pop .35s var(--ease); }
   @keyframes pop{ 0%{transform:scale(1)} 40%{transform:scale(1.35)} 100%{transform:scale(1)} }
@@ -180,8 +183,8 @@
   @media(min-width:900px){ .hero-grid{ grid-template-columns:1fr 1.08fr; gap:clamp(2rem,5vw,4.5rem); } }
   .hero-copy .status{ margin-bottom:var(--s5); }
   .hero h1{ display:flex; flex-direction:column; gap:.1em; }
-  .hero h1 .big{ font-size:clamp(5.5rem,17vw,11.5rem); line-height:.82; letter-spacing:-.045em; color:var(--tomato); font-stretch:80%; }
-  .hero h1 .name{ font-size:clamp(1.7rem,4.2vw,2.6rem); letter-spacing:-.02em; line-height:1.05; }
+  .hero h1 .big{ font-size:clamp(4.6rem,15vw,9rem); line-height:.9; font-weight:900; letter-spacing:.01em; color:var(--tomato); }
+  .hero h1 .name{ font-size:clamp(1.2rem,3.2vw,1.9rem); font-weight:700; letter-spacing:.1em; text-transform:uppercase; line-height:1.05; }
   .hero .tag{ font-size:clamp(1.2rem,2.4vw,1.5rem); font-weight:500; line-height:1.35; margin-top:var(--s4); max-width:24ch; }
   .hero .meta{ display:flex; flex-wrap:wrap; gap:.4rem .9rem; margin-top:var(--s4); color:var(--ink-soft); font-weight:600; font-size:.95rem; }
   .hero .meta span{ display:inline-flex; align-items:center; gap:.4rem; }
@@ -192,7 +195,7 @@
   .hero-media{ position:relative; }
   .hero-photo{ position:relative; border-radius:var(--r-lg); overflow:hidden; aspect-ratio:4/3; background:var(--cream-2); box-shadow:var(--sh-lg); }
   .hero-photo img{ width:100%; height:100%; object-fit:cover; object-position:50% 60%; }
-  .hero-photo .cap{ position:absolute; right:12px; top:12px; background:rgba(255,253,248,.92); color:var(--ink);
+  .hero-photo .cap{ position:absolute; right:12px; top:12px; background:rgba(255,255,255,.92); color:var(--ink);
     font-size:.8rem; font-weight:600; padding:.35rem .7rem; border-radius:var(--r-pill); }
   .hero-pizza{ position:absolute; left:-4%; bottom:-11%; width:clamp(130px,34%,230px); aspect-ratio:1; border-radius:50%;
     overflow:hidden; border:6px solid var(--cream); box-shadow:var(--sh-lg); background:var(--cream-2); }
@@ -220,37 +223,37 @@
   @media(min-width:760px){ .usp-grid{ grid-template-columns:repeat(3,1fr); gap:var(--s5); } }
   .usp-card{ background:var(--paper); border-radius:var(--r-md); padding:var(--s5) var(--s5) var(--s6); box-shadow:var(--sh-sm); position:relative; }
   .usp-card .n{ font-family:var(--f-head); font-weight:800; font-size:.9rem; color:var(--tomato-ink); letter-spacing:.02em; }
-  .usp-card h3{ font-size:clamp(1.5rem,2.6vw,1.9rem); margin:.6rem 0 .5rem; }
+  .usp-card h3{ font-size:clamp(1.3rem,2.2vw,1.6rem); font-weight:700; margin:.6rem 0 .5rem; }
   .usp-card p{ color:var(--ink-soft); }
 
   /* ============ HANGULAT: PIZZA. TISZA. NYÁR. ============ */
-  .mood{ position:relative; min-height:clamp(420px,72vh,640px); display:flex; align-items:flex-end; color:#fff; overflow:hidden; background:var(--river); }
+  .mood{ position:relative; min-height:clamp(420px,72vh,640px); display:flex; align-items:flex-end; color:#fff; overflow:hidden; background:var(--tomato-dark); }
   .mood picture, .mood img{ position:absolute; inset:0; width:100%; height:100%; }
   .mood img{ object-fit:cover; object-position:30% 35%; transform:scale(1.04); transition:transform 1.4s var(--ease); }
   .mood.in img{ transform:scale(1); }
   .mood::after{ content:""; position:absolute; inset:0;
-    background:linear-gradient(180deg, rgba(17,51,47,.05) 25%, rgba(17,51,47,.55) 60%, rgba(12,30,27,.88) 100%); }
+    background:linear-gradient(180deg, rgba(176,22,15,.05) 25%, rgba(176,22,15,.6) 58%, rgba(150,18,12,.94) 100%); }
   .mood-in{ position:relative; z-index:1; padding-block:var(--s10) var(--s8); width:100%; }
-  .mood h2{ font-size:clamp(3.2rem,11vw,8.5rem); line-height:.86; letter-spacing:-.04em; font-stretch:80%; }
+  .mood h2{ font-size:clamp(2.8rem,8.5vw,6.2rem); line-height:.98; font-weight:900; letter-spacing:.01em; text-transform:uppercase; }
   .mood h2 span{ display:block; }
-  .mood h2 span:nth-child(2){ color:#FFD9C9; }
+  .mood h2 span:nth-child(2){ color:#FFE3B0; }
   .mood p{ margin-top:var(--s5); font-size:clamp(1.05rem,2vw,1.25rem); max-width:34ch; font-weight:500; color:rgba(255,255,255,.94); }
   /* asztalon: a kép csak a jobb felét kapja — a 800 px-es forrás így nem nagyítódik fel, és a felirat nem ül a táblára */
   @media(min-width:900px){
     .mood{ min-height:600px; align-items:center; }
     .mood picture{ left:50%; }
-    .mood::after{ background:linear-gradient(90deg, var(--river) 50%, rgba(17,51,47,.35) 58%, rgba(17,51,47,0) 70%); }
+    .mood::after{ background:linear-gradient(90deg, #C81E16 50%, rgba(200,30,22,.35) 58%, rgba(200,30,22,0) 70%); }
     .mood-in{ padding-block:var(--s10); }
     .mood-in > *{ max-width:46%; }
     .mood img{ object-position:50% 40%; }
   }
-  .mood .cap{ position:absolute; right:16px; top:16px; z-index:1; font-size:.78rem; font-weight:600; background:rgba(17,51,47,.7); padding:.3rem .7rem; border-radius:var(--r-pill); }
+  .mood .cap{ position:absolute; right:16px; top:16px; z-index:1; font-size:.78rem; font-weight:600; background:rgba(28,22,17,.72); padding:.3rem .7rem; border-radius:var(--r-pill); }
 
   /* ============ SECTION HEADS ============ */
   .sec{ padding-block:var(--s10); }
   .eyebrow{ display:inline-flex; align-items:center; gap:.5rem; font-weight:700; font-size:.9rem; color:var(--tomato-ink); margin-bottom:var(--s3); }
   .eyebrow .ic{ width:1.15em; height:1.15em; }
-  .h2{ font-size:clamp(2.4rem,6vw,4.2rem); letter-spacing:-.03em; }
+  .h2{ font-size:clamp(2.1rem,5vw,3.4rem); }
   .lead{ font-size:clamp(1.05rem,1.6vw,1.2rem); color:var(--ink-soft); max-width:58ch; margin-top:var(--s4); }
   .lead b{ color:var(--ink); }
 
@@ -285,7 +288,7 @@
   /* ============ ÉTLAP ============ */
   .cat{ padding-top:var(--s8); }
   .cat-head{ display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:.3rem var(--s4); margin-bottom:var(--s5); }
-  .cat-head h3{ font-size:clamp(2rem,4.4vw,3rem); letter-spacing:-.03em; }
+  .cat-head h3{ font-size:clamp(1.8rem,3.8vw,2.6rem); }
   .cat-head .note{ font-weight:600; color:var(--ink-soft); }
   .sub-head{ font-size:1.35rem; margin:var(--s6) 0 var(--s4); display:flex; align-items:center; gap:.5rem; }
   .sub-head:first-of-type{ margin-top:0; }
@@ -294,19 +297,19 @@
   .feature{ position:relative; overflow:hidden; border-radius:var(--r-lg); background:var(--tomato); color:#fff;
     padding:clamp(1.5rem,4vw,3rem); margin-bottom:var(--s5); display:grid; gap:var(--s5); align-items:end; }
   @media(min-width:760px){ .feature{ grid-template-columns:1.4fr 1fr; } }
-  .feature .ghost{ position:absolute; right:-.06em; top:-.18em; font-family:var(--f-head); font-weight:800; font-stretch:75%;
-    font-size:clamp(9rem,30vw,22rem); line-height:1; letter-spacing:-.05em; color:rgba(255,255,255,.1); pointer-events:none;
+  .feature .ghost{ position:absolute; right:-.06em; top:-.18em; font-family:var(--f-head); font-weight:800;
+    font-size:clamp(9rem,30vw,22rem); line-height:1; font-weight:900; color:rgba(255,255,255,.1); pointer-events:none;
     transform:scale(1.06); transition:transform 1.2s var(--ease); }
   .feature.in .ghost{ transform:scale(1); }
   .feature .kick{ display:inline-flex; align-items:center; gap:.5rem; background:#fff; color:var(--tomato-ink); font-weight:700; font-size:.9rem;
     padding:.35rem .85rem; border-radius:var(--r-pill); }
-  .feature h4{ font-size:clamp(2.6rem,7vw,5rem); letter-spacing:-.035em; margin-top:var(--s4); position:relative; }
+  .feature h4{ font-size:clamp(2.2rem,5.5vw,4rem); margin-top:var(--s4); position:relative; }
   .feature h4 small{ display:block; font-family:var(--f-body); font-size:1rem; font-weight:600; letter-spacing:0; opacity:.85; margin-bottom:.4rem; }
   .feature p{ font-size:1.12rem; max-width:40ch; margin-top:var(--s3); position:relative; color:rgba(255,255,255,.95); }
   .feature-buy{ position:relative; display:flex; flex-direction:column; align-items:flex-start; gap:var(--s4); }
   @media(min-width:760px){ .feature-buy{ align-items:flex-end; text-align:right; } }
-  .feature .price{ font-family:var(--f-head); font-weight:800; font-size:clamp(2rem,4vw,2.6rem); letter-spacing:-.02em; }
-  .feature .add{ background:#fff; color:var(--tomato-ink); }
+  .feature .price{ font-family:var(--f-head); font-weight:800; font-size:clamp(1.9rem,3.6vw,2.4rem); }
+  .feature .add{ background:#fff; color:var(--wa); box-shadow:none; }
   .feature .add:hover{ background:var(--cream); }
 
   .grid{ display:grid; gap:var(--s4); grid-template-columns:1fr; }
@@ -318,10 +321,10 @@
   .card:hover{ transform:translateY(-3px); box-shadow:var(--sh-md); }
   .card-body{ flex:1; display:flex; flex-direction:column; padding:var(--s5) var(--s5) var(--s4); }
   .card .no{ font-family:var(--f-head); font-weight:800; font-size:.85rem; color:var(--tomato-ink); }
-  .card h4{ font-size:1.42rem; letter-spacing:-.02em; line-height:1.08; margin-top:.25rem; }
+  .card h4{ font-size:1.2rem; font-weight:700; line-height:1.18; margin-top:.25rem; }
   .card .desc{ color:var(--ink-soft); font-size:.97rem; line-height:1.45; margin-top:.45rem; }
   .card-foot{ display:flex; align-items:center; justify-content:space-between; gap:var(--s3); margin-top:auto; padding-top:var(--s4); }
-  .price{ font-family:var(--f-head); font-weight:800; font-size:1.35rem; letter-spacing:-.01em; white-space:nowrap; font-variant-numeric:tabular-nums; }
+  .price{ font-family:var(--f-head); font-weight:700; font-size:1.18rem; white-space:nowrap; font-variant-numeric:tabular-nums; }
   .card-media{ overflow:hidden; aspect-ratio:16/10; background:var(--cream-2); }
   .card-media img{ width:100%; height:100%; object-fit:cover; transition:transform 320ms var(--ease); }
   .card:hover .card-media img{ transform:scale(1.03); }
@@ -334,13 +337,14 @@
 
   /* kosárba gomb */
   .add{ display:inline-flex; align-items:center; gap:.4rem; min-height:44px; padding:.55rem 1rem .55rem .85rem; border-radius:var(--r-pill);
-    background:var(--ink); color:#fff; font-weight:700; font-size:.95rem;
+    background:var(--wa); color:#fff; font-family:var(--f-head); font-weight:700; font-size:.8rem; letter-spacing:.03em; text-transform:uppercase;
+    box-shadow:0 4px 12px rgba(47,162,76,.22);
     transition:background-color var(--t-btn) var(--ease), transform var(--t-btn) var(--ease); }
   .add .ic{ width:1.1em; height:1.1em; stroke-width:2.6; }
-  .add:hover{ background:var(--tomato); }
-  .card:hover .add{ background:var(--tomato); }
+  .add:hover{ background:var(--wa-dark); }
+  .card:hover .add{ background:var(--wa-dark); }
   .add:active{ transform:scale(.95); }
-  .add.added, .add-sm.added{ background:var(--wa)!important; color:#fff!important; }
+  .add.added, .add-sm.added{ background:var(--wa-dark)!important; color:#fff!important; }
   .add .ok, .add.added .lbl, .add.added .ic-plus{ display:none; }
   .add.added .ok{ display:inline-flex; }
 
@@ -352,10 +356,10 @@
   .addon{ display:flex; align-items:center; gap:var(--s3); padding:.35rem 0; border-top:1px solid var(--line); min-height:56px; }
   .addon .nm{ flex:1; font-weight:500; }
   .addon .pr{ font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap; }
-  .add-sm{ width:44px; height:44px; flex:none; border-radius:50%; background:var(--cream); color:var(--ink); box-shadow:inset 0 0 0 1.5px var(--line);
+  .add-sm{ width:44px; height:44px; flex:none; border-radius:50%; background:#fff; color:var(--wa); box-shadow:var(--sh-sm);
     display:flex; align-items:center; justify-content:center; transition:background-color var(--t-btn), color var(--t-btn), transform var(--t-btn) var(--ease); }
   .add-sm .ic{ width:18px; height:18px; stroke-width:2.6; }
-  .add-sm:hover{ background:var(--ink); color:#fff; box-shadow:none; }
+  .add-sm:hover{ background:var(--wa); color:#fff; }
   .add-sm:active{ transform:scale(.9); }
   .info{ display:flex; gap:.6rem; align-items:flex-start; font-size:.95rem; color:var(--ink-soft); line-height:1.45; }
   .info .ic{ width:1.15rem; height:1.15rem; color:var(--tomato-ink); margin-top:.15rem; }
@@ -370,7 +374,7 @@
   .gallery figure{ margin:0; position:relative; overflow:hidden; border-radius:var(--r-md); background:var(--cream-2); }
   .gallery img{ width:100%; height:100%; object-fit:cover; transition:transform 420ms var(--ease); }
   .gallery figure:hover img{ transform:scale(1.03); }
-  .gallery figcaption{ position:absolute; left:10px; bottom:10px; font-size:.82rem; font-weight:600; background:rgba(255,253,248,.93);
+  .gallery figcaption{ position:absolute; left:10px; bottom:10px; font-size:.82rem; font-weight:600; background:rgba(255,255,255,.93);
     padding:.3rem .7rem; border-radius:var(--r-pill); }
   .g-wide{ grid-column:span 2; grid-row:span 2; }
   .g-tall{ grid-row:span 2; }
@@ -382,9 +386,9 @@
   }
 
   /* ============ A KIKÖTŐNÉL ============ */
-  .harbor{ background:var(--river); color:#F3EEE3; }
-  .harbor .eyebrow{ color:#FFC9B8; }
-  .harbor .lead{ color:rgba(243,238,227,.86); }
+  .harbor{ background:var(--river); color:#EDE6DA; }
+  .harbor .eyebrow{ color:var(--amber); }
+  .harbor .lead{ color:rgba(237,230,218,.86); }
   .harbor-grid{ display:grid; gap:var(--s6); grid-template-columns:1fr; margin-top:var(--s6); }
   @media(min-width:900px){ .harbor-grid{ grid-template-columns:1fr 1fr; gap:var(--s8); } }
   .panel{ background:var(--river-2); border-radius:var(--r-md); padding:var(--s5); }
@@ -394,38 +398,38 @@
   table.hours td{ padding:.62rem .1rem; border-bottom:1px solid rgba(255,255,255,.12); }
   table.hours tr:last-child td{ border-bottom:none; }
   table.hours td:last-child{ text-align:right; font-weight:700; }
-  .hours .closed{ color:rgba(243,238,227,.6); font-weight:500!important; }
+  .hours .closed{ color:rgba(237,230,218,.6); font-weight:500!important; }
   .hours tr.today td{ color:#fff; font-weight:700; }
   .hours tr.today td:first-child::after{ content:"Ma"; margin-left:.5rem; font-size:.7rem; font-weight:700;
     background:var(--tomato); color:#fff; padding:.12rem .5rem; border-radius:var(--r-pill); vertical-align:middle; }
   .contact{ display:flex; gap:var(--s3); align-items:flex-start; padding:.7rem 0; border-bottom:1px solid rgba(255,255,255,.12); }
   .contact:last-of-type{ border-bottom:none; }
-  .contact .ic{ width:1.25rem; height:1.25rem; margin-top:.2rem; color:#FFC9B8; }
-  .contact .lbl{ font-size:.82rem; font-weight:600; color:rgba(243,238,227,.7); }
+  .contact .ic{ width:1.25rem; height:1.25rem; margin-top:.2rem; color:var(--amber); }
+  .contact .lbl{ font-size:.82rem; font-weight:600; color:rgba(237,230,218,.7); }
   .contact .val{ font-weight:600; font-size:1.05rem; }
   .contact a.val{ text-decoration:underline; text-underline-offset:3px; }
   .harbor-ctas{ display:flex; flex-wrap:wrap; gap:var(--s3); margin-top:var(--s5); }
-  .map{ position:relative; margin-top:var(--s5); border-radius:var(--r-md); overflow:hidden; aspect-ratio:16/10; background:#0C2623;
+  .map{ position:relative; margin-top:var(--s5); border-radius:var(--r-md); overflow:hidden; aspect-ratio:16/10; background:#120E0B;
     background-image:radial-gradient(rgba(255,255,255,.08) 1px, transparent 1px); background-size:18px 18px; }
   .map iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
   .map-load{ position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.6rem;
     color:#fff; font-weight:700; text-align:center; padding:var(--s4); width:100%; }
-  .map-load .ic{ width:2rem; height:2rem; color:#FFC9B8; }
+  .map-load .ic{ width:2rem; height:2rem; color:var(--amber); }
   .map-load small{ font-weight:500; opacity:.75; max-width:32ch; }
   .map-load:hover span{ text-decoration:underline; }
 
   /* ============ FOOTER ============ */
-  footer{ background:#0C2623; color:#E9E2D4; padding:var(--s8) 0 calc(var(--s8) + 76px); }
+  footer{ background:#120E0B; color:#EDE6DA; padding:var(--s8) 0 calc(var(--s8) + 76px); }
   @media(min-width:900px){ footer{ padding-bottom:var(--s8); } }
   .foot-grid{ display:grid; gap:var(--s6); grid-template-columns:1fr; }
   @media(min-width:760px){ .foot-grid{ grid-template-columns:1.4fr 1fr 1fr; } }
-  .foot-brand b{ font-family:var(--f-head); font-weight:800; font-size:3.4rem; line-height:.9; color:var(--tomato); letter-spacing:-.04em; font-stretch:80%; display:block; }
-  .foot-brand p{ margin-top:var(--s3); color:#C9C0AF; max-width:32ch; }
-  .foot-col h4{ font-family:var(--f-body); font-size:.85rem; font-weight:700; color:#FFC9B8; margin-bottom:var(--s3); letter-spacing:.02em; }
-  .foot-col a, .foot-col p{ display:block; color:#E9E2D4; padding:.3rem 0; }
+  .foot-brand b{ font-family:var(--f-head); font-weight:800; font-size:2.6rem; line-height:.9; font-weight:900; color:#fff; letter-spacing:.04em; display:block; }
+  .foot-brand p{ margin-top:var(--s3); color:#B8AEA0; max-width:32ch; }
+  .foot-col h4{ font-family:var(--f-body); font-size:.85rem; font-weight:700; color:var(--amber); margin-bottom:var(--s3); letter-spacing:.02em; }
+  .foot-col a, .foot-col p{ display:block; color:#EDE6DA; padding:.3rem 0; }
   .foot-col a:hover{ text-decoration:underline; text-underline-offset:3px; }
-  .foot-warn{ display:flex; align-items:center; gap:.6rem; margin-top:var(--s6); padding-top:var(--s5); border-top:1px solid rgba(255,255,255,.12); font-weight:600; color:#FFDCA8; }
-  .foot-legal{ font-size:.85rem; color:#A79F90; margin-top:var(--s4); }
+  .foot-warn{ display:flex; align-items:center; gap:.6rem; margin-top:var(--s6); padding-top:var(--s5); border-top:1px solid rgba(255,255,255,.12); font-weight:600; color:var(--amber); }
+  .foot-legal{ font-size:.85rem; color:#8C8377; margin-top:var(--s4); }
 
   /* ============ KOSÁR (fiók / mobil alsó lap) ============ */
   .overlay{ position:fixed; inset:0; background:rgba(17,24,22,.45); z-index:60; opacity:0; pointer-events:none; transition:opacity 300ms var(--ease); }
@@ -514,27 +518,21 @@
   .sum-line.box-line{ color:var(--ink); font-weight:500; }
   .sum-row{ display:flex; justify-content:space-between; align-items:baseline; margin-top:var(--s2); padding-top:var(--s3); border-top:1px solid var(--line); }
   .sum-row .lbl{ font-weight:600; color:var(--ink-soft); }
-  .sum-row .amt{ font-family:var(--f-head); font-weight:800; font-size:1.8rem; letter-spacing:-.02em; font-variant-numeric:tabular-nums; }
+  .sum-row .amt{ font-family:var(--f-head); font-weight:800; font-size:1.6rem; color:var(--wa-dark); font-variant-numeric:tabular-nums; }
   .clear-btn{ display:block; width:100%; min-height:40px; text-align:center; font-size:.9rem; color:var(--ink-soft); margin-top:var(--s3); text-decoration:underline; text-underline-offset:3px; }
   .clear-btn:hover{ color:var(--tomato-ink); }
   .clear-btn[disabled]{ opacity:.4; pointer-events:none; }
   .hint{ font-size:.82rem; color:var(--ink-soft); text-align:center; margin-top:var(--s3); line-height:1.4; }
 
-  /* ============ MOBIL ALSÓ SÁV: ÉTLAP | KOSÁR | ÚTVONAL ============ */
-  .mbar{ position:fixed; left:0; right:0; bottom:0; z-index:50; display:none; grid-template-columns:1fr 2.4fr 1fr; gap:6px;
+  /* ============ MOBIL ALSÓ SÁV: ÉTLAP | ÚTVONAL ============ */
+  .mbar{ position:fixed; left:0; right:0; bottom:0; z-index:50; display:none; grid-template-columns:1fr 1fr; gap:6px;
     padding:8px max(10px, env(safe-area-inset-left)) calc(8px + env(safe-area-inset-bottom));
-    background:rgba(255,253,248,.97); border-top:1px solid var(--line); box-shadow:0 -6px 22px rgba(29,27,23,.08);
+    background:rgba(255,255,255,.97); border-top:1px solid var(--line); box-shadow:0 -6px 22px rgba(29,27,23,.08);
     transition:opacity .2s; }
-  .mbar a, .mbar button{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; min-height:52px;
-    border-radius:14px; font-weight:700; font-size:.78rem; color:var(--ink); }
+  .mbar a{ display:flex; flex-direction:row; align-items:center; justify-content:center; gap:.5rem; min-height:48px;
+    border-radius:14px; font-family:var(--f-head); font-weight:700; font-size:.82rem; letter-spacing:.03em; text-transform:uppercase; color:var(--ink); background:var(--cream); }
   .mbar .ic{ width:1.3rem; height:1.3rem; }
-  .mbar .mb-cart{ flex-direction:row; gap:.5rem; background:var(--tomato); color:#fff; font-size:.98rem; white-space:nowrap; }
-  @media(max-width:359px){ .mbar .mb-cart .c{ display:none; } }
-  .mbar .mb-cart .t{ font-variant-numeric:tabular-nums; }
-  .mbar .mb-cart .c{ min-width:22px; height:22px; padding:0 6px; border-radius:999px; background:#fff; color:var(--tomato-ink); font-size:.75rem;
-    display:inline-flex; align-items:center; justify-content:center; }
-  .mbar .mb-cart .c[data-zero="true"]{ display:none; }
-  @media(max-width:899px){ .mbar{ display:grid; } body{ padding-bottom:calc(70px + env(safe-area-inset-bottom)); } footer{ padding-bottom:var(--s8); } }
+  @media(max-width:899px){ .mbar{ display:grid; } body{ padding-bottom:calc(64px + env(safe-area-inset-bottom)); } footer{ padding-bottom:var(--s8); } }
 
   /* ============ ASZTALI LEBEGŐ KOSÁR ============ */
   .fcart{ position:fixed; right:24px; bottom:24px; z-index:50; display:none; align-items:center; gap:.7rem; min-height:56px;
@@ -544,13 +542,13 @@
   .fcart.show{ opacity:1; transform:none; pointer-events:auto; }
   .fcart:hover{ background:#000; }
   .fcart .t{ font-variant-numeric:tabular-nums; }
-  .fcart .go{ display:inline-flex; align-items:center; gap:.4rem; background:var(--tomato); padding:.55rem 1rem; border-radius:var(--r-pill); }
+  .fcart .go{ display:inline-flex; align-items:center; gap:.4rem; background:var(--wa); padding:.55rem 1rem; border-radius:var(--r-pill); }
   .fcart:hover .arr{ transform:translateX(3px); }
   .fcart .arr{ transition:transform var(--t-btn) var(--ease); }
   @media(min-width:900px){ .fcart{ display:inline-flex; } }
 
   /* hozzáadás-visszajelzés */
-  .toast{ position:fixed; left:50%; bottom:calc(84px + env(safe-area-inset-bottom)); z-index:55; transform:translate(-50%,12px); opacity:0;
+  .toast{ position:fixed; left:50%; bottom:calc(78px + env(safe-area-inset-bottom)); z-index:55; transform:translate(-50%,12px); opacity:0;
     background:var(--ink); color:#fff; font-weight:600; font-size:.95rem; padding:.7rem 1.1rem; border-radius:var(--r-pill);
     box-shadow:var(--sh-md); pointer-events:none; transition:opacity 220ms var(--ease), transform 220ms var(--ease); width:max-content; max-width:calc(100vw - 32px); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
   .toast.show{ opacity:1; transform:translate(-50%,0); }
@@ -949,10 +947,9 @@
   </div>
 </aside>
 
-<!-- ===== MOBIL ALSÓ SÁV ===== -->
+<!-- ===== MOBIL ALSÓ SÁV (a kosár a fejlécben van) ===== -->
 <nav id="mbar" class="mbar" aria-label="Gyorsműveletek">
   <a href="#etlap"><svg class="ic" aria-hidden="true"><use href="#i-pizza"/></svg>Étlap</a>
-  <button id="mbOrder" class="mb-cart" aria-label="Kosár megnyitása"><svg class="ic" aria-hidden="true"><use href="#i-cart"/></svg><span id="mbTotal" class="t">Kosár</span><span id="mbCount" class="c" data-zero="true">0</span></button>
   <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Tiszaf%C3%BCred%2C%20Kistisza%20utca%206%2C%205350" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-route"/></svg>Útvonal</a>
 </nav>
 
@@ -1197,13 +1194,9 @@
       hint.style.color="";
     }
 
-    // jelvény + mobil sáv + asztali lebegő kosár
+    // jelvény + asztali lebegő kosár
     var c=count();
     badge.textContent=c; badge.setAttribute("data-zero", c===0?"true":"false");
-    var mbCount=document.getElementById("mbCount");
-    mbCount.textContent=c; mbCount.setAttribute("data-zero", c===0?"true":"false");
-    document.getElementById("mbTotal").textContent = c ? "Kosár · "+ft(grand()) : "Kosár";
-    document.getElementById("mbOrder").setAttribute("aria-label", c ? "Kosár megnyitása, "+c+" tétel, "+ft(grand()) : "Kosár megnyitása, üres");
     var fc=document.getElementById("fcart");
     document.getElementById("fcCount").textContent=c+" tétel";
     document.getElementById("fcTotal").textContent=ft(grand());
@@ -1271,9 +1264,8 @@
       });
     });
 
-    var cartBtn=document.getElementById("cartBtn"), mbOrder=document.getElementById("mbOrder"), fcart=document.getElementById("fcart");
+    var cartBtn=document.getElementById("cartBtn"), fcart=document.getElementById("fcart");
     cartBtn.addEventListener("click", function(){ openDrawer(cartBtn); });
-    mbOrder.addEventListener("click", function(){ openDrawer(mbOrder); });
     fcart.addEventListener("click", function(){ openDrawer(fcart); });
     document.getElementById("drawerClose").addEventListener("click", closeDrawer);
     document.getElementById("overlay").addEventListener("click", closeDrawer);

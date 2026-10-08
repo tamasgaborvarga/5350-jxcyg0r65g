@@ -2,18 +2,18 @@
 <html lang="hu">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>5350 Biciklis Megálló Pont — Pizzéria, Jászkeszeg Kikötő, Tiszafüred</title>
-<meta name="description" content="5350 Biciklis Megálló Pont — olasz receptek alapján, kézzel nyújtott pizzák, tészták és saláták a Tisza-parton, Tiszafüreden. Rendelj néhány kattintással, WhatsAppon.">
-<meta name="theme-color" content="#E2231A">
+<meta name="description" content="5350 Biciklis Megálló Pont — kézzel nyújtott pizza a Tisza-parton, a Jászkeszeg Kikötőnél, Tiszafüreden. Pizzák, tészták, saláták helyben vagy elvitelre; rendelés pár kattintással, WhatsAppon.">
+<meta name="theme-color" content="#FBF4E6">
 <!-- pizzaszelet-favicon, külön fájl nélkül -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 7.5c6-3.2 12-3.2 18 0L12 21.5z' fill='%23E2231A'/%3E%3Ccircle cx='12' cy='9' r='1' fill='%23fff'/%3E%3Ccircle cx='9.6' cy='12.4' r='1' fill='%23fff'/%3E%3Ccircle cx='14.4' cy='12.4' r='1' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 7.5c6-3.2 12-3.2 18 0L12 21.5z' fill='%23D92B1C'/%3E%3Ccircle cx='12' cy='9' r='1' fill='%23fff'/%3E%3Ccircle cx='9.6' cy='12.4' r='1' fill='%23fff'/%3E%3Ccircle cx='14.4' cy='12.4' r='1' fill='%23fff'/%3E%3C/svg%3E">
 
 <!-- ==========================================================================
      MEGOSZTÁS (Facebook / Messenger)
      FIGYELEM: az og:url és az og:image CSAK abszolút URL-lel működik.
-     A lenti tamasgaborvarga.github.io/5350-t cseréld a valós domainre élesítés előtt,
-     különben a megosztás üres szürke dobozként jelenik meg.
+     A tamasgaborvarga.github.io/5350-t a tools/github-feltolt.sh a feltöltött másolatban
+     cseréli; saját domainnél itt kell átírni.
      ========================================================================== -->
 <meta property="og:type" content="restaurant.restaurant">
 <meta property="og:locale" content="hu_HU">
@@ -35,6 +35,7 @@
   "servesCuisine": ["Pizza", "Olasz"],
   "priceRange": "3490–4290 Ft",
   "currenciesAccepted": "HUF",
+  "image": "img/etterem-asztalok-tisza-to.jpg",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Kistisza utca 6.",
@@ -51,379 +52,525 @@
 }
 </script>
 
+<!-- JS-jelző: a scroll-reveal kezdőállapota csak akkor rejt, ha a JS biztosan fut -->
+<script>document.documentElement.classList.add("js");</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Prompt:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,600..800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  /* ============ DESIGN TOKENS ============ */
+  /* ==========================================================================
+     DESIGN TOKENS
+     Egy akcentus (paradicsom) + meleg semlegesek. A „folyó” (sötét zöldes)
+     a sötét felületek semleges tónusa, a WhatsApp-zöld KIZÁRÓLAG a WA-gombon.
+     ========================================================================== */
   :root{
-    /* brand + action */
-    --brand:#E2231A;         /* pizza red — hangulat/márka */
-    --brand-dark:#B0160F;
-    --brand-tint:#FCEBEA;
-    --action:#2FA24C;        /* zöld — MINDEN vásárlás-művelet */
-    --action-dark:#25843E;
-    --amber:#F4A81D;         /* meleg kiegészítő */
-    --amber-dark:#D68E08;
-    /* neutrals (meleg) */
-    --ink:#1C1611;           /* elsődleges szöveg */
-    --ink-soft:#6E6258;      /* másodlagos szöveg */
-    --line:#ECE5D9;
-    --cream:#FBF6EC;
-    --paper:#FFFFFF;
-    /* type */
-    --f-head:'Prompt','Gill Sans MT',sans-serif;
-    --f-body:'Inter',system-ui,-apple-system,sans-serif;
-    --fs-xs:.75rem; --fs-sm:.8125rem; --fs-base:1rem; --fs-md:1.125rem;
-    --fs-lg:1.375rem; --fs-xl:1.875rem; --fs-2xl:2.75rem;
-    /* spacing (8pt) */
+    --tomato:#D92B1C;        /* akcentus — fehér szöveg rajta 4,9:1 */
+    --tomato-ink:#B5200F;    /* paradicsom KIS szövegnek krémen (6,0:1) */
+    --tomato-dark:#A81D0E;
+    --tomato-tint:#FBE3DC;
+    --wa:#167A41;            /* csak a WhatsApp-gomb (fehér rajta 5,4:1) */
+    --wa-dark:#0F6334;
+
+    --cream:#FBF4E6;         /* alap háttér — napfényes törtfehér */
+    --cream-2:#F4EAD6;
+    --paper:#FFFDF8;         /* kártyák */
+    --ink:#1D1B17;           /* szöveg */
+    --ink-soft:#5E574D;      /* másodlagos szöveg (6,6:1 krémen) */
+    --line:#E7DCC6;
+    --river:#11332F;         /* sötét felület: Tisza-víz tónus */
+    --river-2:#1B4842;
+
+    --f-head:'Bricolage Grotesque','Arial Narrow',system-ui,sans-serif;
+    --f-body:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;
+
     --s1:.25rem; --s2:.5rem; --s3:.75rem; --s4:1rem; --s5:1.5rem;
-    --s6:2rem; --s8:3rem; --s10:4rem; --s12:6rem;
-    /* radius + shadow */
-    --r-sm:10px; --r-md:16px; --r-lg:24px; --r-pill:999px;
-    --sh-sm:0 1px 2px rgba(28,22,17,.06), 0 2px 6px rgba(28,22,17,.05);
-    --sh-md:0 6px 18px rgba(28,22,17,.09);
-    --sh-lg:0 16px 40px rgba(28,22,17,.14);
-    --sh-brand:0 10px 26px rgba(226,35,26,.26);
-    --sh-action:0 8px 20px rgba(47,162,76,.28);
-    --wrap:1140px;
+    --s6:2rem; --s8:3rem; --s10:4.5rem; --s12:7rem;
+    --r-sm:12px; --r-md:20px; --r-lg:28px; --r-pill:999px;
+    --sh-sm:0 1px 2px rgba(29,27,23,.06), 0 3px 10px rgba(29,27,23,.05);
+    --sh-md:0 10px 28px rgba(29,27,23,.10);
+    --sh-lg:0 22px 50px rgba(29,27,23,.18);
+    --wrap:1180px;
+    --nav-h:64px;
+
+    /* motion system */
+    --ease:cubic-bezier(.22,1,.36,1);
+    --t-btn:170ms;   --t-card:200ms;   --t-sec:520ms;   --t-hero:900ms;
   }
   *,*::before,*::after{ box-sizing:border-box; }
-  html{ scroll-behavior:smooth; }
-  body{ margin:0; background:var(--paper); color:var(--ink); font-family:var(--f-body); font-size:var(--fs-base); line-height:1.6; -webkit-font-smoothing:antialiased; }
-  h1,h2,h3,h4{ font-family:var(--f-head); margin:0; line-height:1.1; }
+  html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+  body{ margin:0; background:var(--cream); color:var(--ink); font-family:var(--f-body); font-size:1rem; line-height:1.6;
+    -webkit-font-smoothing:antialiased; font-synthesis:none; overflow-x:hidden; }
+  h1,h2,h3,h4{ font-family:var(--f-head); margin:0; line-height:1.02; font-weight:800; letter-spacing:-.015em; }
   p{ margin:0; }
   a{ color:inherit; text-decoration:none; }
-  button{ font-family:inherit; cursor:pointer; border:none; background:none; }
+  button{ font-family:inherit; font-size:inherit; color:inherit; cursor:pointer; border:none; background:none; padding:0; }
   img,svg{ display:block; max-width:100%; }
-  ul{ list-style:none; margin:0; padding:0; }
-  /* kétrétegű fókuszgyűrű: a sárga önmagában fehéren csak ~2:1, ezért sötét mag + sárga halo */
-  :focus-visible{ outline:3px solid var(--ink); outline-offset:2px; border-radius:4px;
-    box-shadow:0 0 0 6px rgba(244,168,29,.95); }
-  .wrap{ max-width:var(--wrap); margin:0 auto; padding-inline:var(--s5); }
+  ul,ol{ list-style:none; margin:0; padding:0; }
+  em,i{ font-style:normal; }
+  .num{ font-variant-numeric:tabular-nums; }
+  /* kétrétegű fókuszgyűrű: bármilyen háttéren látszik */
+  :focus-visible{ outline:3px solid var(--ink); outline-offset:2px; border-radius:6px; box-shadow:0 0 0 6px #fff; }
+  .on-dark :focus-visible{ outline-color:#fff; box-shadow:0 0 0 6px var(--ink); }
+  .wrap{ max-width:var(--wrap); margin:0 auto; padding-inline:max(16px, env(safe-area-inset-left)); }
+  @media(min-width:700px){ .wrap{ padding-inline:var(--s6); } }
+  .sr{ position:absolute!important; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+  [id]{ scroll-margin-top:calc(var(--nav-h) + 16px); }
 
-  /* billentyűzetes navigáció: ugrás a tartalomra */
-  .skip{ position:absolute; left:var(--s4); top:-4rem; z-index:60; background:#fff; color:var(--ink);
-    font-family:var(--f-head); font-weight:700; font-size:.85rem; padding:.7rem 1.2rem;
-    border-radius:var(--r-pill); box-shadow:var(--sh-md); transition:top .18s ease; }
+  .skip{ position:absolute; left:var(--s4); top:-5rem; z-index:90; background:#fff; color:var(--ink);
+    font-weight:700; padding:.8rem 1.2rem; border-radius:var(--r-pill); box-shadow:var(--sh-md); transition:top .18s var(--ease); }
   .skip:focus{ top:var(--s3); }
 
-  /* mozgásérzékeny felhasználók: minden animáció leáll */
-  @media (prefers-reduced-motion: reduce){
-    *,*::before,*::after{ animation-duration:.01ms !important; animation-iteration-count:1 !important;
-      transition-duration:.01ms !important; scroll-behavior:auto !important; }
-    .btn:hover, .add:hover, .cart-btn:hover, .add-sm:hover{ transform:none; }
-  }
-
-  /* icons */
   .ic{ width:1.25em; height:1.25em; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
 
   /* ============ BUTTONS ============ */
-  .btn{ display:inline-flex; align-items:center; justify-content:center; gap:var(--s2);
-    font-family:var(--f-head); font-weight:700; font-size:var(--fs-sm); letter-spacing:.02em;
-    text-transform:uppercase; padding:.9rem 1.6rem; border-radius:var(--r-pill);
-    transition:transform .14s ease, box-shadow .14s ease, background-color .14s ease; }
-  .btn .ic{ width:1.15em; height:1.15em; stroke-width:2.4; }
-  .btn:hover{ transform:translateY(-2px); }
-  .btn:active{ transform:translateY(0); }
-  .btn-action{ background:var(--action); color:#fff; box-shadow:var(--sh-action); }
-  .btn-action:hover{ background:var(--action-dark); }
-  .btn-light{ background:#fff; color:var(--ink); box-shadow:var(--sh-md); }
-  .btn-ghost{ background:transparent; color:#fff; box-shadow:inset 0 0 0 2px rgba(255,255,255,.6); }
-  .btn-ghost:hover{ box-shadow:inset 0 0 0 2px #fff; }
-  .btn-amber{ background:var(--amber); color:var(--ink); box-shadow:var(--sh-md); }
-  .btn-amber:hover{ background:var(--amber-dark); }
-  .btn[disabled]{ opacity:.4; pointer-events:none; }
+  .btn{ display:inline-flex; align-items:center; justify-content:center; gap:.55rem; min-height:48px;
+    font-weight:700; font-size:1rem; padding:.8rem 1.4rem; border-radius:var(--r-pill);
+    transition:transform var(--t-btn) var(--ease), background-color var(--t-btn) var(--ease), box-shadow var(--t-btn) var(--ease), color var(--t-btn) var(--ease); }
+  .btn .arr{ transition:transform var(--t-btn) var(--ease); }
+  .btn:hover .arr{ transform:translateX(4px); }
+  .btn:active{ transform:scale(.98); }
+  .btn-red{ background:var(--tomato); color:#fff; box-shadow:0 8px 22px rgba(217,43,28,.28); }
+  .btn-red:hover{ background:var(--tomato-dark); }
+  .btn-line{ background:transparent; color:var(--ink); box-shadow:inset 0 0 0 2px var(--ink); }
+  .btn-line:hover{ background:var(--ink); color:var(--cream); }
+  .btn-white{ background:#fff; color:var(--ink); }
+  .btn-white:hover{ background:var(--cream); }
+  .btn-wa{ background:var(--wa); color:#fff; box-shadow:0 8px 22px rgba(22,122,65,.28); font-size:1.05rem; min-height:54px; }
+  .btn-wa:hover{ background:var(--wa-dark); }
   .btn-block{ width:100%; }
+  .btn[disabled]{ opacity:.42; pointer-events:none; box-shadow:none; }
+
+  /* nyitva / zárva jelző */
+  .status{ display:inline-flex; align-items:center; gap:.5rem; font-weight:600; font-size:.9rem; line-height:1.2;
+    padding:.45rem .85rem .45rem .7rem; border-radius:var(--r-pill); background:var(--paper); box-shadow:var(--sh-sm); }
+  .status .dot{ width:9px; height:9px; border-radius:50%; background:var(--ink-soft); flex:none; }
+  .status[data-open="true"] .dot{ background:#1E9E52; box-shadow:0 0 0 4px rgba(30,158,82,.18); }
+  .status[data-open="false"] .dot{ background:var(--tomato); }
+  .status b{ font-weight:700; }
 
   /* ============ NAV ============ */
-  .nav{ position:sticky; top:0; z-index:30; background:rgba(28,22,17,.97); backdrop-filter:blur(8px); color:#fff; }
-  .nav-in{ display:flex; align-items:center; justify-content:space-between; gap:var(--s4); padding-block:var(--s3); }
-  .brand{ display:flex; align-items:baseline; gap:.55rem; font-family:var(--f-head); }
-  .brand b{ font-weight:900; font-size:1.5rem; letter-spacing:.04em; }
-  .brand span{ font-weight:600; font-size:.82rem; letter-spacing:.03em; color:var(--amber); }
-  .nav-right{ display:flex; align-items:center; gap:var(--s6); }
-  .nav-links{ display:flex; gap:var(--s5); }
-  .nav-links a{ font-family:var(--f-head); font-weight:600; font-size:.82rem; letter-spacing:.03em; text-transform:uppercase; color:#EDE6DA; transition:color .14s; }
-  .nav-links a:hover{ color:var(--amber); }
-  .cart-btn{ position:relative; display:inline-flex; align-items:center; gap:.5rem; background:var(--amber); color:var(--ink);
-    font-family:var(--f-head); font-weight:700; font-size:.8rem; text-transform:uppercase; letter-spacing:.03em;
-    padding:.6rem 1.1rem; border-radius:var(--r-pill); transition:transform .14s, background-color .14s; }
-  .cart-btn:hover{ background:var(--amber-dark); transform:translateY(-1px); }
-  .cart-btn .ic{ width:1.25em; height:1.25em; }
-  .cart-badge{ position:absolute; top:-7px; right:-7px; min-width:20px; height:20px; padding:0 5px;
-    background:var(--brand); color:#fff; font-family:var(--f-body); font-size:.68rem; font-weight:700;
-    border-radius:var(--r-pill); display:flex; align-items:center; justify-content:center; box-shadow:0 0 0 2px #1C1611; transition:transform .18s; }
+  .nav{ position:sticky; top:0; z-index:40; height:var(--nav-h); background:rgba(251,244,230,.94);
+    border-bottom:1px solid transparent; transition:border-color .2s, background-color .2s; }
+  .nav.scrolled{ border-bottom-color:var(--line); background:rgba(251,244,230,.98); }
+  .nav-in{ height:100%; display:flex; align-items:center; justify-content:space-between; gap:var(--s4); }
+  .brand{ display:flex; align-items:center; gap:.6rem; min-height:44px; }
+  .brand b{ font-family:var(--f-head); font-weight:800; font-size:1.6rem; letter-spacing:-.02em; color:var(--tomato); font-stretch:85%; }
+  .brand span{ font-weight:600; font-size:.85rem; line-height:1.15; color:var(--ink); }
+  .nav-right{ display:flex; align-items:center; gap:var(--s5); }
+  .nav-links{ display:flex; gap:var(--s2); }
+  .nav-links a{ font-weight:600; font-size:.95rem; padding:.6rem .7rem; border-radius:var(--r-pill); transition:background-color var(--t-btn); }
+  .nav-links a:hover{ background:var(--cream-2); }
+  .nav .status{ box-shadow:none; background:transparent; padding-inline:.2rem; }
+  .cart-btn{ position:relative; display:inline-flex; align-items:center; gap:.5rem; min-height:44px; background:var(--ink); color:#fff;
+    font-weight:700; font-size:.95rem; padding:.55rem 1.05rem; border-radius:var(--r-pill); transition:background-color var(--t-btn), transform var(--t-btn) var(--ease); }
+  .cart-btn:hover{ background:#000; }
+  .cart-badge{ position:absolute; top:-6px; right:-6px; min-width:22px; height:22px; padding:0 6px;
+    background:var(--tomato); color:#fff; font-size:.72rem; font-weight:700; border-radius:var(--r-pill);
+    display:flex; align-items:center; justify-content:center; box-shadow:0 0 0 2px var(--cream); }
   .cart-badge[data-zero="true"]{ display:none; }
-  .cart-badge.pulse{ animation:pop .35s ease; }
-  @keyframes pop{ 0%{transform:scale(1)} 40%{transform:scale(1.45)} 100%{transform:scale(1)} }
+  .cart-badge.pulse{ animation:pop .35s var(--ease); }
+  @keyframes pop{ 0%{transform:scale(1)} 40%{transform:scale(1.35)} 100%{transform:scale(1)} }
+  @media(max-width:899px){ .nav-links, .nav .status{ display:none; } }
+  @media(max-width:420px){ .brand span{ display:none; } }
 
   /* ============ HERO ============ */
-  /* Rétegek felülről lefelé: sötét fátyol (kontraszt) → piros márkaréteg → fotó.
-     A fátyol nélkül a fehér szöveg a piroson csak 4,7:1 lenne, fotóval még kevesebb;
-     így 7,3:1 marad, és a piros továbbra is uralja a képet. */
-  .hero{ position:relative; color:#fff; text-align:center; overflow:hidden;
-    background:
-      linear-gradient(rgba(28,22,17,.30), rgba(28,22,17,.30)),
-      radial-gradient(130% 130% at 50% 0%, rgba(234,58,49,.88) 0%, rgba(226,35,26,.90) 46%, rgba(176,22,15,.94) 100%),
-      url("img/etterem-asztalok-tisza-to.jpg") center/cover no-repeat var(--brand-dark);
-    padding:var(--s12) var(--s5) calc(var(--s12) + 2rem); }
-  .hero-in{ position:relative; max-width:720px; margin:0 auto; }
-  .kicker{ display:inline-flex; align-items:center; gap:.5rem; font-family:var(--f-head); font-weight:600;
-    font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:#fff;
-    background:rgba(255,255,255,.14); padding:.5rem 1.1rem; border-radius:var(--r-pill); margin-bottom:var(--s5); }
-  .kicker .ic{ width:1.05em; height:1.05em; }
-  .hero h1{ font-size:clamp(4rem,15vw,8rem); font-weight:900; letter-spacing:.02em; margin-bottom:.2rem; }
-  .hero .sub{ font-family:var(--f-head); font-weight:700; font-size:clamp(1.2rem,3.6vw,1.7rem);
-    text-transform:uppercase; letter-spacing:.14em; margin-bottom:var(--s5); }
-  .hero .lead{ font-size:var(--fs-md); line-height:1.6; max-width:540px; margin:0 auto var(--s6); color:rgba(255,255,255,.94); }
-  .hero-ctas{ display:flex; gap:var(--s3); justify-content:center; flex-wrap:wrap; }
-  .trust{ display:flex; gap:var(--s5); justify-content:center; flex-wrap:wrap; margin-top:var(--s6); }
-  .trust li{ display:inline-flex; align-items:center; gap:.5rem; font-size:.9rem; font-weight:500; color:rgba(255,255,255,.92); }
-  .trust .ic{ width:1.1em; height:1.1em; color:#fff; stroke-width:2.6; }
-  .hero-wave{ position:absolute; left:0; right:0; bottom:-1px; width:100%; height:auto; display:block; }
-  /* felfelé forduló hullám: a szekció tetején ül, a fölötte lévő szekcióba harap bele */
-  .sec-wave{ position:absolute; left:0; right:0; top:0; width:100%; height:auto; display:block;
-    transform:translateY(-99%); pointer-events:none; }
+  .hero{ position:relative; padding:clamp(1.5rem,4vw,3.5rem) 0 clamp(3rem,6vw,5rem); overflow:hidden; }
+  .hero-grid{ display:grid; grid-template-columns:1fr; gap:var(--s6); align-items:center; }
+  @media(min-width:900px){ .hero-grid{ grid-template-columns:1fr 1.08fr; gap:clamp(2rem,5vw,4.5rem); } }
+  .hero-copy .status{ margin-bottom:var(--s5); }
+  .hero h1{ display:flex; flex-direction:column; gap:.1em; }
+  .hero h1 .big{ font-size:clamp(5.5rem,17vw,11.5rem); line-height:.82; letter-spacing:-.045em; color:var(--tomato); font-stretch:80%; }
+  .hero h1 .name{ font-size:clamp(1.7rem,4.2vw,2.6rem); letter-spacing:-.02em; line-height:1.05; }
+  .hero .tag{ font-size:clamp(1.2rem,2.4vw,1.5rem); font-weight:500; line-height:1.35; margin-top:var(--s4); max-width:24ch; }
+  .hero .meta{ display:flex; flex-wrap:wrap; gap:.4rem .9rem; margin-top:var(--s4); color:var(--ink-soft); font-weight:600; font-size:.95rem; }
+  .hero .meta span{ display:inline-flex; align-items:center; gap:.4rem; }
+  .hero .meta .ic{ width:1.05em; height:1.05em; color:var(--tomato-ink); }
+  .hero-ctas{ display:flex; flex-wrap:wrap; gap:var(--s3); margin-top:var(--s6); }
+  @media(max-width:480px){ .hero-ctas .btn{ flex:1 1 0; } }
 
-  /* ============ FEATURES ============ */
-  .features{ padding-block:var(--s10); }
-  .feat-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:var(--s5); }
-  @media(max-width:860px){ .feat-grid{ grid-template-columns:repeat(2,1fr); } }
-  @media(max-width:520px){ .feat-grid{ grid-template-columns:1fr; } }
-  .feat{ background:var(--cream); border-radius:var(--r-md); padding:var(--s5); text-align:left; box-shadow:var(--sh-sm); }
-  .feat-ic{ width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center;
-    background:#fff; color:var(--brand); box-shadow:var(--sh-sm); margin-bottom:var(--s4); }
-  .feat-ic .ic{ width:26px; height:26px; }
-  .feat h3{ font-size:var(--fs-md); font-weight:700; margin-bottom:.35rem; }
-  .feat p{ font-size:var(--fs-sm); color:var(--ink-soft); line-height:1.5; }
+  .hero-media{ position:relative; }
+  .hero-photo{ position:relative; border-radius:var(--r-lg); overflow:hidden; aspect-ratio:4/3; background:var(--cream-2); box-shadow:var(--sh-lg); }
+  .hero-photo img{ width:100%; height:100%; object-fit:cover; object-position:50% 60%; }
+  .hero-photo .cap{ position:absolute; right:12px; top:12px; background:rgba(255,253,248,.92); color:var(--ink);
+    font-size:.8rem; font-weight:600; padding:.35rem .7rem; border-radius:var(--r-pill); }
+  .hero-pizza{ position:absolute; left:-4%; bottom:-11%; width:clamp(130px,34%,230px); aspect-ratio:1; border-radius:50%;
+    overflow:hidden; border:6px solid var(--cream); box-shadow:var(--sh-lg); background:var(--cream-2); }
+  .hero-pizza img{ width:100%; height:100%; object-fit:cover; object-position:52% 60%; transform:scale(1.25); }
+  .hero-pizza-cap{ position:absolute; left:calc(-4% + clamp(130px,34%,230px) + 10px); bottom:-6%;
+    font-size:.82rem; font-weight:600; color:var(--ink-soft); }
+  @media(max-width:899px){ .hero-media{ margin-bottom:var(--s6); } .hero-pizza{ left:auto; right:-2%; bottom:-14%; } .hero-pizza-cap{ display:none; } }
 
-  /* ============ FOTÓSÁV ============ */
-  .shots{ display:grid; grid-template-columns:repeat(4,1fr); gap:var(--s3); }
-  @media(max-width:820px){ .shots{ grid-template-columns:1fr 1fr; } }
-  .shots figure{ margin:0; position:relative; border-radius:var(--r-md); overflow:hidden; box-shadow:var(--sh-sm); }
-  /* fix képarány: a kártyák ne ugráljanak töltés közben */
-  .shots img{ width:100%; aspect-ratio:4/3; object-fit:cover; display:block; background:var(--cream); transition:transform .4s ease; }
-  .shots figure:hover img{ transform:scale(1.04); }
-  .shots figcaption{ position:absolute; left:0; right:0; bottom:0; padding:.9rem .8rem .6rem;
-    font-size:.78rem; font-weight:600; color:#fff;
-    background:linear-gradient(transparent, rgba(28,22,17,.80)); }
+  /* betöltési mozgás: kép fade + 1.04→1, cím → alcím → CTA lépcső */
+  @keyframes heroImg{ from{ opacity:0; transform:scale(1.04); } to{ opacity:1; transform:scale(1); } }
+  @keyframes heroPizza{ from{ opacity:0; transform:scale(1.32); } to{ opacity:1; transform:scale(1.25); } }
+  @keyframes rise{ from{ opacity:0; transform:translateY(18px); } to{ opacity:1; transform:none; } }
+  .hero-photo img{ animation:heroImg var(--t-hero) var(--ease) both; }
+  .hero-pizza img{ animation:heroPizza var(--t-hero) var(--ease) 150ms both; }
+  .h-anim{ animation:rise 800ms var(--ease) both; animation-delay:var(--d,0ms); }
+
+  /* kerékpárút-vonal: vékony szaggatott sáv, a „bringás” azonosító egyetlen ismétlődő eleme */
+  .route{ display:flex; align-items:center; gap:.6rem; color:var(--ink-soft); }
+  .route::before, .route::after{ content:""; flex:1; height:0; border-top:2px dashed currentColor; opacity:.45; }
+  .route .ic{ width:1.5rem; height:1.5rem; }
+
+  /* ============ USP ============ */
+  .usp{ padding:var(--s8) 0 var(--s10); }
+  .usp-grid{ display:grid; gap:var(--s4); grid-template-columns:1fr; margin-top:var(--s6); }
+  @media(min-width:760px){ .usp-grid{ grid-template-columns:repeat(3,1fr); gap:var(--s5); } }
+  .usp-card{ background:var(--paper); border-radius:var(--r-md); padding:var(--s5) var(--s5) var(--s6); box-shadow:var(--sh-sm); position:relative; }
+  .usp-card .n{ font-family:var(--f-head); font-weight:800; font-size:.9rem; color:var(--tomato-ink); letter-spacing:.02em; }
+  .usp-card h3{ font-size:clamp(1.5rem,2.6vw,1.9rem); margin:.6rem 0 .5rem; }
+  .usp-card p{ color:var(--ink-soft); }
+
+  /* ============ HANGULAT: PIZZA. TISZA. NYÁR. ============ */
+  .mood{ position:relative; min-height:clamp(420px,72vh,640px); display:flex; align-items:flex-end; color:#fff; overflow:hidden; background:var(--river); }
+  .mood picture, .mood img{ position:absolute; inset:0; width:100%; height:100%; }
+  .mood img{ object-fit:cover; object-position:30% 35%; transform:scale(1.04); transition:transform 1.4s var(--ease); }
+  .mood.in img{ transform:scale(1); }
+  .mood::after{ content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(17,51,47,.05) 25%, rgba(17,51,47,.55) 60%, rgba(12,30,27,.88) 100%); }
+  .mood-in{ position:relative; z-index:1; padding-block:var(--s10) var(--s8); width:100%; }
+  .mood h2{ font-size:clamp(3.2rem,11vw,8.5rem); line-height:.86; letter-spacing:-.04em; font-stretch:80%; }
+  .mood h2 span{ display:block; }
+  .mood h2 span:nth-child(2){ color:#FFD9C9; }
+  .mood p{ margin-top:var(--s5); font-size:clamp(1.05rem,2vw,1.25rem); max-width:34ch; font-weight:500; color:rgba(255,255,255,.94); }
+  /* asztalon: a kép csak a jobb felét kapja — a 800 px-es forrás így nem nagyítódik fel, és a felirat nem ül a táblára */
+  @media(min-width:900px){
+    .mood{ min-height:600px; align-items:center; }
+    .mood picture{ left:50%; }
+    .mood::after{ background:linear-gradient(90deg, var(--river) 50%, rgba(17,51,47,.35) 58%, rgba(17,51,47,0) 70%); }
+    .mood-in{ padding-block:var(--s10); }
+    .mood-in > *{ max-width:46%; }
+    .mood img{ object-position:50% 40%; }
+  }
+  .mood .cap{ position:absolute; right:16px; top:16px; z-index:1; font-size:.78rem; font-weight:600; background:rgba(17,51,47,.7); padding:.3rem .7rem; border-radius:var(--r-pill); }
 
   /* ============ SECTION HEADS ============ */
   .sec{ padding-block:var(--s10); }
-  .sec-head{ display:flex; align-items:center; gap:var(--s3); margin-bottom:var(--s3); }
-  .sec-head .ic{ width:1.6rem; height:1.6rem; color:var(--brand); }
-  .sec-head h2{ font-size:var(--fs-2xl); font-weight:800; letter-spacing:-.01em; }
-  .sec-sub{ font-size:var(--fs-md); color:var(--ink-soft); max-width:560px; margin-bottom:var(--s8); }
+  .eyebrow{ display:inline-flex; align-items:center; gap:.5rem; font-weight:700; font-size:.9rem; color:var(--tomato-ink); margin-bottom:var(--s3); }
+  .eyebrow .ic{ width:1.15em; height:1.15em; }
+  .h2{ font-size:clamp(2.4rem,6vw,4.2rem); letter-spacing:-.03em; }
+  .lead{ font-size:clamp(1.05rem,1.6vw,1.2rem); color:var(--ink-soft); max-width:58ch; margin-top:var(--s4); }
+  .lead b{ color:var(--ink); }
 
-  /* ============ MENU ============ */
-  .cat{ margin-bottom:var(--s10); }
-  .cat:last-child{ margin-bottom:0; }
-  .cat-head{ display:flex; align-items:center; gap:var(--s3); padding-bottom:var(--s3);
-    margin-bottom:var(--s5); border-bottom:2px solid var(--line); }
-  .cat-head .ic{ width:1.4rem; height:1.4rem; color:var(--brand); }
-  .cat-head h3{ font-size:var(--fs-xl); font-weight:800; }
-  .cat-head .note{ margin-left:auto; font-family:var(--f-body); font-size:var(--fs-sm); color:var(--ink-soft); font-weight:500; }
+  /* ============ ÍGY RENDELSZ (útvonal-megállók) ============ */
+  .steps{ margin-top:var(--s6); position:relative; display:grid; grid-template-columns:repeat(2,1fr); gap:var(--s3) var(--s4); counter-reset:st; }
+  .steps li{ display:flex; align-items:center; gap:.6rem; font-weight:600; font-size:.95rem; line-height:1.25; }
+  .steps li::before{ counter-increment:st; content:counter(st); flex:none; width:32px; height:32px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; background:var(--paper); box-shadow:inset 0 0 0 2px var(--ink);
+    font-family:var(--f-head); font-weight:800; font-size:.95rem; position:relative; z-index:1; }
+  .steps li.last::before{ background:var(--wa); color:#fff; box-shadow:none; }
+  @media(min-width:900px){
+    .steps{ grid-template-columns:repeat(6,1fr); gap:var(--s3); }
+    .steps li{ flex-direction:column; align-items:flex-start; gap:.7rem; }
+    .steps::before{ content:""; position:absolute; left:16px; right:16px; top:15px; border-top:2px dashed var(--ink); opacity:.35;
+      transform-origin:left; transform:scaleX(0); transition:transform 1.1s var(--ease) .1s; }
+    .steps.in::before, html:not(.js) .steps::before{ transform:scaleX(1); }
+  }
 
-  .items{ display:grid; grid-template-columns:1fr 1fr; gap:var(--s2) var(--s8); }
-  @media(max-width:720px){ .items{ grid-template-columns:1fr; } }
-  .item{ display:flex; align-items:center; gap:var(--s4); padding:var(--s3) 0; border-bottom:1px solid var(--line); }
-  .item-body{ flex:1; min-width:0; }
-  .item-name{ font-family:var(--f-head); font-weight:700; font-size:1.05rem; display:flex; align-items:baseline; gap:.5rem; flex-wrap:wrap; }
-  .item-num{ color:var(--brand); font-weight:800; }
-  .item-desc{ font-size:var(--fs-sm); color:var(--ink-soft); line-height:1.45; margin-top:.15rem; }
-  /* a sárgán a fehér szöveg csak ~2:1 — a sötét tinta 9,2:1, ezért az megy rá */
-  .item-badge{ display:inline-block; font-family:var(--f-head); font-weight:700; font-size:.62rem; letter-spacing:.05em;
-    text-transform:uppercase; color:var(--ink); background:var(--amber); padding:.15rem .5rem; border-radius:var(--r-pill); vertical-align:middle; }
-  .item-side{ display:flex; align-items:center; gap:var(--s3); flex-shrink:0; }
-  .item-price{ font-family:var(--f-head); font-weight:700; font-size:1.02rem; white-space:nowrap; }
-  .add{ width:42px; height:42px; border-radius:13px; background:var(--action); color:#fff;
-    display:flex; align-items:center; justify-content:center; box-shadow:var(--sh-sm);
-    transition:transform .12s, background-color .14s; }
-  .add .ic{ width:22px; height:22px; stroke-width:2.6; }
-  .add:hover{ background:var(--action-dark); transform:translateY(-2px); }
-  .add:active{ transform:scale(.9); }
-  .add.added{ background:var(--action-dark); }
+  /* ============ KATEGÓRIAVÁLASZTÓ ============ */
+  .chooser{ position:sticky; top:var(--nav-h); z-index:30; background:var(--cream); margin-top:var(--s6);
+    border-bottom:1px solid var(--line); }
+  .chooser-in{ display:flex; gap:.5rem; overflow-x:auto; padding-block:.7rem; scrollbar-width:none; }
+  .chooser-in::-webkit-scrollbar{ display:none; }
+  .chooser a{ flex:0 0 auto; display:inline-flex; align-items:center; gap:.45rem; min-height:44px; padding:.5rem 1rem;
+    border-radius:var(--r-pill); background:var(--paper); box-shadow:inset 0 0 0 1px var(--line); font-weight:700; font-size:.98rem;
+    transition:background-color var(--t-btn), color var(--t-btn), box-shadow var(--t-btn); }
+  .chooser a:hover{ box-shadow:inset 0 0 0 1.5px var(--ink); }
+  .chooser a.active{ background:var(--ink); color:#fff; box-shadow:none; }
+  .chooser .em{ font-size:1.1rem; line-height:1; }
+  .chooser small{ font-weight:600; font-size:.8rem; opacity:.7; }
 
-  /* signature highlight */
-  .item.signature{ background:linear-gradient(90deg,#FFF9EC,transparent); border-radius:var(--r-sm); padding-inline:var(--s3);
-    border-bottom:1px solid var(--line); box-shadow:inset 3px 0 0 var(--amber); }
+  /* ============ ÉTLAP ============ */
+  .cat{ padding-top:var(--s8); }
+  .cat-head{ display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:.3rem var(--s4); margin-bottom:var(--s5); }
+  .cat-head h3{ font-size:clamp(2rem,4.4vw,3rem); letter-spacing:-.03em; }
+  .cat-head .note{ font-weight:600; color:var(--ink-soft); }
+  .sub-head{ font-size:1.35rem; margin:var(--s6) 0 var(--s4); display:flex; align-items:center; gap:.5rem; }
+  .sub-head:first-of-type{ margin-top:0; }
 
-  /* addons */
-  .addons{ display:grid; grid-template-columns:1fr 1fr; gap:var(--s6); background:var(--cream); border-radius:var(--r-md); padding:var(--s5) var(--s6); margin-top:var(--s5); }
-  @media(max-width:520px){ .addons{ grid-template-columns:1fr; gap:var(--s5); } }
-  .addons h4{ font-size:var(--fs-base); font-weight:700; text-transform:uppercase; letter-spacing:.04em; margin-bottom:var(--s3);
-    display:flex; align-items:center; gap:.5rem; }
-  .addons h4 .ic{ width:1.1rem; height:1.1rem; color:var(--brand); }
-  .addon{ display:flex; align-items:center; gap:var(--s3); padding:.5rem 0; border-bottom:1px solid var(--line); }
-  .addon span:first-child{ flex:1; font-size:var(--fs-sm); }
-  .addon-price{ font-family:var(--f-head); font-weight:700; font-size:.9rem; }
-  .add-sm{ width:30px; height:30px; border-radius:9px; background:#fff; color:var(--action); box-shadow:var(--sh-sm);
-    display:flex; align-items:center; justify-content:center; transition:transform .12s, background-color .14s, color .14s; }
-  .add-sm .ic{ width:17px; height:17px; stroke-width:2.6; }
-  .add-sm:hover{ background:var(--action); color:#fff; }
-  .add-sm:active{ transform:scale(.88); }
-  .addon-note{ display:flex; align-items:center; gap:.5rem; padding:.7rem 0 0; font-size:.78rem; color:var(--ink-soft); line-height:1.4; }
-  .addon-note .ic{ width:1rem; height:1rem; color:var(--brand); flex-shrink:0; }
+  /* kiemelt: Pizza 5350 — tipográfiai kártya, mert a pizzáról nincs valódi fotó */
+  .feature{ position:relative; overflow:hidden; border-radius:var(--r-lg); background:var(--tomato); color:#fff;
+    padding:clamp(1.5rem,4vw,3rem); margin-bottom:var(--s5); display:grid; gap:var(--s5); align-items:end; }
+  @media(min-width:760px){ .feature{ grid-template-columns:1.4fr 1fr; } }
+  .feature .ghost{ position:absolute; right:-.06em; top:-.18em; font-family:var(--f-head); font-weight:800; font-stretch:75%;
+    font-size:clamp(9rem,30vw,22rem); line-height:1; letter-spacing:-.05em; color:rgba(255,255,255,.1); pointer-events:none;
+    transform:scale(1.06); transition:transform 1.2s var(--ease); }
+  .feature.in .ghost{ transform:scale(1); }
+  .feature .kick{ display:inline-flex; align-items:center; gap:.5rem; background:#fff; color:var(--tomato-ink); font-weight:700; font-size:.9rem;
+    padding:.35rem .85rem; border-radius:var(--r-pill); }
+  .feature h4{ font-size:clamp(2.6rem,7vw,5rem); letter-spacing:-.035em; margin-top:var(--s4); position:relative; }
+  .feature h4 small{ display:block; font-family:var(--f-body); font-size:1rem; font-weight:600; letter-spacing:0; opacity:.85; margin-bottom:.4rem; }
+  .feature p{ font-size:1.12rem; max-width:40ch; margin-top:var(--s3); position:relative; color:rgba(255,255,255,.95); }
+  .feature-buy{ position:relative; display:flex; flex-direction:column; align-items:flex-start; gap:var(--s4); }
+  @media(min-width:760px){ .feature-buy{ align-items:flex-end; text-align:right; } }
+  .feature .price{ font-family:var(--f-head); font-weight:800; font-size:clamp(2rem,4vw,2.6rem); letter-spacing:-.02em; }
+  .feature .add{ background:#fff; color:var(--tomato-ink); }
+  .feature .add:hover{ background:var(--cream); }
 
-  .print-row{ text-align:center; margin-top:var(--s8); }
-  .print-link{ display:inline-flex; align-items:center; gap:.5rem; font-weight:600; font-size:var(--fs-sm); color:var(--brand); }
-  .print-link:hover{ text-decoration:underline; }
+  .grid{ display:grid; gap:var(--s4); grid-template-columns:1fr; }
+  @media(min-width:640px){ .grid{ grid-template-columns:repeat(2,1fr); } }
+  @media(min-width:1000px){ .grid{ grid-template-columns:repeat(3,1fr); gap:var(--s5); } }
+  .card{ position:relative; display:flex; flex-direction:column; background:var(--paper); border-radius:var(--r-md);
+    box-shadow:var(--sh-sm); overflow:hidden;
+    transition:transform var(--t-card) var(--ease), box-shadow var(--t-card) var(--ease); }
+  .card:hover{ transform:translateY(-3px); box-shadow:var(--sh-md); }
+  .card-body{ flex:1; display:flex; flex-direction:column; padding:var(--s5) var(--s5) var(--s4); }
+  .card .no{ font-family:var(--f-head); font-weight:800; font-size:.85rem; color:var(--tomato-ink); }
+  .card h4{ font-size:1.42rem; letter-spacing:-.02em; line-height:1.08; margin-top:.25rem; }
+  .card .desc{ color:var(--ink-soft); font-size:.97rem; line-height:1.45; margin-top:.45rem; }
+  .card-foot{ display:flex; align-items:center; justify-content:space-between; gap:var(--s3); margin-top:auto; padding-top:var(--s4); }
+  .price{ font-family:var(--f-head); font-weight:800; font-size:1.35rem; letter-spacing:-.01em; white-space:nowrap; font-variant-numeric:tabular-nums; }
+  .card-media{ overflow:hidden; aspect-ratio:16/10; background:var(--cream-2); }
+  .card-media img{ width:100%; height:100%; object-fit:cover; transition:transform 320ms var(--ease); }
+  .card:hover .card-media img{ transform:scale(1.03); }
+  /* fotós kártya: széles, kép balra (csak ahol tényleg van saját fotó) */
+  @media(min-width:640px){
+    .card.wide{ grid-column:span 2; flex-direction:row; }
+    .card.wide .card-media{ flex:0 0 46%; aspect-ratio:auto; min-height:230px; }
+  }
+  .card .photo-cap{ font-size:.78rem; color:var(--ink-soft); font-weight:600; margin-top:.5rem; }
 
-  /* ============ VISIT (hours + location) ============ */
-  .visit{ background:var(--cream); position:relative; }
-  .visit-grid{ display:grid; grid-template-columns:1fr 1.25fr; gap:var(--s8); align-items:start; }
-  @media(max-width:820px){ .visit-grid{ grid-template-columns:1fr; } }
-  .card{ background:#fff; border-radius:var(--r-md); box-shadow:var(--sh-sm); padding:var(--s6); }
-  .card-title{ display:flex; align-items:center; gap:.6rem; font-size:var(--fs-lg); font-weight:700; margin-bottom:var(--s4); }
-  .card-title .ic{ width:1.3rem; height:1.3rem; color:var(--brand); }
-  table.hours{ width:100%; border-collapse:collapse; }
-  table.hours td{ padding:.7rem .25rem; border-bottom:1px solid var(--line); font-size:.95rem; }
+  /* kosárba gomb */
+  .add{ display:inline-flex; align-items:center; gap:.4rem; min-height:44px; padding:.55rem 1rem .55rem .85rem; border-radius:var(--r-pill);
+    background:var(--ink); color:#fff; font-weight:700; font-size:.95rem;
+    transition:background-color var(--t-btn) var(--ease), transform var(--t-btn) var(--ease); }
+  .add .ic{ width:1.1em; height:1.1em; stroke-width:2.6; }
+  .add:hover{ background:var(--tomato); }
+  .card:hover .add{ background:var(--tomato); }
+  .add:active{ transform:scale(.95); }
+  .add.added, .add-sm.added{ background:var(--wa)!important; color:#fff!important; }
+  .add .ok, .add.added .lbl, .add.added .ic-plus{ display:none; }
+  .add.added .ok{ display:inline-flex; }
+
+  /* extrák */
+  .extras{ display:grid; gap:var(--s5); grid-template-columns:1fr; }
+  @media(min-width:760px){ .extras{ grid-template-columns:1fr 1fr; } }
+  .extras-col{ background:var(--paper); border-radius:var(--r-md); padding:var(--s4) var(--s5); box-shadow:var(--sh-sm); }
+  .extras-col h4{ font-size:1.3rem; padding:var(--s2) 0 var(--s3); }
+  .addon{ display:flex; align-items:center; gap:var(--s3); padding:.35rem 0; border-top:1px solid var(--line); min-height:56px; }
+  .addon .nm{ flex:1; font-weight:500; }
+  .addon .pr{ font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .add-sm{ width:44px; height:44px; flex:none; border-radius:50%; background:var(--cream); color:var(--ink); box-shadow:inset 0 0 0 1.5px var(--line);
+    display:flex; align-items:center; justify-content:center; transition:background-color var(--t-btn), color var(--t-btn), transform var(--t-btn) var(--ease); }
+  .add-sm .ic{ width:18px; height:18px; stroke-width:2.6; }
+  .add-sm:hover{ background:var(--ink); color:#fff; box-shadow:none; }
+  .add-sm:active{ transform:scale(.9); }
+  .info{ display:flex; gap:.6rem; align-items:flex-start; font-size:.95rem; color:var(--ink-soft); line-height:1.45; }
+  .info .ic{ width:1.15rem; height:1.15rem; color:var(--tomato-ink); margin-top:.15rem; }
+  .menu-foot{ display:flex; flex-wrap:wrap; gap:var(--s4) var(--s6); justify-content:space-between; align-items:center;
+    margin-top:var(--s8); padding-top:var(--s5); border-top:1px solid var(--line); }
+  .textlink{ display:inline-flex; align-items:center; gap:.45rem; min-height:44px; font-weight:700; color:var(--tomato-ink);
+    text-decoration:underline; text-decoration-thickness:1.5px; text-underline-offset:4px; }
+  .textlink:hover{ color:var(--tomato-dark); }
+
+  /* ============ GALÉRIA ============ */
+  .gallery{ display:grid; gap:var(--s3); grid-template-columns:repeat(2,1fr); grid-auto-rows:clamp(140px,26vw,190px); margin-top:var(--s6); }
+  .gallery figure{ margin:0; position:relative; overflow:hidden; border-radius:var(--r-md); background:var(--cream-2); }
+  .gallery img{ width:100%; height:100%; object-fit:cover; transition:transform 420ms var(--ease); }
+  .gallery figure:hover img{ transform:scale(1.03); }
+  .gallery figcaption{ position:absolute; left:10px; bottom:10px; font-size:.82rem; font-weight:600; background:rgba(255,253,248,.93);
+    padding:.3rem .7rem; border-radius:var(--r-pill); }
+  .g-wide{ grid-column:span 2; grid-row:span 2; }
+  .g-tall{ grid-row:span 2; }
+  @media(min-width:860px){
+    .gallery{ grid-template-columns:1.25fr 1fr .9fr; grid-auto-rows:240px; gap:var(--s4); }
+    .g-wide{ grid-column:1 / 3; grid-row:1 / 3; }
+    .g-tall{ grid-column:3; grid-row:1 / 3; }
+    .g-a{ grid-column:1; } .g-b{ grid-column:2 / 4; }
+  }
+
+  /* ============ A KIKÖTŐNÉL ============ */
+  .harbor{ background:var(--river); color:#F3EEE3; }
+  .harbor .eyebrow{ color:#FFC9B8; }
+  .harbor .lead{ color:rgba(243,238,227,.86); }
+  .harbor-grid{ display:grid; gap:var(--s6); grid-template-columns:1fr; margin-top:var(--s6); }
+  @media(min-width:900px){ .harbor-grid{ grid-template-columns:1fr 1fr; gap:var(--s8); } }
+  .panel{ background:var(--river-2); border-radius:var(--r-md); padding:var(--s5); }
+  .panel h3{ font-size:1.4rem; margin-bottom:var(--s4); display:flex; align-items:center; gap:.5rem; justify-content:space-between; flex-wrap:wrap; }
+  .harbor .status{ background:rgba(255,255,255,.1); color:#fff; box-shadow:none; }
+  table.hours{ width:100%; border-collapse:collapse; font-variant-numeric:tabular-nums; }
+  table.hours td{ padding:.62rem .1rem; border-bottom:1px solid rgba(255,255,255,.12); }
   table.hours tr:last-child td{ border-bottom:none; }
-  table.hours td:first-child{ font-weight:500; }
-  table.hours td:last-child{ text-align:right; font-family:var(--f-head); font-weight:700; }
-  .hours tr.today td{ color:var(--brand); }
-  .hours tr.today td:first-child::after{ content:"Ma"; margin-left:.5rem; font-family:var(--f-head); font-size:.6rem; font-weight:700;
-    text-transform:uppercase; letter-spacing:.05em; background:var(--brand); color:#fff; padding:.1rem .45rem; border-radius:var(--r-pill); vertical-align:middle; }
-  .closed{ color:var(--ink-soft); }
-  .contact-list{ display:flex; flex-direction:column; gap:var(--s4); margin-bottom:var(--s5); }
-  .contact{ display:flex; align-items:flex-start; gap:var(--s3); }
-  .contact-ic{ width:40px; height:40px; border-radius:11px; background:var(--brand-tint); color:var(--brand);
-    display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-  .contact-ic .ic{ width:20px; height:20px; }
-  .contact .lbl{ font-family:var(--f-head); font-size:.7rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); }
-  .contact .val{ font-size:1rem; font-weight:500; }
-  .map-frame{ border-radius:var(--r-md); overflow:hidden; box-shadow:var(--sh-sm); margin-top:var(--s5); border:1px solid var(--line); }
-  .map-frame iframe{ width:100%; height:300px; border:0; display:block; }
+  table.hours td:last-child{ text-align:right; font-weight:700; }
+  .hours .closed{ color:rgba(243,238,227,.6); font-weight:500!important; }
+  .hours tr.today td{ color:#fff; font-weight:700; }
+  .hours tr.today td:first-child::after{ content:"Ma"; margin-left:.5rem; font-size:.7rem; font-weight:700;
+    background:var(--tomato); color:#fff; padding:.12rem .5rem; border-radius:var(--r-pill); vertical-align:middle; }
+  .contact{ display:flex; gap:var(--s3); align-items:flex-start; padding:.7rem 0; border-bottom:1px solid rgba(255,255,255,.12); }
+  .contact:last-of-type{ border-bottom:none; }
+  .contact .ic{ width:1.25rem; height:1.25rem; margin-top:.2rem; color:#FFC9B8; }
+  .contact .lbl{ font-size:.82rem; font-weight:600; color:rgba(243,238,227,.7); }
+  .contact .val{ font-weight:600; font-size:1.05rem; }
+  .contact a.val{ text-decoration:underline; text-underline-offset:3px; }
+  .harbor-ctas{ display:flex; flex-wrap:wrap; gap:var(--s3); margin-top:var(--s5); }
+  .map{ position:relative; margin-top:var(--s5); border-radius:var(--r-md); overflow:hidden; aspect-ratio:16/10; background:#0C2623;
+    background-image:radial-gradient(rgba(255,255,255,.08) 1px, transparent 1px); background-size:18px 18px; }
+  .map iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+  .map-load{ position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.6rem;
+    color:#fff; font-weight:700; text-align:center; padding:var(--s4); width:100%; }
+  .map-load .ic{ width:2rem; height:2rem; color:#FFC9B8; }
+  .map-load small{ font-weight:500; opacity:.75; max-width:32ch; }
+  .map-load:hover span{ text-decoration:underline; }
 
   /* ============ FOOTER ============ */
-  footer{ background:var(--ink); color:#EDE6DA; padding-block:var(--s8); position:relative; }
-  .foot-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:var(--s6); }
-  @media(max-width:720px){ .foot-grid{ grid-template-columns:1fr; gap:var(--s5); } }
-  .foot-brand b{ font-family:var(--f-head); font-weight:900; font-size:1.5rem; color:#fff; letter-spacing:.04em; }
-  .foot-brand p{ font-size:var(--fs-sm); color:#B8AEA0; margin-top:var(--s2); max-width:280px; }
-  .foot-col h4{ font-family:var(--f-head); font-size:.72rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--amber); margin-bottom:var(--s3); }
-  .foot-col a,.foot-col p{ display:block; font-size:.9rem; color:#D8CFC2; margin-bottom:.4rem; }
-  .foot-col a:hover{ color:#fff; }
-  .foot-warn{ display:flex; align-items:center; gap:.6rem; margin-top:var(--s6); padding-top:var(--s5);
-    border-top:1px solid rgba(255,255,255,.12); font-size:.85rem; color:var(--amber); font-weight:600; }
-  .foot-warn .ic{ width:1.2rem; height:1.2rem; }
-  .foot-legal{ text-align:center; font-size:.78rem; color:#8C8377; margin-top:var(--s5); }
+  footer{ background:#0C2623; color:#E9E2D4; padding:var(--s8) 0 calc(var(--s8) + 76px); }
+  @media(min-width:900px){ footer{ padding-bottom:var(--s8); } }
+  .foot-grid{ display:grid; gap:var(--s6); grid-template-columns:1fr; }
+  @media(min-width:760px){ .foot-grid{ grid-template-columns:1.4fr 1fr 1fr; } }
+  .foot-brand b{ font-family:var(--f-head); font-weight:800; font-size:3.4rem; line-height:.9; color:var(--tomato); letter-spacing:-.04em; font-stretch:80%; display:block; }
+  .foot-brand p{ margin-top:var(--s3); color:#C9C0AF; max-width:32ch; }
+  .foot-col h4{ font-family:var(--f-body); font-size:.85rem; font-weight:700; color:#FFC9B8; margin-bottom:var(--s3); letter-spacing:.02em; }
+  .foot-col a, .foot-col p{ display:block; color:#E9E2D4; padding:.3rem 0; }
+  .foot-col a:hover{ text-decoration:underline; text-underline-offset:3px; }
+  .foot-warn{ display:flex; align-items:center; gap:.6rem; margin-top:var(--s6); padding-top:var(--s5); border-top:1px solid rgba(255,255,255,.12); font-weight:600; color:#FFDCA8; }
+  .foot-legal{ font-size:.85rem; color:#A79F90; margin-top:var(--s4); }
 
-  /* ============ CART DRAWER ============ */
-  .overlay{ position:fixed; inset:0; background:rgba(28,22,17,.5); z-index:40; opacity:0; pointer-events:none; transition:opacity .25s; }
+  /* ============ KOSÁR (fiók / mobil alsó lap) ============ */
+  .overlay{ position:fixed; inset:0; background:rgba(17,24,22,.45); z-index:60; opacity:0; pointer-events:none; transition:opacity 300ms var(--ease); }
   .overlay.open{ opacity:1; pointer-events:auto; }
-  /* visibility:hidden csukott állapotban — enélkül a lecsúsztatott fiók minden gombja
-     benne marad a Tab-sorrendben, és a billentyűzetes felhasználó a semmibe tabol */
-  .drawer{ position:fixed; top:0; right:0; height:100dvh; width:460px; max-width:92vw; background:var(--paper);
-    z-index:50; display:flex; flex-direction:column; box-shadow:var(--sh-lg);
-    transform:translateX(100%); visibility:hidden;
-    transition:transform .3s cubic-bezier(.4,0,.2,1), visibility .3s; }
-  .drawer.open{ transform:translateX(0); visibility:visible; }
-  /* kis kijelzőn a teljes szélesség kell: minden pixel a rendelésé */
-  @media(max-width:560px){ .drawer{ width:100%; max-width:100%; } }
-  .drawer-head{ display:flex; align-items:center; justify-content:space-between; padding:var(--s5) var(--s5) var(--s4); border-bottom:1px solid var(--line); }
-  .drawer-head h3{ display:flex; align-items:center; gap:.6rem; font-size:var(--fs-lg); font-weight:800; }
-  .drawer-head .ic{ width:1.4rem; height:1.4rem; color:var(--brand); }
-  .drawer-close{ width:38px; height:38px; border-radius:11px; display:flex; align-items:center; justify-content:center; color:var(--ink); transition:background-color .14s; }
+  /* visibility:hidden csukva — különben a lecsúsztatott fiók gombjai a Tab-sorrendben maradnak */
+  .drawer{ position:fixed; top:0; right:0; height:100dvh; width:460px; max-width:94vw; background:var(--paper);
+    z-index:70; display:flex; flex-direction:column; box-shadow:var(--sh-lg);
+    transform:translateX(40px); opacity:0; visibility:hidden;
+    transition:transform 320ms var(--ease), opacity 260ms var(--ease), visibility 320ms; }
+  .drawer.open{ transform:none; opacity:1; visibility:visible; }
+  /* mobil: alulról becsúszó lap, nem teljes képernyős */
+  @media(max-width:600px){
+    .drawer{ top:auto; bottom:0; left:0; width:100%; max-width:100%; height:auto; max-height:92dvh;
+      border-radius:var(--r-lg) var(--r-lg) 0 0; transform:translateY(48px); }
+    .drawer.open{ transform:none; }
+    .drawer-head::before{ content:""; position:absolute; left:50%; top:8px; width:40px; height:4px; margin-left:-20px; border-radius:4px; background:var(--line); }
+  }
+  .drawer-head{ position:relative; display:flex; align-items:center; justify-content:space-between; padding:var(--s5) var(--s5) var(--s4); border-bottom:1px solid var(--line); }
+  .drawer-head h3{ display:flex; align-items:center; gap:.6rem; font-size:1.6rem; }
+  .drawer-close{ width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; transition:background-color var(--t-btn); }
   .drawer-close:hover{ background:var(--cream); }
   .drawer-close .ic{ width:22px; height:22px; }
-  /* ---- EGY görgetési régió ----
-     Korábban csak a .drawer-items görgött (flex:1), miközben alatta a ~450px magas
-     beállítósáv fixen ült — így a tétellista pár száz pixeles csíkká préselődött.
-     Most a lista természetes magasságot kap, és a lista + beállítások EGYÜTT
-     görögnek a panel teljes magasságában; csak az összeg és a rendelés gomb marad rögzítve. */
-  .drawer-scroll{ flex:1; min-height:0; overflow-y:auto; -webkit-overflow-scrolling:touch; }
-  .drawer-items{ padding:var(--s4) var(--s5) 0; }
+  /* EGY görgetési régió: lista + beállítások együtt görög, csak az összeg és a gomb rögzített */
+  .drawer-scroll{ flex:1; min-height:0; overflow-y:auto; -webkit-overflow-scrolling:touch; overscroll-behavior:contain; }
+  .drawer-items{ padding:var(--s2) var(--s5) 0; }
   .drawer-opts{ padding:var(--s5) var(--s5) var(--s6); }
   .ci{ display:flex; gap:var(--s3); padding:var(--s4) 0; border-bottom:1px solid var(--line); }
   .ci-body{ flex:1; min-width:0; }
-  .ci-name{ font-family:var(--f-head); font-weight:700; font-size:.95rem; }
-  .ci-unit{ font-size:.78rem; color:var(--ink-soft); margin-top:.1rem; }
-  .ci-qty{ display:inline-flex; align-items:center; gap:.4rem; margin-top:var(--s3); background:var(--cream); border-radius:var(--r-pill); padding:.2rem; }
-  .qbtn{ width:28px; height:28px; border-radius:var(--r-pill); background:#fff; color:var(--ink); box-shadow:var(--sh-sm);
-    display:flex; align-items:center; justify-content:center; transition:transform .1s; }
-  .qbtn .ic{ width:15px; height:15px; stroke-width:2.6; }
-  .qbtn:active{ transform:scale(.85); }
-  .qval{ min-width:22px; text-align:center; font-family:var(--f-head); font-weight:700; font-size:.9rem; }
+  .ci-name{ font-weight:700; font-size:1rem; line-height:1.3; }
+  .ci-unit{ font-size:.85rem; color:var(--ink-soft); margin-top:.1rem; }
+  .ci-qty{ display:inline-flex; align-items:center; gap:.3rem; margin-top:var(--s3); background:var(--cream); border-radius:var(--r-pill); padding:.2rem; }
+  .qbtn{ width:36px; height:36px; border-radius:50%; background:#fff; box-shadow:var(--sh-sm); display:flex; align-items:center; justify-content:center; transition:transform .1s; }
+  .qbtn .ic{ width:16px; height:16px; stroke-width:2.6; }
+  .qbtn:active{ transform:scale(.88); }
+  .qval{ min-width:26px; text-align:center; font-weight:700; font-variant-numeric:tabular-nums; }
   .ci-right{ display:flex; flex-direction:column; align-items:flex-end; justify-content:space-between; }
-  .ci-total{ font-family:var(--f-head); font-weight:700; font-size:.95rem; white-space:nowrap; }
-  .ci-remove{ color:var(--ink-soft); width:28px; height:28px; display:flex; align-items:center; justify-content:center; border-radius:8px; transition:color .14s, background-color .14s; }
-  .ci-remove:hover{ color:var(--brand); background:var(--brand-tint); }
-  .ci-remove .ic{ width:17px; height:17px; }
-  .drawer-empty{ display:none; flex-direction:column; align-items:center; text-align:center; gap:var(--s3); padding:var(--s10) var(--s5); color:var(--ink-soft); }
+  .ci-total{ font-weight:700; white-space:nowrap; font-variant-numeric:tabular-nums; }
+  .ci-remove{ color:var(--ink-soft); width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:50%; transition:color var(--t-btn), background-color var(--t-btn); }
+  .ci-remove:hover{ color:var(--tomato-ink); background:var(--tomato-tint); }
+  .ci-remove .ic{ width:18px; height:18px; }
+  .drawer-empty{ display:none; flex-direction:column; align-items:center; text-align:center; gap:var(--s3); padding:var(--s8) var(--s5); color:var(--ink-soft); }
   .drawer-empty.show{ display:flex; }
-  .drawer-empty .ic{ width:48px; height:48px; color:var(--line); stroke-width:1.6; }
-  /* rögzített akciósáv: az összeg és a rendelés gomb sose görögjön el */
-  .drawer-action{ flex:none; padding:var(--s4) var(--s5) var(--s5);
-    border-top:1px solid var(--line); background:var(--cream);
-    padding-bottom:calc(var(--s5) + env(safe-area-inset-bottom)); }
-
-  /* ---- DESKTOP: két hasáb ----
-     Széles kijelzőn a beállítások a lista MELLÉ kerülnek, nem alá. Így a tétellista
-     a panel teljes magasságát megkapja: 6-8 tételes rendelés görgetés nélkül elfér. */
+  .drawer-empty .ic{ width:44px; height:44px; color:var(--line); stroke-width:1.6; }
+  .drawer-action{ flex:none; padding:var(--s4) var(--s5) calc(var(--s5) + env(safe-area-inset-bottom)); border-top:1px solid var(--line); background:var(--cream); }
   @media(min-width:1000px){
-    .drawer{ width:min(760px, 76vw); }
+    .drawer{ width:min(780px, 78vw); }
     .drawer-scroll{ display:grid; grid-template-columns:1.1fr .9fr; overflow:hidden; }
-    .drawer-items{ grid-column:1; grid-row:1; min-height:0; overflow-y:auto;
-      padding:var(--s4) var(--s4) var(--s5) var(--s5); }
-    /* az üres állapot ugyanabba a cellába kerül — egyszerre sosem látszik a listával */
+    .drawer-items{ grid-column:1; grid-row:1; min-height:0; overflow-y:auto; padding:var(--s2) var(--s4) var(--s5) var(--s5); }
     .drawer-empty{ grid-column:1; grid-row:1; }
-    .drawer-opts{ grid-column:2; grid-row:1; min-height:0; overflow-y:auto;
-      border-left:1px solid var(--line); padding:var(--s5) var(--s5) var(--s6) var(--s4); }
+    .drawer-opts{ grid-column:2; grid-row:1; min-height:0; overflow-y:auto; border-left:1px solid var(--line); padding:var(--s5) var(--s5) var(--s6) var(--s4); }
   }
-  .note-lbl{ font-size:.78rem; font-weight:600; color:var(--ink-soft); display:block; margin-bottom:var(--s2); }
-  #note{ width:100%; border:1px solid var(--line); border-radius:var(--r-sm); padding:.7rem .8rem; font-family:var(--f-body);
-    font-size:.88rem; resize:vertical; background:#fff; margin-bottom:var(--s4); }
-  #note:focus{ outline:none; border-color:var(--action); }
-  .opt-block{ margin-bottom:var(--s4); }
-  .opt-lbl{ display:block; font-size:.78rem; font-weight:600; color:var(--ink-soft); margin-bottom:var(--s2); }
-  .seg{ display:flex; gap:4px; background:#fff; border:1px solid var(--line); border-radius:var(--r-pill); padding:4px; }
-  .seg button{ flex:1; display:inline-flex; align-items:center; justify-content:center; gap:.4rem; padding:.6rem .4rem;
-    border-radius:var(--r-pill); font-family:var(--f-head); font-weight:700; font-size:.82rem; color:var(--ink-soft); transition:background-color .14s,color .14s; }
-  .seg button .ic{ width:1.05em; height:1.05em; }
+  /* számozott lépések a fiókban: ugyanaz a sorrend, mint az „Így rendelsz” sávon */
+  .opt-block{ margin-bottom:var(--s5); }
+  .opt-lbl{ display:flex; align-items:center; gap:.55rem; font-size:.95rem; font-weight:700; margin-bottom:var(--s3); }
+  .opt-lbl i{ width:24px; height:24px; flex:none; border-radius:50%; background:var(--ink); color:#fff; font-size:.78rem; font-weight:800;
+    display:inline-flex; align-items:center; justify-content:center; font-family:var(--f-head); }
+  .opt-lbl small{ font-weight:500; color:var(--ink-soft); font-size:.85rem; }
+  .seg{ display:flex; gap:4px; background:var(--cream); border-radius:var(--r-pill); padding:4px; }
+  .seg button{ flex:1; display:inline-flex; align-items:center; justify-content:center; gap:.4rem; min-height:44px;
+    border-radius:var(--r-pill); font-weight:700; font-size:.95rem; color:var(--ink-soft); transition:background-color var(--t-btn),color var(--t-btn); }
+  .seg button .ic{ width:1.1em; height:1.1em; }
   .seg button.active{ background:var(--ink); color:#fff; }
   .chips{ display:flex; gap:8px; overflow-x:auto; padding-bottom:6px; -webkit-overflow-scrolling:touch; }
   .chips::-webkit-scrollbar{ height:5px; }
   .chips::-webkit-scrollbar-thumb{ background:var(--line); border-radius:999px; }
-  .chip{ flex:0 0 auto; min-width:58px; border:1px solid var(--line); background:#fff; border-radius:14px; padding:.5rem .3rem;
-    text-align:center; cursor:pointer; transition:background-color .14s,color .14s,border-color .14s; }
-  .chip .cd{ font-family:var(--f-head); font-size:.66rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-soft); }
-  .chip .cn{ font-family:var(--f-head); font-size:1.15rem; font-weight:800; line-height:1.1; }
+  .chip{ flex:0 0 auto; min-width:60px; min-height:56px; border:1px solid var(--line); background:#fff; border-radius:14px; padding:.45rem .3rem;
+    text-align:center; transition:background-color var(--t-btn),color var(--t-btn),border-color var(--t-btn); }
+  .chip:hover{ border-color:var(--ink); }
+  .chip .cd{ font-size:.72rem; font-weight:700; color:var(--ink-soft); }
+  .chip .cn{ font-family:var(--f-head); font-size:1.2rem; font-weight:800; line-height:1.1; }
   .chip.active{ background:var(--ink); color:#fff; border-color:var(--ink); }
-  .chip.active .cd{ color:rgba(255,255,255,.7); }
+  .chip.active .cd{ color:rgba(255,255,255,.75); }
   .slots{ display:flex; flex-wrap:wrap; gap:7px; }
-  .slot{ border:1px solid var(--line); background:#fff; border-radius:999px; padding:.45rem .85rem; font-family:var(--f-head);
-    font-weight:700; font-size:.85rem; color:var(--ink); cursor:pointer; transition:background-color .14s,color .14s,border-color .14s; }
+  .slot{ min-height:40px; border:1px solid var(--line); background:#fff; border-radius:999px; padding:.4rem .85rem;
+    font-weight:700; font-size:.92rem; font-variant-numeric:tabular-nums; transition:background-color var(--t-btn),color var(--t-btn),border-color var(--t-btn); }
   .slot:hover{ border-color:var(--ink); }
   .slot.active{ background:var(--ink); color:#fff; border-color:var(--ink); }
-  .slots-empty{ font-size:.8rem; color:var(--ink-soft); }
-  .opt-hint{ font-size:.72rem; color:var(--ink-soft); margin-top:var(--s2); line-height:1.4; }
+  .slots-empty{ font-size:.9rem; color:var(--ink-soft); }
+  .opt-hint{ font-size:.82rem; color:var(--ink-soft); margin-top:var(--s2); line-height:1.4; }
+  #note{ width:100%; border:1px solid var(--line); border-radius:var(--r-sm); padding:.75rem .85rem; font-family:var(--f-body);
+    font-size:1rem; resize:vertical; background:#fff; color:var(--ink); }
+  #note:focus{ outline:none; border-color:var(--ink); box-shadow:0 0 0 3px rgba(29,27,23,.12); }
   .sum{ margin-bottom:var(--s4); }
-  .sum-line{ display:flex; justify-content:space-between; font-size:.85rem; color:var(--ink-soft); padding:.15rem 0; }
+  .sum-line{ display:flex; justify-content:space-between; font-size:.92rem; color:var(--ink-soft); padding:.15rem 0; }
   .sum-line[hidden]{ display:none; }
   .sum-line.box-line{ color:var(--ink); font-weight:500; }
   .sum-row{ display:flex; justify-content:space-between; align-items:baseline; margin-top:var(--s2); padding-top:var(--s3); border-top:1px solid var(--line); }
-  .sum-row .lbl{ font-size:.9rem; color:var(--ink-soft); }
-  .sum-row .amt{ font-family:var(--f-head); font-weight:800; font-size:1.5rem; color:var(--action-dark); }
-  .clear-btn{ display:block; width:100%; text-align:center; font-size:.82rem; color:var(--ink-soft); margin-top:var(--s3); text-decoration:underline; }
-  .clear-btn:hover{ color:var(--brand); }
+  .sum-row .lbl{ font-weight:600; color:var(--ink-soft); }
+  .sum-row .amt{ font-family:var(--f-head); font-weight:800; font-size:1.8rem; letter-spacing:-.02em; font-variant-numeric:tabular-nums; }
+  .clear-btn{ display:block; width:100%; min-height:40px; text-align:center; font-size:.9rem; color:var(--ink-soft); margin-top:var(--s3); text-decoration:underline; text-underline-offset:3px; }
+  .clear-btn:hover{ color:var(--tomato-ink); }
   .clear-btn[disabled]{ opacity:.4; pointer-events:none; }
-  .hint{ font-size:.72rem; color:var(--ink-soft); text-align:center; margin-top:var(--s3); line-height:1.4; }
+  .hint{ font-size:.82rem; color:var(--ink-soft); text-align:center; margin-top:var(--s3); line-height:1.4; }
 
-  /* ============ STICKY MOBILE ORDER BAR ============ */
-  .mbar{ position:fixed; left:0; right:0; bottom:0; z-index:35; display:none; align-items:center; gap:var(--s3);
-    padding:var(--s3) var(--s4); background:var(--ink); color:#fff; box-shadow:0 -6px 20px rgba(0,0,0,.18);
-    transform:translateY(120%); transition:transform .28s cubic-bezier(.4,0,.2,1); }
-  .mbar.show{ transform:translateY(0); }
-  .mbar-info{ display:flex; flex-direction:column; line-height:1.2; }
-  .mbar-info .c{ font-size:.72rem; color:#B8AEA0; }
-  .mbar-info .t{ font-family:var(--f-head); font-weight:800; font-size:1.15rem; }
-  .mbar .btn{ margin-left:auto; }
-  @media(max-width:780px){
-    .mbar{ display:flex; }
-    .nav-links{ display:none; }
-    body.has-mbar{ padding-bottom:74px; }
+  /* ============ MOBIL ALSÓ SÁV: ÉTLAP | KOSÁR | ÚTVONAL ============ */
+  .mbar{ position:fixed; left:0; right:0; bottom:0; z-index:50; display:none; grid-template-columns:1fr 2.4fr 1fr; gap:6px;
+    padding:8px max(10px, env(safe-area-inset-left)) calc(8px + env(safe-area-inset-bottom));
+    background:rgba(255,253,248,.97); border-top:1px solid var(--line); box-shadow:0 -6px 22px rgba(29,27,23,.08);
+    transition:opacity .2s; }
+  .mbar a, .mbar button{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; min-height:52px;
+    border-radius:14px; font-weight:700; font-size:.78rem; color:var(--ink); }
+  .mbar .ic{ width:1.3rem; height:1.3rem; }
+  .mbar .mb-cart{ flex-direction:row; gap:.5rem; background:var(--tomato); color:#fff; font-size:.98rem; white-space:nowrap; }
+  @media(max-width:359px){ .mbar .mb-cart .c{ display:none; } }
+  .mbar .mb-cart .t{ font-variant-numeric:tabular-nums; }
+  .mbar .mb-cart .c{ min-width:22px; height:22px; padding:0 6px; border-radius:999px; background:#fff; color:var(--tomato-ink); font-size:.75rem;
+    display:inline-flex; align-items:center; justify-content:center; }
+  .mbar .mb-cart .c[data-zero="true"]{ display:none; }
+  @media(max-width:899px){ .mbar{ display:grid; } body{ padding-bottom:calc(70px + env(safe-area-inset-bottom)); } footer{ padding-bottom:var(--s8); } }
+
+  /* ============ ASZTALI LEBEGŐ KOSÁR ============ */
+  .fcart{ position:fixed; right:24px; bottom:24px; z-index:50; display:none; align-items:center; gap:.7rem; min-height:56px;
+    padding:.6rem .7rem .6rem 1.2rem; border-radius:var(--r-pill); background:var(--ink); color:#fff; box-shadow:var(--sh-lg);
+    font-weight:700; opacity:0; transform:translateY(16px); pointer-events:none;
+    transition:opacity 300ms var(--ease), transform 300ms var(--ease), background-color var(--t-btn); }
+  .fcart.show{ opacity:1; transform:none; pointer-events:auto; }
+  .fcart:hover{ background:#000; }
+  .fcart .t{ font-variant-numeric:tabular-nums; }
+  .fcart .go{ display:inline-flex; align-items:center; gap:.4rem; background:var(--tomato); padding:.55rem 1rem; border-radius:var(--r-pill); }
+  .fcart:hover .arr{ transform:translateX(3px); }
+  .fcart .arr{ transition:transform var(--t-btn) var(--ease); }
+  @media(min-width:900px){ .fcart{ display:inline-flex; } }
+
+  /* hozzáadás-visszajelzés */
+  .toast{ position:fixed; left:50%; bottom:calc(84px + env(safe-area-inset-bottom)); z-index:55; transform:translate(-50%,12px); opacity:0;
+    background:var(--ink); color:#fff; font-weight:600; font-size:.95rem; padding:.7rem 1.1rem; border-radius:var(--r-pill);
+    box-shadow:var(--sh-md); pointer-events:none; transition:opacity 220ms var(--ease), transform 220ms var(--ease); width:max-content; max-width:calc(100vw - 32px); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .toast.show{ opacity:1; transform:translate(-50%,0); }
+  @media(min-width:900px){ .toast{ bottom:96px; left:auto; right:24px; transform:translateY(12px); } .toast.show{ transform:none; } }
+
+  /* ============ SCROLL REVEAL ============ */
+  .js [data-reveal]{ opacity:0; transform:translateY(20px);
+    transition:opacity var(--t-sec) var(--ease), transform var(--t-sec) var(--ease); transition-delay:calc(var(--i,0) * 90ms); }
+  .js [data-reveal].in{ opacity:1; transform:none; }
+  /* a kártyák hover-transform-ja ne késleltetett legyen a reveal után */
+  .js .card[data-reveal].in{ transition:transform var(--t-card) var(--ease), box-shadow var(--t-card) var(--ease), opacity var(--t-sec) var(--ease); transition-delay:0s; }
+
+  /* ============ CSÖKKENTETT MOZGÁS ============ */
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *,*::before,*::after{ animation-duration:.01ms!important; animation-delay:0s!important; transition-duration:.01ms!important; transition-delay:0s!important; }
+    .js [data-reveal]{ opacity:1; transform:none; }
+    .card:hover, .card:hover .card-media img, .gallery figure:hover img, .btn:hover .arr{ transform:none; }
+    .mood img, .feature .ghost{ transform:none; }
+    .steps::before{ transform:scaleX(1); }
   }
 </style>
 </head>
@@ -438,35 +585,35 @@
   <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
   <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V5h6v2M6 7l1 12.5a1.5 1.5 0 0 0 1.5 1.5h7a1.5 1.5 0 0 0 1.5-1.5L19 7M10 11v6M14 11v6"/></symbol>
   <symbol id="i-bike" viewBox="0 0 24 24"><circle cx="5.5" cy="17" r="3.5"/><circle cx="18.5" cy="17" r="3.5"/><path d="M5.5 17 10 8.5h5M10 8.5 12.5 17M15 8.5 18.5 17M13.5 6.5h2.2"/></symbol>
-  <symbol id="i-hat" viewBox="0 0 24 24"><path d="M6 13.5a3.5 3.5 0 1 1 1.4-6.7 3.6 3.6 0 0 1 7.2 0A3.5 3.5 0 1 1 18 13.5M7 13.5v4a1.2 1.2 0 0 0 1.2 1.2h7.6A1.2 1.2 0 0 0 17 17.5v-4"/></symbol>
-  <symbol id="i-wave" viewBox="0 0 24 24"><path d="M2 8.5c2.6 0 2.6 2 5.2 2s2.6-2 5.2-2 2.6 2 5.2 2M2 13c2.6 0 2.6 2 5.2 2s2.6-2 5.2-2 2.6 2 5.2 2M2 17.5c2.6 0 2.6 2 5.2 2s2.6-2 5.2-2 2.6 2 5.2 2"/></symbol>
-  <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M4 20C4 11 9 4 20 4c1 11-4 16-12 16-2 0-4-1.5-4-4z"/><path d="M4 20C8 15 12 11 17 8.5"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
   <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.2l3.4 2"/></symbol>
   <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21.5s7-6.4 7-11.5a7 7 0 1 0-14 0c0 5.1 7 11.5 7 11.5z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="18" r="2.2"/><circle cx="18" cy="6" r="2.2"/><path d="M8.2 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.8"/></symbol>
   <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.5 3.5h3l1.6 4-2.1 1.4a11.5 11.5 0 0 0 5.1 5.1l1.4-2.1 4 1.6v3a2 2 0 0 1-2.1 2A15.5 15.5 0 0 1 4.5 5.6a2 2 0 0 1 2-2.1z"/></symbol>
-  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M20.3 12a8.3 8.3 0 0 1-12.2 7.3L3.6 20.4l1.15-4.4A8.3 8.3 0 1 1 20.3 12z"/><path d="M9 8.8c-.2 1.6.9 3.4 2.1 4.6s3 2.3 4.6 2.1c.5-.1 1-.7 1.15-1.2.1-.35-.05-.55-.35-.7l-1.5-.75c-.25-.12-.5-.08-.7.15l-.4.5c-.1.12-.27.16-.42.08a5 5 0 0 1-2.35-2.35c-.08-.15-.04-.32.08-.42l.5-.4c.23-.2.27-.45.15-.7l-.75-1.5c-.15-.3-.35-.45-.7-.35-.5.15-1.1.65-1.2 1.15z"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M20.3 12a8.3 8.3 0 0 1-12.2 7.3L3.6 20.4l1.15-4.4A8.3 8.3 0 1 1 20.3 12z"/><path d="M9 8.8c-.2 1.6.9 3.4 2.1 4.6s3 2.3 4.6 2.1c.5-.1 1-.7 1.150-1.2.1-.35-.05-.55-.35-.7l-1.5-.75c-.25-.12-.5-.08-.7.15l-.4.5c-.1.12-.27.16-.42.08a5 5 0 0 1-2.35-2.35c-.08-.15-.04-.32.08-.42l.5-.4c.23-.2.27-.45.15-.7l-.75-1.5c-.15-.3-.35-.45-.7-.35-.5.15-1.1.65-1.2 1.15z"/></symbol>
   <symbol id="i-pizza" viewBox="0 0 24 24"><path d="M3 7.5c6-3.2 12-3.2 18 0L12 21.5z"/><path d="M3 7.5 4.5 10"/><circle cx="12" cy="8.5" r=".6" fill="currentColor" stroke="none"/><circle cx="9.5" cy="12" r=".6" fill="currentColor" stroke="none"/><circle cx="14.5" cy="12" r=".6" fill="currentColor" stroke="none"/></symbol>
   <symbol id="i-fork" viewBox="0 0 24 24"><path d="M7 3v6a2.5 2.5 0 0 0 2.5 2.5v0V21M5 3v5M9 3v5M16.5 3c-1.4 0-2.5 2-2.5 4.5s1.1 4 2.5 4v9.5"/></symbol>
   <symbol id="i-bag" viewBox="0 0 24 24"><path d="M6 8h12l-1 12.2a1.5 1.5 0 0 1-1.5 1.3h-7a1.5 1.5 0 0 1-1.5-1.3z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></symbol>
-  <symbol id="i-sauce" viewBox="0 0 24 24"><path d="M9 3h6l-.5 3H9.5zM8 6h8l1 4.5a3 3 0 0 1-.9 2.8L15 15v5a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-5l-1.1-1.7a3 3 0 0 1-.9-2.8z"/></symbol>
   <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.5v.2"/></symbol>
   <symbol id="i-fb" viewBox="0 0 24 24"><path d="M14 8.5V7c0-.8.5-1.2 1.2-1.2H17V3h-2.3C12.3 3 11 4.5 11 6.7v1.8H9V11h2v10h3V11h2.2l.5-2.5z"/></symbol>
+  <symbol id="i-print" viewBox="0 0 24 24"><path d="M7 9V3h10v6M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2M7 14h10v7H7z"/></symbol>
 </svg>
 
 <a class="skip" href="#etlap">Ugrás az étlapra</a>
 
 <!-- ===== NAV ===== -->
-<header class="nav">
+<header class="nav" id="nav">
   <div class="wrap nav-in">
-    <a href="#top" class="brand"><b>5350</b><span>Biciklis Megálló Pont</span></a>
+    <a href="#top" class="brand" aria-label="5350 Biciklis Megálló Pont — az oldal teteje"><b>5350</b><span>Biciklis<br>Megálló Pont</span></a>
     <div class="nav-right">
-      <nav class="nav-links">
+      <nav class="nav-links" aria-label="Fő navigáció">
         <a href="#etlap">Étlap</a>
-        <a href="#nyitvatartas">Nyitvatartás</a>
-        <a href="#helyszin">Helyszín</a>
+        <a href="#galeria">Képek</a>
+        <a href="#helyszin">Nyitvatartás &amp; helyszín</a>
       </nav>
+      <span class="status" data-status data-open=""><span class="dot"></span><span class="txt">Cs–P 14–20 · Szo–V 11–20</span></span>
       <button id="cartBtn" class="cart-btn" aria-label="Kosár megnyitása">
-        <svg class="ic"><use href="#i-cart"/></svg>Kosár
+        <svg class="ic" aria-hidden="true"><use href="#i-cart"/></svg>Kosár
         <span id="cartBadge" class="cart-badge" data-zero="true">0</span>
       </button>
     </div>
@@ -478,138 +625,215 @@
 <main>
 
 <!-- ===== HERO ===== -->
-<section class="hero">
-  <div class="hero-in">
-    <span class="kicker"><svg class="ic"><use href="#i-pin"/></svg>Tisza-parti pizzéria · Tiszafüred</span>
-    <h1>5350</h1>
-    <p class="sub">Biciklis Megálló Pont</p>
-    <p class="lead">Olasz receptek alapján, kézzel nyújtott, házi paradicsomszósszal készült, vékonytésztás, friss pizzák — a Jászkeszeg Kikötőnél.</p>
-    <div class="hero-ctas">
-      <a href="#etlap" class="btn btn-light"><svg class="ic"><use href="#i-pizza"/></svg>Rendelés indítása</a>
-      <a href="tel:+36304760417" class="btn btn-ghost"><svg class="ic"><use href="#i-phone"/></svg>06 30 476 0417</a>
+<section class="hero" aria-labelledby="hero-title">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="status h-anim" data-status data-open="" style="--d:0ms"><span class="dot"></span><span class="txt">Cs–P 14:00–20:00 · Szo–V 11:00–20:00</span></span>
+      <h1 id="hero-title" class="h-anim" style="--d:80ms"><span class="big">5350</span><span class="name">Biciklis Megálló Pont</span></h1>
+      <p class="tag h-anim" style="--d:180ms">Kézzel nyújtott pizza a <span style="white-space:nowrap">Tisza-parton.</span></p>
+      <p class="meta h-anim" style="--d:180ms">
+        <span><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>Jászkeszeg Kikötő, Tiszafüred</span>
+        <span><svg class="ic" aria-hidden="true"><use href="#i-pizza"/></svg>Pizzák 3 490 Ft-tól · 32 cm</span>
+      </p>
+      <div class="hero-ctas h-anim" style="--d:280ms">
+        <a href="#etlap" class="btn btn-red">Étlap <svg class="ic arr" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Tiszaf%C3%BCred%2C%20Kistisza%20utca%206%2C%205350" target="_blank" rel="noopener" class="btn btn-line">Útvonal <svg class="ic arr" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
     </div>
-    <ul class="trust">
-      <li><svg class="ic"><use href="#i-check"/></svg>Kézzel nyújtott tészta</li>
-      <li><svg class="ic"><use href="#i-check"/></svg>Házi paradicsomszósz</li>
-      <li><svg class="ic"><use href="#i-check"/></svg>Olasz receptek</li>
-    </ul>
-  </div>
-  <svg class="hero-wave" viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0,32 C60,14 120,14 180,32 C240,50 300,50 360,32 C420,14 480,14 540,32 C600,50 660,50 720,32 C780,14 840,14 900,32 C960,50 1020,50 1080,32 C1140,14 1200,14 1260,32 C1320,50 1380,50 1440,32 L1440,70 L0,70 Z" fill="#ffffff"/></svg>
-</section>
-
-<!-- ===== FEATURES ===== -->
-<section class="features">
-  <div class="wrap feat-grid">
-    <div class="feat">
-      <div class="feat-ic"><svg class="ic"><use href="#i-bike"/></svg></div>
-      <h3>Biciklis megálló</h3>
-      <p>Pihenő- és falatozóhely a Tisza-parti kerékpártúrán.</p>
-    </div>
-    <div class="feat">
-      <div class="feat-ic"><svg class="ic"><use href="#i-hat"/></svg></div>
-      <h3>Kézzel nyújtott</h3>
-      <p>Vékony tészta, olasz recept alapján, frissen sütve.</p>
-    </div>
-    <div class="feat">
-      <div class="feat-ic"><svg class="ic"><use href="#i-leaf"/></svg></div>
-      <h3>Házi szósz</h3>
-      <p>Saját készítésű paradicsomszósz, friss feltétekkel.</p>
-    </div>
-    <div class="feat">
-      <div class="feat-ic"><svg class="ic"><use href="#i-wave"/></svg></div>
-      <h3>Jászkeszeg Kikötő</h3>
-      <p>Tiszafüred, közvetlenül a víz mellett.</p>
+    <div class="hero-media">
+      <div class="hero-photo">
+        <picture>
+          <source type="image/webp" srcset="img/opt/etterem-asztalok-tisza-to-480.webp 480w, img/opt/etterem-asztalok-tisza-to-800.webp 800w, img/opt/etterem-asztalok-tisza-to-1024.webp 1024w" sizes="(min-width: 900px) 52vw, 100vw">
+          <img src="img/opt/etterem-asztalok-tisza-to-800.jpg" srcset="img/opt/etterem-asztalok-tisza-to-480.jpg 480w, img/opt/etterem-asztalok-tisza-to-800.jpg 800w, img/opt/etterem-asztalok-tisza-to-1024.jpg 1024w" sizes="(min-width: 900px) 52vw, 100vw"
+            width="1024" height="683" fetchpriority="high" decoding="async" alt="Az 5350 stégre épített teraszának asztalai a víz felett, fűzfák alatt">
+        </picture>
+        <span class="cap">Asztalaink a víz felett</span>
+      </div>
+      <div class="hero-pizza">
+        <picture>
+          <source type="image/webp" srcset="img/opt/magyaros-pizza-480.webp" >
+          <img src="img/opt/magyaros-pizza-480.jpg" width="480" height="442" decoding="async" alt="Pizza Ungherese a teraszon, fokhagymás és csípős olívaolajjal">
+        </picture>
+      </div>
+      <span class="hero-pizza-cap">Pizza Ungherese</span>
     </div>
   </div>
 </section>
 
-<!-- ===== FOTÓSÁV ===== -->
-<section class="sec" style="padding-block:0">
+<!-- ===== USP ===== -->
+<section class="usp" aria-labelledby="usp-title">
   <div class="wrap">
-    <div class="shots">
-      <figure><img src="img/5350-etterem-bejarat.jpg" alt="Az 5350 Biciklis Megálló Pont bejárata" loading="lazy" width="1200" height="900"><figcaption>Bejárat</figcaption></figure>
-      <figure><img src="img/etterem-asztalok-tisza-to.jpg" alt="Asztalok a Tisza-tó felett" loading="lazy" width="1200" height="900"><figcaption>Asztalaink a Tisza-tó felett</figcaption></figure>
-      <figure><img src="img/magyaros-pizza.jpg" alt="Pizza Ungherese fokhagymás és erős olívaolajjal" loading="lazy" width="1200" height="900"><figcaption>Pizza Ungherese</figcaption></figure>
-      <figure><img src="img/bar.jpg" alt="A bár pultja" loading="lazy" width="1200" height="900"><figcaption>Bár</figcaption></figure>
+    <h2 id="usp-title" class="sr">Amitől más a pizzánk</h2>
+    <div class="route" aria-hidden="true"><svg class="ic"><use href="#i-bike"/></svg></div>
+    <div class="usp-grid">
+      <article class="usp-card" data-reveal style="--i:0">
+        <span class="n">01</span>
+        <h3>Kézzel nyújtott tészta</h3>
+        <p>Vékony tészta, olasz recept alapján, frissen sütve.</p>
+      </article>
+      <article class="usp-card" data-reveal style="--i:1">
+        <span class="n">02</span>
+        <h3>Házi paradicsomszósz</h3>
+        <p>Saját készítésű paradicsomszósz, friss feltétekkel.</p>
+      </article>
+      <article class="usp-card" data-reveal style="--i:2">
+        <span class="n">03</span>
+        <h3>Olasz receptek</h3>
+        <p>Margheritától a Quattro Formaggiig — 15 féle pizza, mind 32 cm.</p>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- ===== MENU ===== -->
-<section id="etlap" class="sec">
+<!-- ===== HANGULAT ===== -->
+<section class="mood on-dark" data-reveal-self aria-labelledby="mood-title">
+  <picture>
+    <source type="image/webp" srcset="img/opt/5350-etterem-bejarat-480.webp 480w, img/opt/5350-etterem-bejarat-800.webp 800w" sizes="100vw">
+    <img src="img/opt/5350-etterem-bejarat-800.jpg" srcset="img/opt/5350-etterem-bejarat-480.jpg 480w, img/opt/5350-etterem-bejarat-800.jpg 800w" sizes="100vw"
+      width="800" height="829" loading="lazy" decoding="async" alt="Az 5350 bejárata: kovácsoltvas 5350-es kapu biciklivel a tetején, mellette a Biciklis Megállópont táblája">
+  </picture>
+  <span class="cap">A bejárat, a Jászkeszeg Kikötőnél</span>
+  <div class="wrap mood-in">
+    <h2 id="mood-title" data-reveal><span>Pizza.</span><span>Tisza.</span><span>Nyár.</span></h2>
+    <p data-reveal style="--i:1">Pihenő- és falatozóhely a Tisza-parti kerékpártúrán — közvetlenül a víz mellett.</p>
+  </div>
+</section>
+
+<!-- ===== ÉTLAP ===== -->
+<section id="etlap" class="sec" aria-labelledby="etlap-title" style="padding-bottom:var(--s8)">
   <div class="wrap">
-    <div class="sec-head"><svg class="ic"><use href="#i-pizza"/></svg><h2>Étlap</h2></div>
-    <p class="sec-sub">Válaszd ki a kedvenced, add a kosárhoz, és pár kattintással leadhatod a rendelést WhatsAppon. Helyben fogyasztásra és elvitelre — <b>házhozszállítás nincs</b>.</p>
+    <span class="eyebrow"><svg class="ic" aria-hidden="true"><use href="#i-pizza"/></svg>Mit eszünk?</span>
+    <h2 id="etlap-title" class="h2">Étlap</h2>
+    <p class="lead">Válaszd ki a kedvenced, add a kosárhoz, és pár kattintással leadhatod a rendelést WhatsAppon. Helyben fogyasztásra és elvitelre — <b>házhozszállítás nincs</b>.</p>
+
+    <ol class="steps" data-reveal aria-label="Így rendelsz">
+      <li>Válassz az étlapról</li>
+      <li>Kosár</li>
+      <li>Helyben vagy elvitel</li>
+      <li>Nap és időpont</li>
+      <li>Megjegyzés, ha van</li>
+      <li class="last">Küldés WhatsAppon</li>
+    </ol>
+  </div>
+
+  <nav class="chooser" aria-label="Étlap kategóriák">
+    <div class="wrap chooser-in">
+      <a href="#pizzak"><span class="em" aria-hidden="true">🍕</span>Pizza <small>15</small></a>
+      <a href="#tesztak"><span class="em" aria-hidden="true">🍝</span>Tészta <small>3</small></a>
+      <a href="#salatak"><span class="em" aria-hidden="true">🥗</span>Saláta <small>1</small></a>
+      <a href="#extrak"><span class="em" aria-hidden="true">🥫</span>Szószok &amp; extrák</a>
+    </div>
+  </nav>
+
+  <div class="wrap">
 
     <!-- Pizzák -->
-    <div class="cat">
-      <div class="cat-head"><svg class="ic"><use href="#i-pizza"/></svg><h3>Pizzák</h3><span class="note">32 cm</span></div>
-      <div class="items">
-        <div class="item"><div class="item-body"><div class="item-name"><span class="item-num">1</span>Pizza Margherita</div><div class="item-desc">Mozzarella, paradicsom</div></div><div class="item-side"><span class="item-price">3 490 Ft</span><button class="add" data-id="p1" data-name="Pizza Margherita" data-price="3490" aria-label="Pizza Margherita a kosárba"><svg class="ic"><use href="#i-plus"/></svg></button></div></div>
-        <div class="item"><div class="item-body"><div class="item-name"><span class="item-num">2</span>Pizza Prosciutto</div><div class="item-desc">Mozzarella, sonka</div></div><div class="item-side"><span class="item-price">3 690 Ft</span><button class="add" data-id="p2" data-name="Pizza Prosciutto" data-price="3690" aria-label="Pizza Prosciutto a kosárba"><svg class="ic"><use href="#i-plus"/></svg></button></div></div>
-        <div class="item"><div class="item-body"><div class="item-name"><span class="item-num">3</span>Pizza Salame</div><div class="item-desc">Mozzarella, ropogós szalámi</div></div><div class="item-side"><span class="item-price">3 690 Ft</span><button class="add" data-id="p3" data-name="Pizza Salame" data-price="3690" aria-label="Pizza Salame a kosárba"><svg class="ic"><use href="#i-plus"/></svg></button></div></div>
-        <div class="item"><div class="item-body"><div class="item-name"><span class="item-num">4</span>Pizza Bolognese</div><div class="item-desc">Mozzarella, gazdag házi bolognai ragu</div></div><div class="item-side"><span class="item-price">3 690 Ft</span><button class="add" data-id="p4" data-name="Pizza Bolognese" data-price="3690" aria-label="Pizza Bolognese a kosárba"><svg class="ic"><use href="#i-plus"/></svg></button></div></div>
-        <div class="item"><div class="item-body"><div class="item-name"><span class="item-num">5</span>Pizza Tonno</div><div class="item-desc">Mozzarella, tonhal darabok, lilahagyma</div></div><div class="item-side"><span class="item-price">3 690 Ft</span><button class="add" data-id="p5" data-name="Pizza Tonno" data-price="3690" aria-label="Pizza Tonno a kosárba"><svg class="ic"><use href="#i-plus"/></svg></button></div></div>
-        <div class="item"><div class="item-body"><div class="item-name"><span class="item-num">6</span>Pizza Prosciutto e Funghi</div><div class="item-desc">Mozzarella, sonka, szeletelt gomba</div></div><div class="item-side"><span class="item-price">3 790 Ft</span><button class="add" data-id="p6" data-name="Pizza Prosciutto e Funghi" data-price="3790" aria-label="Pizza Prosciutto e Funghi a kosárba"><svg class="ic"><use href="#i-plus"/></svg></button></div></div>
-        <div class="item"><div class="item-body"><div class="item-name"><span class="item-num">7</span>Pizza al Prosciutto della Foresta Nera</div><div class="item-desc">Mozzarella, feketeerdő sonka, friss rukkola, parmezán forgács</div></div><div class="item-side"><span class="item-price">4 290 Ft</span><button class="add" data-id="p7" data-name="Pizza al Prosciutto della Foresta Nera" data-price="4290" aria-label="Pizza al Prosciutto della Foresta Nera a kosárba"><svg class="ic"><use href="#i-plus"/></svg></button></div></div>
-        <div class="item"><div class="item-body"><div class="item-name"><span class="item-num">8</span>Pizza Quattro Stagioni</div><div class="item-desc">Mozzarella, sonka, szalámi, gomba, articsóka</div></div><div class="item-side"><span class="item-price">3 990 Ft</span><button class="add" data-id="p8" data-name="Pizza Quattro Stagioni" data-price="3990" aria-label="Pizza Quattro Stagioni a kosárba"><svg class="ic"><use href="#i-plus"/></svg></button></div></div>
-        <div class="item"><div class="item-body"><div class="item-name"><span class="item-num">9</span>Pizza Quattro Formaggi</div><div class="item-desc">Mozzarella, márványsajt, feta, reszelt parmezán</div></div><div class="item-side"><span class="item-price">3 990 Ft</span><button class="add" data-id="p9" data-name="Pizza Quattro Formaggi" data-price="3990" aria-label="Pizza Quattro Formaggi a kosárba"><svg class="ic"><use href="#i-plus"/></svg></button></div></div>
-        <div class="item"><div class="item-body"><div class="item-name"><span class="item-num">10</span>Pizza Hawaii</div><div class="item-desc">Mozzarella, sonka, édes ananászkarikák</div></div><div class="item-side"><span class="item-price">3 790 Ft</span><button class="add" data-id="p10" data-name="Pizza Hawaii" data-price="3790" aria-label="Pizza Hawaii a kosárba"><svg class="ic"><use href="#i-plus"/></svg></button></div></div>
-        <div class="item"><div class="item-body"><div class="item-name"><span class="item-num">11</span>Pizza Ungherese</div><div class="item-desc">Mozzarella, bacon, lilahagyma, kolbász, erőspaprika</div></div><div class="item-side"><span class="item-price">4 290 Ft</span><button class="add" data-id="p11" data-name="Pizza Ungherese" data-price="4290" aria-label="Pizza Ungherese a kosárba"><svg class="ic"><use href="#i-plus"/></svg></button></div></div>
-        <div class="item signature"><div class="item-body"><div class="item-name"><span class="item-num">12</span>Pizza 5350 <span class="item-badge">A ház pizzája</span></div><div class="item-desc">Mozzarella, krémes sajtmártás, sonka, bacon, főtt tojás, kaliforniai paprika</div></div><div class="item-side"><span class="item-price">4 290 Ft</span><button class="add" data-id="p12" data-name="Pizza 5350" data-price="4290" aria-label="Pizza 5350 a kosárba"><svg class="ic"><use href="#i-plus"/></svg></button></div></div>
-        <div class="item"><div class="item-body"><div class="item-name"><span class="item-num">13</span>Pizza Frutti di Mare</div><div class="item-desc">Mozzarella, tenger gyümölcsei válogatás</div></div><div class="item-side"><span class="item-price">4 290 Ft</span><button class="add" data-id="p13" data-name="Pizza Frutti di Mare" data-price="4290" aria-label="Pizza Frutti di Mare a kosárba"><svg class="ic"><use href="#i-plus"/></svg></button></div></div>
-        <div class="item"><div class="item-body"><div class="item-name"><span class="item-num">14</span>Pizza Firenze</div><div class="item-desc">Mozzarella, feketeerdő sonka, gomba, articsóka, olívabogyó</div></div><div class="item-side"><span class="item-price">4 290 Ft</span><button class="add" data-id="p14" data-name="Pizza Firenze" data-price="4290" aria-label="Pizza Firenze a kosárba"><svg class="ic"><use href="#i-plus"/></svg></button></div></div>
-        <div class="item"><div class="item-body"><div class="item-name"><span class="item-num">15</span>Pizza Genovese</div><div class="item-desc">Mozzarella, spenót, illatos fokhagyma, tükörtojás</div></div><div class="item-side"><span class="item-price">3 590 Ft</span><button class="add" data-id="p15" data-name="Pizza Genovese" data-price="3590" aria-label="Pizza Genovese a kosárba"><svg class="ic"><use href="#i-plus"/></svg></button></div></div>
+    <div class="cat" id="pizzak" data-cat>
+      <div class="cat-head"><h3>Pizzák</h3><span class="note">32 cm · 3 490–4 290 Ft</span></div>
+
+      <article class="feature" data-reveal-self>
+        <span class="ghost" aria-hidden="true">5350</span>
+        <div>
+          <span class="kick"><span class="num">12</span> · A ház pizzája</span>
+          <h4 data-reveal>Pizza 5350</h4>
+          <p data-reveal style="--i:1">Mozzarella, krémes sajtmártás, sonka, bacon, főtt tojás, kaliforniai paprika</p>
+        </div>
+        <div class="feature-buy" data-reveal style="--i:2">
+          <span class="price">4 290 Ft</span>
+          <button class="add" data-id="p12" data-name="Pizza 5350" data-price="4290" aria-label="Pizza 5350 a kosárba"><svg class="ic ic-plus" aria-hidden="true"><use href="#i-plus"/></svg><span class="lbl">Kosárba</span><span class="ok"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Kosárban</span></button>
+        </div>
+      </article>
+
+      <div class="grid">
+        <!--PIZZA-KARTYAK-->
+        <article class="card" data-reveal style="--i:0"><div class="card-body"><span class="no">1</span><h4>Pizza Margherita</h4><p class="desc">Mozzarella, paradicsom</p><div class="card-foot"><span class="price">3 490 Ft</span><button class="add" data-id="p1" data-name="Pizza Margherita" data-price="3490" aria-label="Pizza Margherita a kosárba"><svg class="ic ic-plus" aria-hidden="true"><use href="#i-plus"/></svg><span class="lbl">Kosárba</span><span class="ok"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Kosárban</span></button></div></div></article>
+        <article class="card" data-reveal style="--i:1"><div class="card-body"><span class="no">2</span><h4>Pizza Prosciutto</h4><p class="desc">Mozzarella, sonka</p><div class="card-foot"><span class="price">3 690 Ft</span><button class="add" data-id="p2" data-name="Pizza Prosciutto" data-price="3690" aria-label="Pizza Prosciutto a kosárba"><svg class="ic ic-plus" aria-hidden="true"><use href="#i-plus"/></svg><span class="lbl">Kosárba</span><span class="ok"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Kosárban</span></button></div></div></article>
+        <article class="card" data-reveal style="--i:2"><div class="card-body"><span class="no">3</span><h4>Pizza Salame</h4><p class="desc">Mozzarella, ropogós szalámi</p><div class="card-foot"><span class="price">3 690 Ft</span><button class="add" data-id="p3" data-name="Pizza Salame" data-price="3690" aria-label="Pizza Salame a kosárba"><svg class="ic ic-plus" aria-hidden="true"><use href="#i-plus"/></svg><span class="lbl">Kosárba</span><span class="ok"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Kosárban</span></button></div></div></article>
+        <article class="card" data-reveal style="--i:0"><div class="card-body"><span class="no">4</span><h4>Pizza Bolognese</h4><p class="desc">Mozzarella, gazdag házi bolognai ragu</p><div class="card-foot"><span class="price">3 690 Ft</span><button class="add" data-id="p4" data-name="Pizza Bolognese" data-price="3690" aria-label="Pizza Bolognese a kosárba"><svg class="ic ic-plus" aria-hidden="true"><use href="#i-plus"/></svg><span class="lbl">Kosárba</span><span class="ok"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Kosárban</span></button></div></div></article>
+        <article class="card" data-reveal style="--i:1"><div class="card-body"><span class="no">5</span><h4>Pizza Tonno</h4><p class="desc">Mozzarella, tonhal darabok, lilahagyma</p><div class="card-foot"><span class="price">3 690 Ft</span><button class="add" data-id="p5" data-name="Pizza Tonno" data-price="3690" aria-label="Pizza Tonno a kosárba"><svg class="ic ic-plus" aria-hidden="true"><use href="#i-plus"/></svg><span class="lbl">Kosárba</span><span class="ok"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Kosárban</span></button></div></div></article>
+        <article class="card" data-reveal style="--i:2"><div class="card-body"><span class="no">6</span><h4>Pizza Prosciutto e Funghi</h4><p class="desc">Mozzarella, sonka, szeletelt gomba</p><div class="card-foot"><span class="price">3 790 Ft</span><button class="add" data-id="p6" data-name="Pizza Prosciutto e Funghi" data-price="3790" aria-label="Pizza Prosciutto e Funghi a kosárba"><svg class="ic ic-plus" aria-hidden="true"><use href="#i-plus"/></svg><span class="lbl">Kosárba</span><span class="ok"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Kosárban</span></button></div></div></article>
+        <article class="card" data-reveal style="--i:0"><div class="card-body"><span class="no">7</span><h4>Pizza al Prosciutto della Foresta Nera</h4><p class="desc">Mozzarella, feketeerdő sonka, friss rukkola, parmezán forgács</p><div class="card-foot"><span class="price">4 290 Ft</span><button class="add" data-id="p7" data-name="Pizza al Prosciutto della Foresta Nera" data-price="4290" aria-label="Pizza al Prosciutto della Foresta Nera a kosárba"><svg class="ic ic-plus" aria-hidden="true"><use href="#i-plus"/></svg><span class="lbl">Kosárba</span><span class="ok"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Kosárban</span></button></div></div></article>
+        <article class="card" data-reveal style="--i:1"><div class="card-body"><span class="no">8</span><h4>Pizza Quattro Stagioni</h4><p class="desc">Mozzarella, sonka, szalámi, gomba, articsóka</p><div class="card-foot"><span class="price">3 990 Ft</span><button class="add" data-id="p8" data-name="Pizza Quattro Stagioni" data-price="3990" aria-label="Pizza Quattro Stagioni a kosárba"><svg class="ic ic-plus" aria-hidden="true"><use href="#i-plus"/></svg><span class="lbl">Kosárba</span><span class="ok"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Kosárban</span></button></div></div></article>
+        <article class="card" data-reveal style="--i:2"><div class="card-body"><span class="no">9</span><h4>Pizza Quattro Formaggi</h4><p class="desc">Mozzarella, márványsajt, feta, reszelt parmezán</p><div class="card-foot"><span class="price">3 990 Ft</span><button class="add" data-id="p9" data-name="Pizza Quattro Formaggi" data-price="3990" aria-label="Pizza Quattro Formaggi a kosárba"><svg class="ic ic-plus" aria-hidden="true"><use href="#i-plus"/></svg><span class="lbl">Kosárba</span><span class="ok"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Kosárban</span></button></div></div></article>
+        <article class="card" data-reveal style="--i:0"><div class="card-body"><span class="no">10</span><h4>Pizza Hawaii</h4><p class="desc">Mozzarella, sonka, édes ananászkarikák</p><div class="card-foot"><span class="price">3 790 Ft</span><button class="add" data-id="p10" data-name="Pizza Hawaii" data-price="3790" aria-label="Pizza Hawaii a kosárba"><svg class="ic ic-plus" aria-hidden="true"><use href="#i-plus"/></svg><span class="lbl">Kosárba</span><span class="ok"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Kosárban</span></button></div></div></article>
+        <!-- az egyetlen pizza, amelyről saját fotó van → széles, képes kártya -->
+        <article class="card wide" data-reveal style="--i:1">
+          <div class="card-media"><picture><source type="image/webp" srcset="img/opt/magyaros-pizza-480.webp 480w, img/opt/magyaros-pizza-800.webp 800w" sizes="(min-width:1000px) 360px, (min-width:640px) 45vw, 100vw"><img src="img/opt/magyaros-pizza-800.jpg" srcset="img/opt/magyaros-pizza-480.jpg 480w, img/opt/magyaros-pizza-800.jpg 800w" sizes="(min-width:1000px) 360px, (min-width:640px) 45vw, 100vw" width="800" height="737" loading="lazy" decoding="async" alt="Pizza Ungherese a teraszon"></picture></div>
+          <div class="card-body"><span class="no">11</span><h4>Pizza Ungherese</h4><p class="desc">Mozzarella, bacon, lilahagyma, kolbász, erőspaprika</p><div class="card-foot"><span class="price">4 290 Ft</span><button class="add" data-id="p11" data-name="Pizza Ungherese" data-price="4290" aria-label="Pizza Ungherese a kosárba"><svg class="ic ic-plus" aria-hidden="true"><use href="#i-plus"/></svg><span class="lbl">Kosárba</span><span class="ok"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Kosárban</span></button></div></div>
+        </article>
+        <article class="card" data-reveal style="--i:0"><div class="card-body"><span class="no">13</span><h4>Pizza Frutti di Mare</h4><p class="desc">Mozzarella, tenger gyümölcsei válogatás</p><div class="card-foot"><span class="price">4 290 Ft</span><button class="add" data-id="p13" data-name="Pizza Frutti di Mare" data-price="4290" aria-label="Pizza Frutti di Mare a kosárba"><svg class="ic ic-plus" aria-hidden="true"><use href="#i-plus"/></svg><span class="lbl">Kosárba</span><span class="ok"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Kosárban</span></button></div></div></article>
+        <article class="card" data-reveal style="--i:1"><div class="card-body"><span class="no">14</span><h4>Pizza Firenze</h4><p class="desc">Mozzarella, feketeerdő sonka, gomba, articsóka, olívabogyó</p><div class="card-foot"><span class="price">4 290 Ft</span><button class="add" data-id="p14" data-name="Pizza Firenze" data-price="4290" aria-label="Pizza Firenze a kosárba"><svg class="ic ic-plus" aria-hidden="true"><use href="#i-plus"/></svg><span class="lbl">Kosárba</span><span class="ok"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Kosárban</span></button></div></div></article>
+        <article class="card" data-reveal style="--i:2"><div class="card-body"><span class="no">15</span><h4>Pizza Genovese</h4><p class="desc">Mozzarella, spenót, illatos fokhagyma, tükörtojás</p><div class="card-foot"><span class="price">3 590 Ft</span><button class="add" data-id="p15" data-name="Pizza Genovese" data-price="3590" aria-label="Pizza Genovese a kosárba"><svg class="ic ic-plus" aria-hidden="true"><use href="#i-plus"/></svg><span class="lbl">Kosárba</span><span class="ok"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Kosárban</span></button></div></div></article>
       </div>
     </div>
 
     <!-- Tészták & saláták -->
-    <div class="cat">
-      <div class="cat-head"><svg class="ic"><use href="#i-fork"/></svg><h3>Tészták &amp; saláták</h3></div>
-      <div class="items">
-        <div class="item"><div class="item-body"><div class="item-name"><span class="item-num">16</span>Tejszínes, spenótos gnocchi</div></div><div class="item-side"><span class="item-price">3 990 Ft</span><button class="add" data-id="p16" data-name="Tejszínes, spenótos gnocchi" data-price="3990" aria-label="Tejszínes, spenótos gnocchi a kosárba"><svg class="ic"><use href="#i-plus"/></svg></button></div></div>
-        <div class="item"><div class="item-body"><div class="item-name"><span class="item-num">17</span>Spaghetti ai Frutti di Mare</div><div class="item-desc">Különleges tintahaltintás fekete tésztával</div></div><div class="item-side"><span class="item-price">4 190 Ft</span><button class="add" data-id="p17" data-name="Spaghetti ai Frutti di Mare" data-price="4190" aria-label="Spaghetti ai Frutti di Mare a kosárba"><svg class="ic"><use href="#i-plus"/></svg></button></div></div>
-        <div class="item"><div class="item-body"><div class="item-name"><span class="item-num">18</span>Spaghetti Bolognese</div></div><div class="item-side"><span class="item-price">3 990 Ft</span><button class="add" data-id="p18" data-name="Spaghetti Bolognese" data-price="3990" aria-label="Spaghetti Bolognese a kosárba"><svg class="ic"><use href="#i-plus"/></svg></button></div></div>
-        <div class="item"><div class="item-body"><div class="item-name"><span class="item-num">19</span>Cézár saláta</div><div class="item-desc">Jégsaláta, kígyóuborka, paradicsom, csirkemell, pizzatészta csíkok, cézár öntet</div></div><div class="item-side"><span class="item-price">3 490 Ft</span><button class="add" data-id="p19" data-name="Cézár saláta" data-price="3490" aria-label="Cézár saláta a kosárba"><svg class="ic"><use href="#i-plus"/></svg></button></div></div>
+    <div class="cat" data-cat id="tesztak-salatak">
+      <div class="cat-head"><h3>Tészták &amp; saláták</h3></div>
+      <h4 class="sub-head" id="tesztak" data-cat>Tészták</h4>
+      <div class="grid">
+        <article class="card" data-reveal style="--i:0"><div class="card-body"><span class="no">16</span><h4>Tejszínes, spenótos gnocchi</h4><div class="card-foot"><span class="price">3 990 Ft</span><button class="add" data-id="p16" data-name="Tejszínes, spenótos gnocchi" data-price="3990" aria-label="Tejszínes, spenótos gnocchi a kosárba"><svg class="ic ic-plus" aria-hidden="true"><use href="#i-plus"/></svg><span class="lbl">Kosárba</span><span class="ok"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Kosárban</span></button></div></div></article>
+        <article class="card" data-reveal style="--i:1"><div class="card-body"><span class="no">17</span><h4>Spaghetti ai Frutti di Mare</h4><p class="desc">Különleges tintahaltintás fekete tésztával</p><div class="card-foot"><span class="price">4 190 Ft</span><button class="add" data-id="p17" data-name="Spaghetti ai Frutti di Mare" data-price="4190" aria-label="Spaghetti ai Frutti di Mare a kosárba"><svg class="ic ic-plus" aria-hidden="true"><use href="#i-plus"/></svg><span class="lbl">Kosárba</span><span class="ok"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Kosárban</span></button></div></div></article>
+        <article class="card" data-reveal style="--i:2"><div class="card-body"><span class="no">18</span><h4>Spaghetti Bolognese</h4><div class="card-foot"><span class="price">3 990 Ft</span><button class="add" data-id="p18" data-name="Spaghetti Bolognese" data-price="3990" aria-label="Spaghetti Bolognese a kosárba"><svg class="ic ic-plus" aria-hidden="true"><use href="#i-plus"/></svg><span class="lbl">Kosárba</span><span class="ok"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Kosárban</span></button></div></div></article>
+      </div>
+      <h4 class="sub-head" id="salatak" data-cat>Saláta</h4>
+      <div class="grid">
+        <article class="card" data-reveal><div class="card-body"><span class="no">19</span><h4>Cézár saláta</h4><p class="desc">Jégsaláta, kígyóuborka, paradicsom, csirkemell, pizzatészta csíkok, cézár öntet</p><div class="card-foot"><span class="price">3 490 Ft</span><button class="add" data-id="p19" data-name="Cézár saláta" data-price="3490" aria-label="Cézár saláta a kosárba"><svg class="ic ic-plus" aria-hidden="true"><use href="#i-plus"/></svg><span class="lbl">Kosárba</span><span class="ok"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Kosárban</span></button></div></div></article>
       </div>
     </div>
 
     <!-- Szószok & extrák -->
-    <div class="cat">
-      <div class="cat-head"><svg class="ic"><use href="#i-sauce"/></svg><h3>Szószok &amp; extrák</h3></div>
-      <div class="addons">
-        <div>
-          <h4><svg class="ic"><use href="#i-sauce"/></svg>Szószok</h4>
-          <div class="addon"><span>Fokhagymás olíva</span><span class="addon-price">300 Ft</span><button class="add-sm" data-id="s1" data-name="Fokhagymás olíva" data-price="300" aria-label="Fokhagymás olíva a kosárba"><svg class="ic"><use href="#i-plus"/></svg></button></div>
-          <div class="addon"><span>Csípős olíva</span><span class="addon-price">300 Ft</span><button class="add-sm" data-id="s2" data-name="Csípős olíva" data-price="300" aria-label="Csípős olíva a kosárba"><svg class="ic"><use href="#i-plus"/></svg></button></div>
-          <div class="addon"><span>Pizzaszósz</span><span class="addon-price">300 Ft</span><button class="add-sm" data-id="s3" data-name="Pizzaszósz" data-price="300" aria-label="Pizzaszósz a kosárba"><svg class="ic"><use href="#i-plus"/></svg></button></div>
-          <div class="addon"><span>Ketchup</span><span class="addon-price">200 Ft</span><button class="add-sm" data-id="s4" data-name="Ketchup" data-price="200" aria-label="Ketchup a kosárba"><svg class="ic"><use href="#i-plus"/></svg></button></div>
-          <div class="addon"><span>Majonéz</span><span class="addon-price">200 Ft</span><button class="add-sm" data-id="s5" data-name="Majonéz" data-price="200" aria-label="Majonéz a kosárba"><svg class="ic"><use href="#i-plus"/></svg></button></div>
+    <div class="cat" id="extrak" data-cat>
+      <div class="cat-head"><h3>Szószok &amp; extrák</h3></div>
+      <div class="extras">
+        <div class="extras-col" data-reveal>
+          <h4>Szószok</h4>
+          <div class="addon"><span class="nm">Fokhagymás olíva</span><span class="pr">300 Ft</span><button class="add-sm" data-id="s1" data-name="Fokhagymás olíva" data-price="300" aria-label="Fokhagymás olíva a kosárba"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></div>
+          <div class="addon"><span class="nm">Csípős olíva</span><span class="pr">300 Ft</span><button class="add-sm" data-id="s2" data-name="Csípős olíva" data-price="300" aria-label="Csípős olíva a kosárba"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></div>
+          <div class="addon"><span class="nm">Pizzaszósz</span><span class="pr">300 Ft</span><button class="add-sm" data-id="s3" data-name="Pizzaszósz" data-price="300" aria-label="Pizzaszósz a kosárba"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></div>
+          <div class="addon"><span class="nm">Ketchup</span><span class="pr">200 Ft</span><button class="add-sm" data-id="s4" data-name="Ketchup" data-price="200" aria-label="Ketchup a kosárba"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></div>
+          <div class="addon"><span class="nm">Majonéz</span><span class="pr">200 Ft</span><button class="add-sm" data-id="s5" data-name="Majonéz" data-price="200" aria-label="Majonéz a kosárba"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></div>
         </div>
-        <div>
-          <h4><svg class="ic"><use href="#i-plus"/></svg>Extrák</h4>
-          <div class="addon"><span>Zöldségfélék</span><span class="addon-price">350 Ft</span><button class="add-sm" data-id="e1" data-name="Extra zöldségfélék" data-price="350" aria-label="Zöldségfélék a kosárba"><svg class="ic"><use href="#i-plus"/></svg></button></div>
-          <div class="addon"><span>Sajt, húsfélék</span><span class="addon-price">450 Ft</span><button class="add-sm" data-id="e2" data-name="Extra sajt, húsféle" data-price="450" aria-label="Sajt, húsfélék a kosárba"><svg class="ic"><use href="#i-plus"/></svg></button></div>
-          <div class="addon-note"><svg class="ic"><use href="#i-info"/></svg><span>Elviteles doboz: 200 Ft / étel — elvitelnél a kosárban automatikusan hozzáadódik.</span></div>
+        <div class="extras-col" data-reveal style="--i:1">
+          <h4>Extrák</h4>
+          <div class="addon"><span class="nm">Zöldségfélék</span><span class="pr">350 Ft</span><button class="add-sm" data-id="e1" data-name="Extra zöldségfélék" data-price="350" aria-label="Zöldségfélék a kosárba"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></div>
+          <div class="addon"><span class="nm">Sajt, húsfélék</span><span class="pr">450 Ft</span><button class="add-sm" data-id="e2" data-name="Extra sajt, húsféle" data-price="450" aria-label="Sajt, húsfélék a kosárba"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></div>
+          <p class="info" style="margin-top:var(--s4)"><svg class="ic" aria-hidden="true"><use href="#i-bag"/></svg><span>Elviteles doboz: 200 Ft / étel — elvitelnél a kosárban automatikusan hozzáadódik.</span></p>
         </div>
       </div>
     </div>
 
-    <div class="print-row">
-      <a href="etlap.html" class="print-link"><svg class="ic"><use href="#i-info"/></svg>Nyomtatható étlap (A3)</a>
+    <div class="menu-foot">
+      <p class="info"><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg><span>Ételeink allergén összetevőiről tájékozódjanak a pultnál!</span></p>
+      <a href="etlap.html" class="textlink"><svg class="ic" aria-hidden="true"><use href="#i-print"/></svg>Nyomtatható étlap (A3)</a>
     </div>
   </div>
 </section>
 
-<!-- ===== VISIT ===== -->
-<section id="nyitvatartas" class="sec visit">
-  <svg class="sec-wave" viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0,32 C60,14 120,14 180,32 C240,50 300,50 360,32 C420,14 480,14 540,32 C600,50 660,50 720,32 C780,14 840,14 900,32 C960,50 1020,50 1080,32 C1140,14 1200,14 1260,32 C1320,50 1380,50 1440,32 L1440,70 L0,70 Z" fill="#FBF6EC"/></svg>
+<!-- ===== GALÉRIA ===== -->
+<section id="galeria" class="sec" style="padding-top:var(--s8)" aria-labelledby="gal-title">
   <div class="wrap">
-    <div class="sec-head"><svg class="ic"><use href="#i-pin"/></svg><h2>Látogass el hozzánk</h2></div>
-    <p class="sec-sub">Megtalálsz a Jászkeszeg Kikötőnél, Tiszafüreden. Nézd meg a nyitvatartást, mielőtt elindulsz.</p>
-    <div class="visit-grid">
-      <div class="card" id="hoursCard">
-        <div class="card-title"><svg class="ic"><use href="#i-clock"/></svg>Nyitvatartás</div>
+    <span class="eyebrow"><svg class="ic" aria-hidden="true"><use href="#i-bike"/></svg>Megálló a víz mellett</span>
+    <h2 id="gal-title" class="h2">Így néz ki nálunk</h2>
+    <div class="gallery">
+      <figure class="g-wide" data-reveal><picture><source type="image/webp" srcset="img/opt/etterem-asztalok-tisza-to-800.webp 800w, img/opt/etterem-asztalok-tisza-to-1024.webp 1024w" sizes="(min-width:860px) 60vw, 100vw"><img src="img/opt/etterem-asztalok-tisza-to-800.jpg" srcset="img/opt/etterem-asztalok-tisza-to-800.jpg 800w, img/opt/etterem-asztalok-tisza-to-1024.jpg 1024w" sizes="(min-width:860px) 60vw, 100vw" width="1024" height="683" loading="lazy" decoding="async" alt="Stégre épített terasz asztalokkal a víz felett"></picture><figcaption>Asztalaink a Tisza-tó felett</figcaption></figure>
+      <figure class="g-tall" data-reveal style="--i:1"><picture><source type="image/webp" srcset="img/opt/5350-etterem-bejarat-480.webp 480w, img/opt/5350-etterem-bejarat-800.webp 800w" sizes="(min-width:860px) 26vw, 50vw"><img src="img/opt/5350-etterem-bejarat-480.jpg" srcset="img/opt/5350-etterem-bejarat-480.jpg 480w, img/opt/5350-etterem-bejarat-800.jpg 800w" sizes="(min-width:860px) 26vw, 50vw" width="800" height="829" loading="lazy" decoding="async" alt="Az 5350 Biciklis Megálló Pont bejárata"></picture><figcaption>Bejárat</figcaption></figure>
+      <figure class="g-a" data-reveal style="--i:2"><picture><source type="image/webp" srcset="img/opt/magyaros-pizza-480.webp 480w, img/opt/magyaros-pizza-800.webp 800w" sizes="(min-width:860px) 30vw, 50vw"><img src="img/opt/magyaros-pizza-480.jpg" srcset="img/opt/magyaros-pizza-480.jpg 480w, img/opt/magyaros-pizza-800.jpg 800w" sizes="(min-width:860px) 30vw, 50vw" width="800" height="737" loading="lazy" decoding="async" alt="Pizza Ungherese fokhagymás és csípős olívaolajjal"></picture><figcaption>Pizza Ungherese</figcaption></figure>
+      <figure class="g-b" data-reveal style="--i:3"><picture><source type="image/webp" srcset="img/opt/bar-480.webp"><img src="img/opt/bar-480.jpg" width="480" height="640" loading="lazy" decoding="async" alt="A bár pultja hűtőkkel" style="object-position:50% 40%"></picture><figcaption>Bár</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===== A KIKÖTŐNÉL ===== -->
+<section id="helyszin" class="sec harbor on-dark" aria-labelledby="harbor-title">
+  <div class="wrap">
+    <span class="eyebrow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>A kikötőnél</span>
+    <h2 id="harbor-title" class="h2">Jászkeszeg Kikötő<br>Tiszafüred</h2>
+    <p class="lead">Pihenő- és falatozóhely a Tisza-parti kerékpártúrán. Nézd meg a nyitvatartást, mielőtt elindulsz.</p>
+
+    <div class="harbor-grid">
+      <div class="panel" id="nyitvatartas" data-reveal>
+        <h3><span>Nyitvatartás</span><span class="status" data-status data-open=""><span class="dot"></span><span class="txt">—</span></span></h3>
         <table class="hours">
           <tr data-day="1"><td>Hétfő</td><td class="closed">Zárva</td></tr>
           <tr data-day="2"><td>Kedd</td><td class="closed">Zárva</td></tr>
@@ -620,17 +844,23 @@
           <tr data-day="0"><td>Vasárnap</td><td>11:00–20:00</td></tr>
         </table>
       </div>
-      <div>
-        <div class="card" id="helyszin">
-          <div class="card-title"><svg class="ic"><use href="#i-pin"/></svg>Elérhetőség</div>
-          <div class="contact-list">
-            <div class="contact"><div class="contact-ic"><svg class="ic"><use href="#i-pin"/></svg></div><div><div class="lbl">Cím</div><div class="val">Tiszafüred, Kistisza utca 6, 5350 — Jászkeszeg Kikötő</div></div></div>
-            <div class="contact"><div class="contact-ic"><svg class="ic"><use href="#i-phone"/></svg></div><div><div class="lbl">Telefon</div><a class="val" href="tel:+36304760417">06 30 476 0417</a></div></div>
-            <!-- TODO: a valós Facebook-oldal URL-jét ide kell beírni (href), addig sima szöveg marad -->
-            <div class="contact"><div class="contact-ic"><svg class="ic"><use href="#i-fb"/></svg></div><div><div class="lbl">Facebook</div><div class="val">5350 Biciklis megálló pont</div></div></div>
-          </div>
-          <a class="btn btn-amber btn-block" href="https://www.google.com/maps/dir/?api=1&destination=Tiszaf%C3%BCred%2C%20Kistisza%20utca%206%2C%205350" target="_blank" rel="noopener"><svg class="ic"><use href="#i-pin"/></svg>Útvonaltervezés</a>
-          <div class="map-frame"><iframe src="https://www.google.com/maps?q=Tiszaf%C3%BCred%2C%20Kistisza%20utca%206%2C%205350&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="5350 Biciklis Megálló Pont térkép"></iframe></div>
+      <div class="panel" data-reveal style="--i:1">
+        <h3>Elérhetőség</h3>
+        <div class="contact"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg><div><div class="lbl">Cím</div><div class="val">Tiszafüred, Kistisza utca 6, 5350 — Jászkeszeg Kikötő</div></div></div>
+        <div class="contact"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><div><div class="lbl">Telefon</div><a class="val" href="tel:+36304760417">06 30 476 0417</a></div></div>
+        <!-- TODO: a valós Facebook-oldal URL-jét ide kell beírni (href), addig sima szöveg marad -->
+        <div class="contact"><svg class="ic" aria-hidden="true"><use href="#i-fb"/></svg><div><div class="lbl">Facebook</div><div class="val">5350 Biciklis megálló pont</div></div></div>
+        <div class="harbor-ctas">
+          <a class="btn btn-red" href="https://www.google.com/maps/dir/?api=1&amp;destination=Tiszaf%C3%BCred%2C%20Kistisza%20utca%206%2C%205350" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-route"/></svg>Útvonaltervezés <svg class="ic arr" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-white" href="tel:+36304760417"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg>Hívás</a>
+        </div>
+        <!-- a Google Maps iframe csak kattintásra tölt: ~1 MB JS, amit nem minden látogató kér -->
+        <div class="map" id="map">
+          <button type="button" class="map-load" id="mapLoad">
+            <svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>
+            <span>Térkép megjelenítése</span>
+            <small>A gomb a Google Térképet tölti be ezen az oldalon.</small>
+          </button>
         </div>
       </div>
     </div>
@@ -640,8 +870,7 @@
 </main>
 
 <!-- ===== FOOTER ===== -->
-<footer>
-  <svg class="sec-wave" viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0,32 C60,14 120,14 180,32 C240,50 300,50 360,32 C420,14 480,14 540,32 C600,50 660,50 720,32 C780,14 840,14 900,32 C960,50 1020,50 1080,32 C1140,14 1200,14 1260,32 C1320,50 1380,50 1440,32 L1440,70 L0,70 Z" fill="#1C1611"/></svg>
+<footer class="on-dark">
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
@@ -649,10 +878,9 @@
         <p>Biciklis Megálló Pont — kézzel nyújtott pizzák a Tisza-parton, Jászkeszeg Kikötő, Tiszafüred.</p>
       </div>
       <div class="foot-col">
-        <h4>Menü</h4>
+        <h4>Oldalak</h4>
         <a href="#etlap">Étlap</a>
-        <a href="#nyitvatartas">Nyitvatartás</a>
-        <a href="#helyszin">Helyszín</a>
+        <a href="#helyszin">Nyitvatartás &amp; helyszín</a>
         <a href="etlap.html">Nyomtatható étlap</a>
         <!-- dist-ben a kemping a gyökérben van: ott "/" a helyes cél -->
         <a href="camping.html">Tóparti Camping</a>
@@ -664,7 +892,7 @@
         <p>5350 Biciklis megálló pont (Facebook)</p>
       </div>
     </div>
-    <div class="foot-warn"><svg class="ic"><use href="#i-info"/></svg>Ételeink allergén összetevőiről tájékozódjanak a pultnál!</div>
+    <div class="foot-warn"><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg>Ételeink allergén összetevőiről tájékozódjanak a pultnál!</div>
     <div class="foot-legal">© 2026 5350 Biciklis Megálló Pont — Jászkeszeg Kikötő, Tiszafüred</div>
   </div>
 </footer>
@@ -673,35 +901,37 @@
 <div id="overlay" class="overlay"></div>
 <aside id="drawer" class="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
   <div class="drawer-head">
-    <h3 id="drawerTitle"><svg class="ic"><use href="#i-cart"/></svg>Kosár</h3>
-    <button id="drawerClose" class="drawer-close" aria-label="Bezárás"><svg class="ic"><use href="#i-close"/></svg></button>
+    <h3 id="drawerTitle"><svg class="ic" aria-hidden="true"><use href="#i-cart"/></svg>Kosár</h3>
+    <button id="drawerClose" class="drawer-close" aria-label="Bezárás"><svg class="ic" aria-hidden="true"><use href="#i-close"/></svg></button>
   </div>
   <!-- lista + beállítások egy görgetési régióban: a teljes rendelés kibontva látszik -->
   <div class="drawer-scroll">
     <div id="drawerItems" class="drawer-items"></div>
     <div id="drawerEmpty" class="drawer-empty">
-      <svg class="ic"><use href="#i-cart"/></svg>
+      <svg class="ic" aria-hidden="true"><use href="#i-cart"/></svg>
       <p>A kosarad üres.<br>Válassz az étlapról, és add hozzá kedvenceidet!</p>
     </div>
     <div class="drawer-opts">
-    <div class="opt-block">
-      <span class="opt-lbl">Fogyasztás módja</span>
-      <div class="seg" id="modeSeg">
-        <button type="button" data-mode="dinein" class="active"><svg class="ic"><use href="#i-fork"/></svg>Helyben</button>
-        <button type="button" data-mode="takeaway"><svg class="ic"><use href="#i-bag"/></svg>Elvitel</button>
+      <div class="opt-block">
+        <span class="opt-lbl"><i>1</i>Helyben vagy elvitel?</span>
+        <div class="seg" id="modeSeg">
+          <button type="button" data-mode="dinein" class="active"><svg class="ic" aria-hidden="true"><use href="#i-fork"/></svg>Helyben</button>
+          <button type="button" data-mode="takeaway"><svg class="ic" aria-hidden="true"><use href="#i-bag"/></svg>Elvitel</button>
+        </div>
       </div>
-    </div>
-    <div class="opt-block">
-      <span class="opt-lbl">Átvétel napja</span>
-      <div class="chips" id="dateChips"></div>
-    </div>
-    <div class="opt-block">
-      <span class="opt-lbl">Átvétel időpontja</span>
-      <div class="slots" id="timeSlots"></div>
-      <p class="opt-hint" id="slotHint">Nyitvatartás: Cs–P 14:00–20:00 · Szo–V 11:00–20:00 (H–Sze zárva)</p>
-    </div>
-    <label class="note-lbl" for="note">Megjegyzés (opcionális)</label>
-      <textarea id="note" rows="2" placeholder="extra kérés, allergia…"></textarea>
+      <div class="opt-block">
+        <span class="opt-lbl"><i>2</i>Átvétel napja</span>
+        <div class="chips" id="dateChips"></div>
+      </div>
+      <div class="opt-block">
+        <span class="opt-lbl"><i>3</i>Átvétel időpontja</span>
+        <div class="slots" id="timeSlots"></div>
+        <p class="opt-hint" id="slotHint">Nyitvatartás: Cs–P 14:00–20:00 · Szo–V 11:00–20:00 (H–Sze zárva)</p>
+      </div>
+      <div class="opt-block">
+        <label class="opt-lbl" for="note"><i>4</i>Megjegyzés <small>(opcionális)</small></label>
+        <textarea id="note" rows="2" placeholder="extra kérés, allergia…"></textarea>
+      </div>
       <button type="button" id="clearBtn" class="clear-btn">Kosár ürítése</button>
     </div>
   </div>
@@ -713,17 +943,26 @@
       <div class="sum-row"><span class="lbl">Összesen</span><span id="sumTotal" class="amt">0 Ft</span></div>
     </div>
     <!-- button, nem <a>: a disabled attribútum linken nem tiltja a billentyűzetes aktiválást -->
-    <button type="button" id="orderBtn" class="btn btn-action btn-block"><svg class="ic"><use href="#i-wa"/></svg>Rendelés leadása WhatsAppon</button>
+    <button type="button" id="orderBtn" class="btn btn-wa btn-block"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg>Rendelés leadása WhatsAppon</button>
     <p class="hint" id="orderHint">A gomb megnyitja a WhatsAppot az előre összeállított rendeléssel.</p>
     <button type="button" id="copyBtn" class="clear-btn">Nincs WhatsAppod? Másold vágólapra a rendelést</button>
   </div>
 </aside>
 
-<!-- ===== STICKY MOBILE ORDER BAR ===== -->
-<div id="mbar" class="mbar">
-  <div class="mbar-info"><span id="mbCount" class="c">0 tétel</span><span id="mbTotal" class="t">0 Ft</span></div>
-  <button id="mbOrder" class="btn btn-action"><svg class="ic"><use href="#i-cart"/></svg>Kosár</button>
-</div>
+<!-- ===== MOBIL ALSÓ SÁV ===== -->
+<nav id="mbar" class="mbar" aria-label="Gyorsműveletek">
+  <a href="#etlap"><svg class="ic" aria-hidden="true"><use href="#i-pizza"/></svg>Étlap</a>
+  <button id="mbOrder" class="mb-cart" aria-label="Kosár megnyitása"><svg class="ic" aria-hidden="true"><use href="#i-cart"/></svg><span id="mbTotal" class="t">Kosár</span><span id="mbCount" class="c" data-zero="true">0</span></button>
+  <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Tiszaf%C3%BCred%2C%20Kistisza%20utca%206%2C%205350" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-route"/></svg>Útvonal</a>
+</nav>
+
+<!-- ===== ASZTALI LEBEGŐ KOSÁR ===== -->
+<button id="fcart" class="fcart" aria-label="Kosár megnyitása" tabindex="-1">
+  <span><span id="fcCount">0 tétel</span> · <span id="fcTotal" class="t">0 Ft</span></span>
+  <span class="go">Kosár <svg class="ic arr" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+</button>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
 
 <script>
 (function(){
@@ -736,6 +975,7 @@
   var HOURS = { 0:[11,20], 4:[14,20], 5:[14,20], 6:[11,20] };
   var DAYS_ABBR = ["Vas","Hét","Ked","Sze","Csü","Pén","Szo"];
   var DAYS_FULL = ["Vasárnap","Hétfő","Kedd","Szerda","Csütörtök","Péntek","Szombat"];
+  var DAYS_ON = ["vasárnap","hétfőn","kedden","szerdán","csütörtökön","pénteken","szombaton"];
   var cart = {};
   var mode = "dinein";             // "dinein" | "takeaway"
   var dateList = [];               // választható (nyitva tartó) napok
@@ -758,6 +998,25 @@
   function boxCount(){ var n=0; for(var k in cart){ if(k.charAt(0)==="p") n+=cart[k].qty; } return n; } // csak fő ételek
   function boxSum(){ return mode==="takeaway" ? boxCount()*BOX_PRICE : 0; }
   function grand(){ return goods()+boxSum(); }
+
+  // ---- nyitva / zárva állapot (ugyanabból a HOURS-ból, mint az idősávok) ----
+  function statusInfo(){
+    var now=new Date(), d=now.getDay(), h=now.getHours()+now.getMinutes()/60;
+    if(HOURS[d] && h>=HOURS[d][0] && h<HOURS[d][1]) return { open:true, txt:"<b>Most nyitva</b> · "+HOURS[d][1]+":00-ig" };
+    if(HOURS[d] && h<HOURS[d][0]) return { open:false, txt:"<b>Zárva</b> · ma "+HOURS[d][0]+":00-kor nyitunk" };
+    for(var i=1;i<=7;i++){
+      var n=(d+i)%7;
+      if(HOURS[n]) return { open:false, txt:"<b>Zárva</b> · "+(i===1?"holnap":DAYS_ON[n])+" "+HOURS[n][0]+":00-kor nyitunk" };
+    }
+    return { open:false, txt:"<b>Zárva</b>" };
+  }
+  function renderStatus(){
+    var s=statusInfo();
+    document.querySelectorAll("[data-status]").forEach(function(el){
+      el.setAttribute("data-open", s.open?"true":"false");
+      el.querySelector(".txt").innerHTML=s.txt;
+    });
+  }
 
   // ---- dátum / idősáv logika ----
   function slotsFor(d){
@@ -787,10 +1046,8 @@
   }
 
   /* ---- az idősávok elévülnek, amíg a lap nyitva van ----
-     A buildDates() csak betöltéskor futott, így aki 19:30-kor nyitotta meg az oldalt
-     és 20:10-kor rendelt, múltbeli időpontot tudott választani. Az availSig() egy
-     olcsó ujjlenyomat a jelenleg elérhető sávokról: a DOM-ot csak akkor építjük újra,
-     amikor tényleg változott valami — különben elvennénk a fókuszt a felhasználótól. */
+     Az availSig() olcsó ujjlenyomat a jelenleg elérhető sávokról: a DOM-ot csak akkor
+     építjük újra, amikor tényleg változott valami — különben elvennénk a fókuszt. */
   var lastSig="";
   function availSig(){
     var s=[], now=new Date();
@@ -818,7 +1075,7 @@
     lastSig=availSig();
     renderDates(); renderSlots(); render();
   }
-  function tickPickup(){ if(availSig()!==lastSig) refreshPickup(); }
+  function tickPickup(){ renderStatus(); if(availSig()!==lastSig) refreshPickup(); }
   function chipTop(d){
     var now=new Date();
     var diff=Math.round((new Date(d.getFullYear(),d.getMonth(),d.getDate())-new Date(now.getFullYear(),now.getMonth(),now.getDate()))/86400000);
@@ -830,6 +1087,7 @@
     var box=document.getElementById("dateChips"); box.innerHTML="";
     dateList.forEach(function(d){
       var b=document.createElement("button"); b.type="button"; b.className="chip"+(selDate&&sameYmd(d,selDate)?" active":"");
+      b.setAttribute("aria-pressed", selDate&&sameYmd(d,selDate)?"true":"false");
       b.innerHTML='<div class="cd">'+chipTop(d)+'</div><div class="cn">'+d.getDate()+'.</div>';
       b.addEventListener("click", function(){
         selDate=d;
@@ -846,10 +1104,18 @@
     if(!slots.length){ box.innerHTML='<span class="slots-empty">Erre a napra nincs több szabad időpont.</span>'; return; }
     slots.forEach(function(t){
       var b=document.createElement("button"); b.type="button"; b.className="slot"+(t===selTime?" active":"");
+      b.setAttribute("aria-pressed", t===selTime?"true":"false");
       b.textContent=t;
       b.addEventListener("click", function(){ selTime=t; pickupExpired=false; renderSlots(); render(); });
       box.appendChild(b);
     });
+  }
+
+  var toastT=null;
+  function toast(msg){
+    var t=document.getElementById("toast");
+    t.textContent=msg; t.classList.add("show");
+    clearTimeout(toastT); toastT=setTimeout(function(){ t.classList.remove("show"); }, 1800);
   }
 
   function add(id,name,price){
@@ -857,6 +1123,7 @@
     cart[id].qty++; save(); render();
     var badge=document.getElementById("cartBadge");
     badge.classList.remove("pulse"); void badge.offsetWidth; badge.classList.add("pulse");
+    toast("✓ "+name+" a kosárban");
   }
   function chg(id,d){ if(!cart[id])return; cart[id].qty+=d; if(cart[id].qty<=0) delete cart[id]; save(); render(); }
   function del(id){ delete cart[id]; save(); render(); }
@@ -880,6 +1147,8 @@
   }
   function waLink(){ return "https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(orderText()); }
 
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+
   function render(){
     var wrap=document.getElementById("drawerItems"), empty=document.getElementById("drawerEmpty");
     var badge=document.getElementById("cartBadge"), order=document.getElementById("orderBtn");
@@ -891,11 +1160,11 @@
       ids.forEach(function(id){
         var it=cart[id], row=document.createElement("div"); row.className="ci";
         row.innerHTML=
-          '<div class="ci-body"><div class="ci-name">'+it.name+'</div><div class="ci-unit">'+ft(it.price)+' / db</div>'+
-          '<div class="ci-qty"><button class="qbtn" data-act="dec" data-id="'+id+'" aria-label="Kevesebb"><svg class="ic"><use href="#i-minus"/></svg></button>'+
+          '<div class="ci-body"><div class="ci-name">'+esc(it.name)+'</div><div class="ci-unit">'+ft(it.price)+' / db</div>'+
+          '<div class="ci-qty"><button class="qbtn" data-act="dec" data-id="'+esc(id)+'" aria-label="'+esc(it.name)+': eggyel kevesebb"><svg class="ic"><use href="#i-minus"/></svg></button>'+
           '<span class="qval">'+it.qty+'</span>'+
-          '<button class="qbtn" data-act="inc" data-id="'+id+'" aria-label="Több"><svg class="ic"><use href="#i-plus"/></svg></button></div></div>'+
-          '<div class="ci-right"><button class="ci-remove" data-act="rm" data-id="'+id+'" aria-label="Törlés"><svg class="ic"><use href="#i-trash"/></svg></button>'+
+          '<button class="qbtn" data-act="inc" data-id="'+esc(id)+'" aria-label="'+esc(it.name)+': eggyel több"><svg class="ic"><use href="#i-plus"/></svg></button></div></div>'+
+          '<div class="ci-right"><button class="ci-remove" data-act="rm" data-id="'+esc(id)+'" aria-label="'+esc(it.name)+' törlése"><svg class="ic"><use href="#i-trash"/></svg></button>'+
           '<span class="ci-total">'+ft(it.qty*it.price)+'</span></div>';
         wrap.appendChild(row);
       });
@@ -922,25 +1191,31 @@
       hint.textContent = pickupExpired
         ? "A korábban választott időpont közben elmúlt — válassz új átvételi időpontot."
         : "Válaszd ki az átvétel napját és időpontját a rendelés leadásához.";
-      hint.style.color="var(--brand)";
+      hint.style.color="var(--tomato-ink)";
     } else {
       hint.textContent="A gomb megnyitja a WhatsAppot az előre összeállított rendeléssel. A rendelés akkor válik véglegessé, ha visszaírunk.";
       hint.style.color="";
     }
 
-    // badge + mobil sáv
+    // jelvény + mobil sáv + asztali lebegő kosár
     var c=count();
     badge.textContent=c; badge.setAttribute("data-zero", c===0?"true":"false");
-    var mbar=document.getElementById("mbar");
-    document.getElementById("mbCount").textContent=c+" tétel";
-    document.getElementById("mbTotal").textContent=ft(grand());
-    if(c>0){ mbar.classList.add("show"); document.body.classList.add("has-mbar"); }
-    else{ mbar.classList.remove("show"); document.body.classList.remove("has-mbar"); }
+    var mbCount=document.getElementById("mbCount");
+    mbCount.textContent=c; mbCount.setAttribute("data-zero", c===0?"true":"false");
+    document.getElementById("mbTotal").textContent = c ? "Kosár · "+ft(grand()) : "Kosár";
+    document.getElementById("mbOrder").setAttribute("aria-label", c ? "Kosár megnyitása, "+c+" tétel, "+ft(grand()) : "Kosár megnyitása, üres");
+    var fc=document.getElementById("fcart");
+    document.getElementById("fcCount").textContent=c+" tétel";
+    document.getElementById("fcTotal").textContent=ft(grand());
+    fc.classList.toggle("show", c>0 && !document.getElementById("drawer").classList.contains("open"));
+    fc.tabIndex = c>0 ? 0 : -1;
   }
 
   function setMode(m){
     mode=m; saveMode();
-    document.querySelectorAll("#modeSeg button").forEach(function(b){ b.classList.toggle("active", b.dataset.mode===m); });
+    document.querySelectorAll("#modeSeg button").forEach(function(b){
+      b.classList.toggle("active", b.dataset.mode===m); b.setAttribute("aria-pressed", b.dataset.mode===m?"true":"false");
+    });
     render();
   }
 
@@ -950,8 +1225,8 @@
   var lastFocus=null;
   function openDrawer(trigger){
     lastFocus = trigger || document.activeElement;
-    refreshPickup();
     document.getElementById("drawer").classList.add("open");
+    refreshPickup();
     document.getElementById("overlay").classList.add("open");
     document.getElementById("mbar").style.opacity="0";
     document.body.style.overflow="hidden";
@@ -964,6 +1239,7 @@
     document.getElementById("overlay").classList.remove("open");
     document.getElementById("mbar").style.opacity="1";
     document.body.style.overflow="";
+    render();
     if(lastFocus && lastFocus.focus) lastFocus.focus();
     lastFocus=null;
   }
@@ -980,20 +1256,25 @@
 
   document.addEventListener("DOMContentLoaded", function(){
     load();
-    document.querySelectorAll("#modeSeg button").forEach(function(b){ b.classList.toggle("active", b.dataset.mode===mode); });
+    document.querySelectorAll("#modeSeg button").forEach(function(b){
+      b.classList.toggle("active", b.dataset.mode===mode); b.setAttribute("aria-pressed", b.dataset.mode===mode?"true":"false");
+    });
     buildDates(); renderDates(); renderSlots();
     render();
+    renderStatus();
 
     document.querySelectorAll(".add,.add-sm").forEach(function(b){
+      var t=null;
       b.addEventListener("click", function(){
         add(b.dataset.id, b.dataset.name, parseInt(b.dataset.price,10));
-        b.classList.add("added"); setTimeout(function(){ b.classList.remove("added"); }, 350);
+        b.classList.add("added"); clearTimeout(t); t=setTimeout(function(){ b.classList.remove("added"); }, 1100);
       });
     });
 
-    var cartBtn=document.getElementById("cartBtn"), mbOrder=document.getElementById("mbOrder");
+    var cartBtn=document.getElementById("cartBtn"), mbOrder=document.getElementById("mbOrder"), fcart=document.getElementById("fcart");
     cartBtn.addEventListener("click", function(){ openDrawer(cartBtn); });
     mbOrder.addEventListener("click", function(){ openDrawer(mbOrder); });
+    fcart.addEventListener("click", function(){ openDrawer(fcart); });
     document.getElementById("drawerClose").addEventListener("click", closeDrawer);
     document.getElementById("overlay").addEventListener("click", closeDrawer);
     document.getElementById("clearBtn").addEventListener("click", clear);
@@ -1038,8 +1319,7 @@
       trapFocus(e);
     });
 
-    /* percenként ellenőrizzük, elévült-e a választható idősávok listája.
-       A tickPickup csak akkor nyúl a DOM-hoz, ha tényleg változott valami. */
+    /* percenként: elévült idősávok + nyitva/zárva állapot */
     lastSig=availSig();
     setInterval(tickPickup, 60000);
     document.addEventListener("visibilitychange", function(){ if(!document.hidden) tickPickup(); });
@@ -1048,6 +1328,52 @@
     var today=new Date().getDay();
     var row=document.querySelector('.hours tr[data-day="'+today+'"]');
     if(row) row.classList.add("today");
+  });
+})();
+
+/* ===== felület: reveal, kategóriaválasztó, térkép, fejléc ===== */
+(function(){
+  document.addEventListener("DOMContentLoaded", function(){
+    // scroll reveal — egyszer fut le elemenként
+    var els=document.querySelectorAll("[data-reveal],[data-reveal-self],.steps");
+    if("IntersectionObserver" in window){
+      var io=new IntersectionObserver(function(es){
+        es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+      },{ rootMargin:"0px 0px -8% 0px", threshold:.12 });
+      els.forEach(function(el){ io.observe(el); });
+    } else { els.forEach(function(el){ el.classList.add("in"); }); }
+
+    // kategóriaválasztó: az éppen olvasott kategória kiemelése
+    var links=document.querySelectorAll(".chooser a"), map={};
+    links.forEach(function(a){ map[a.getAttribute("href").slice(1)]=a; });
+    if("IntersectionObserver" in window){
+      var cur=null;
+      var io2=new IntersectionObserver(function(es){
+        es.forEach(function(e){
+          if(e.isIntersecting && map[e.target.id]){
+            if(cur) cur.classList.remove("active");
+            cur=map[e.target.id]; cur.classList.add("active");
+            // a kiválasztott pill látszódjon a vízszintesen görgő sávban
+            var bar=cur.parentNode; bar.scrollTo({ left: cur.offsetLeft - 16, behavior:"smooth" });
+          }
+        });
+      },{ rootMargin:"-35% 0px -60% 0px" });
+      ["pizzak","tesztak","salatak","extrak"].forEach(function(id){ var el=document.getElementById(id); if(el) io2.observe(el); });
+    }
+
+    // fejléc vonal görgetéskor
+    var nav=document.getElementById("nav");
+    function onScroll(){ nav.classList.toggle("scrolled", window.scrollY>8); }
+    window.addEventListener("scroll", onScroll, { passive:true }); onScroll();
+
+    // térkép csak kérésre
+    var ml=document.getElementById("mapLoad");
+    ml.addEventListener("click", function(){
+      var f=document.createElement("iframe");
+      f.src="https://www.google.com/maps?q=Tiszaf%C3%BCred%2C%20Kistisza%20utca%206%2C%205350&output=embed";
+      f.title="5350 Biciklis Megálló Pont térkép"; f.referrerPolicy="no-referrer-when-downgrade";
+      document.getElementById("map").appendChild(f); ml.remove(); f.focus();
+    });
   });
 })();
 </script>

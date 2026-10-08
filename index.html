@@ -151,7 +151,7 @@
   .status b{ font-weight:700; }
 
   /* ============ NAV ============ */
-  .nav{ position:sticky; top:0; z-index:40; height:var(--nav-h); background:rgba(28,22,17,.97); color:#fff;
+  .nav{ position:sticky; top:0; z-index:40; height:var(--nav-h); background:var(--ink); color:#fff;
     border-bottom:1px solid transparent; transition:border-color .2s, background-color .2s; }
   .nav.scrolled{ border-bottom-color:rgba(255,255,255,.08); }
   .nav-in{ height:100%; display:flex; align-items:center; justify-content:space-between; gap:var(--s4); }
@@ -516,10 +516,10 @@
 
   <nav class="chooser" aria-label="Étlap kategóriák">
     <div class="wrap chooser-in">
-      <a href="#pizzak"><span class="em" aria-hidden="true">🍕</span>Pizza <small>15</small></a>
-      <a href="#tesztak"><span class="em" aria-hidden="true">🍝</span>Tészta <small>3</small></a>
-      <a href="#salatak"><span class="em" aria-hidden="true">🥗</span>Saláta <small>1</small></a>
-      <a href="#extrak"><span class="em" aria-hidden="true">🥫</span>Szószok &amp; extrák</a>
+      <a href="#pizzak" data-spy="pizzak"><span class="em" aria-hidden="true">🍕</span>Pizza <small>15</small></a>
+      <a href="#tesztak-salatak" data-spy="tesztak"><span class="em" aria-hidden="true">🍝</span>Tészta <small>3</small></a>
+      <a href="#tesztak-salatak" data-spy="salatak"><span class="em" aria-hidden="true">🥗</span>Saláta <small>1</small></a>
+      <a href="#extrak" data-spy="extrak"><span class="em" aria-hidden="true">🥫</span>Szószok &amp; extrák</a>
     </div>
   </nav>
 
@@ -736,13 +736,31 @@
     } else { els.forEach(function(el){ el.classList.add("in"); }); }
 
     // kategóriaválasztó: az éppen olvasott kategória kiemelése
-    var links=document.querySelectorAll(".chooser a"), map={};
-    links.forEach(function(a){ map[a.getAttribute("href").slice(1)]=a; });
+    var links=document.querySelectorAll(".chooser a"), map={}, cur=null, lockUntil=0;
+    links.forEach(function(a){ map[a.dataset.spy]=a; });
+
+    /* kattintásra a kategória CÍME kerüljön közvetlenül a ragadós fejléc + kategóriasáv alá
+       (a sima #horgony a sáv mögé görgetne, és a cím takarásban maradna) */
+    var chooser=document.querySelector(".chooser"), navEl=document.getElementById("nav");
+    var reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    links.forEach(function(a){
+      a.addEventListener("click", function(ev){
+        var cat=document.querySelector(a.getAttribute("href"));
+        var head=cat && cat.querySelector(".cat-head");
+        if(!head) return;
+        ev.preventDefault();
+        var y=head.getBoundingClientRect().top + window.scrollY - navEl.offsetHeight - chooser.offsetHeight - 14;
+        window.scrollTo({ top:y, behavior: reduce ? "auto" : "smooth" });
+        // a megnyomott pill maradjon kiemelve, amíg a görgetés lefut
+        if(cur) cur.classList.remove("active");
+        cur=a; a.classList.add("active"); lockUntil=Date.now()+1200;
+        if(history.replaceState) history.replaceState(null, "", a.getAttribute("href"));
+      });
+    });
     if("IntersectionObserver" in window){
-      var cur=null;
       var io2=new IntersectionObserver(function(es){
         es.forEach(function(e){
-          if(e.isIntersecting && map[e.target.id]){
+          if(e.isIntersecting && map[e.target.id] && Date.now()>lockUntil){
             if(cur) cur.classList.remove("active");
             cur=map[e.target.id]; cur.classList.add("active");
             // a kiválasztott pill látszódjon a vízszintesen görgő sávban

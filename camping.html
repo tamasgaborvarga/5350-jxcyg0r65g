@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tóparti Camping — Kemping Tiszafüreden, a Tisza-tó partján</title>
+<meta name="description" content="Tóparti Camping Tiszafüreden, a Tisza-tó partján: sátor- és lakóautóhelyek, mobilház, apartman, szobák. Vízparti étterem, 24 órás vizesblokk, játszótér, tűzrakóhelyek. Kérj ajánlatot néhány kattintással.">
+<meta name="theme-color" content="#1B6E90">
+<link rel="icon" href="camping-img/toparti-camping-logo.png">
+
+<!-- megosztás Facebookon / üzenetben: ne üres szürke doboz legyen -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="hu_HU">
+<meta property="og:site_name" content="Tóparti Camping">
+<meta property="og:title" content="Tóparti Camping — Kemping Tiszafüreden, a Tisza-tó partján">
+<meta property="og:description" content="Sátor- és lakóautóhelyek, mobilház, apartman, szobák a Tisza-tó partján. Vízparti étterem, 24 órás vizesblokk, játszótér. 3 éj foglalása mellé a 4. ajándék.">
+<meta property="og:image" content="camping-img/kemping-bejarat.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Prompt:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+<!-- strukturált adat: ettől lesz gazdag találat a Google-ben a "kemping Tiszafüred" keresésre -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Campground",
+  "name": "Tóparti Camping",
+  "description": "Kemping a Tisza-tó partján, Tiszafüreden: sátor- és lakóautóhelyek, mobilház, apartman és szobák, vízparti étteremmel.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Kistisza út 1–3.",
+    "addressLocality": "Tiszafüred",
+    "postalCode": "5350",
+    "addressCountry": "HU"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": 47.6236, "longitude": 20.7445 },
+  "telephone": "+36202960956",
+  "email": "toparticamping.tiszafured@gmail.com",
+  "sameAs": ["https://www.facebook.com/toparticamping"],
+  "priceRange": "2700–45000 Ft",
+  "currenciesAccepted": "HUF",
+  "paymentAccepted": "Készpénz, bankkártya",
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens": "08:00",
+    "closes": "20:00",
+    "description": "A recepció nyitvatartása; vendégeink 24 órás belépést kapnak."
+  }],
+  "amenityFeature": [
+    { "@type": "LocationFeatureSpecification", "name": "Melegvizes vizesblokk (24 órás)", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Tűzrakóhely", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Játszótér", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Étterem", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Áramvételi lehetőség", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Kisállatbarát (nyitott szállásterületen)", "value": true }
+  ]
+}
+</script>
+<style>
+  /* ============ DESIGN TOKENS ============
+     Azonos rendszer a 5350 oldallal (tipográfia, ritmus, komponensek),
+     de a színvilág a víz köré épül. Színkerék-viszonyok:
+       - domináns:  Tisza-kék (~200°)
+       - analóg:    tenger-zöld akció (~160°) — közel a kékhez, ezért nem "ugrik ki" idegenül
+       - komplementer: homok-sárga akcent (~40°) — a kék ellentéte, ezért figyelemhívó
+       - piros CSAK a pizzéria-sávban (--pizza): az az 5350 saját színe
+     A neutralok hűvös-eltoltak (kékes-szürke), nem meleg-barnák, hogy a kékhez üljenek. */
+  :root{
+    --brand:#1B6E90; --brand-dark:#10506B; --brand-tint:#E4F0F6;  /* Tisza-kék */
+    --action:#0F7F55; --action-dark:#0B6647;   /* tenger-zöld = MINDEN foglalás-művelet */
+    --amber:#DDA44E; --amber-dark:#B77F33;     /* homok — a kékkel azonos telítettségen (68%), hogy ne kiabálja túl */
+    --pizza:#E2231A;                           /* az 5350 pirosa, csak az átvezető sávon */
+    --ink:#14232C;                             /* hűvös, majdnem-fekete kék (nem meleg barna) */
+    --ink-soft:#5B6B75;                        /* hűvös szürke — hátrébb lép a szövegben */
+    --line:#DEE6EA; --mist:#F1F6F8;            /* pára: hűvös, halvány szekció-háttér */
+    --paper:#FFFFFF;
+    --f-head:'Prompt','Gill Sans MT',sans-serif;
+    --f-body:'Inter',system-ui,-apple-system,sans-serif;
+    --fs-xs:.75rem; --fs-sm:.8125rem; --fs-base:1rem; --fs-md:1.125rem;
+    --fs-lg:1.375rem; --fs-xl:1.875rem; --fs-2xl:2.75rem;
+    --s1:.25rem; --s2:.5rem; --s3:.75rem; --s4:1rem; --s5:1.5rem;
+    --s6:2rem; --s8:3rem; --s10:4rem; --s12:6rem;
+    --r-sm:10px; --r-md:16px; --r-lg:24px; --r-pill:999px;
+    /* árnyékok hűvös kékre hangolva, nem fekete overlay-jel */
+    --sh-sm:0 1px 2px rgba(16,45,62,.07), 0 2px 6px rgba(16,45,62,.06);
+    --sh-md:0 6px 18px rgba(16,45,62,.11);
+    --sh-lg:0 16px 40px rgba(16,45,62,.16);
+    --sh-brand:0 10px 26px rgba(27,110,144,.28);
+    --sh-action:0 8px 20px rgba(15,127,85,.28);
+    --wrap:1140px;
+  }
+  *,*::before,*::after{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ margin:0; background:var(--paper); color:var(--ink); font-family:var(--f-body); font-size:var(--fs-base); line-height:1.6; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3,h4{ font-family:var(--f-head); margin:0; line-height:1.1; }
+  p{ margin:0; }
+  a{ color:inherit; text-decoration:none; }
+  button{ font-family:inherit; cursor:pointer; border:none; background:none; }
+  img,svg{ display:block; max-width:100%; }
+  ul{ list-style:none; margin:0; padding:0; }
+  /* kétrétegű fókuszgyűrű: a sötét mag világos háttéren, a homok halo sötét naván látszik */
+  :focus-visible{ outline:3px solid var(--ink); outline-offset:2px; border-radius:4px;
+    box-shadow:0 0 0 6px rgba(221,164,78,.95); }
+  .wrap{ max-width:var(--wrap); margin:0 auto; padding-inline:var(--s5); }
+
+  /* billentyűzetes navigáció: ugrás a tartalomra */
+  .skip{ position:absolute; left:var(--s4); top:-4rem; z-index:60; background:#fff; color:var(--ink);
+    font-family:var(--f-head); font-weight:700; font-size:.85rem; padding:.7rem 1.2rem;
+    border-radius:var(--r-pill); box-shadow:var(--sh-md); transition:top .18s ease; }
+  .skip:focus{ top:var(--s3); }
+
+  /* mozgásérzékeny felhasználók: minden animáció leáll */
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{ animation-duration:.01ms !important; animation-iteration-count:1 !important;
+      transition-duration:.01ms !important; scroll-behavior:auto !important; }
+    .btn:hover, .stay:hover, .nav-cta:hover, .gal figure:hover img{ transform:none; }
+  }
+  .ic{ width:1.25em; height:1.25em; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
+
+  /* ============ BUTTONS ============ */
+  .btn{ display:inline-flex; align-items:center; justify-content:center; gap:var(--s2);
+    font-family:var(--f-head); font-weight:700; font-size:var(--fs-sm); letter-spacing:.02em;
+    text-transform:uppercase; padding:.9rem 1.6rem; border-radius:var(--r-pill);
+    transition:transform .14s ease, box-shadow .14s ease, background-color .14s ease; }
+  .btn .ic{ width:1.15em; height:1.15em; stroke-width:2.4; }
+  .btn:hover{ transform:translateY(-2px); }
+  .btn:active{ transform:translateY(0); }
+  .btn-action{ background:var(--action); color:#fff; box-shadow:var(--sh-action); }
+  .btn-action:hover{ background:var(--action-dark); }
+  .btn-light{ background:#fff; color:var(--ink); box-shadow:var(--sh-md); }
+  .btn-ghost{ background:transparent; color:#fff; box-shadow:inset 0 0 0 2px rgba(255,255,255,.6); }
+  .btn-ghost:hover{ box-shadow:inset 0 0 0 2px #fff; }
+  .btn-amber{ background:var(--amber); color:var(--ink); box-shadow:var(--sh-md); }
+  .btn-amber:hover{ background:var(--amber-dark); }
+  .btn-outline{ background:#fff; color:var(--ink); box-shadow:inset 0 0 0 1.5px var(--line); }
+  .btn-outline:hover{ box-shadow:inset 0 0 0 1.5px var(--ink); }
+  .btn-block{ width:100%; }
+
+  /* ============ NAV ============ */
+  /* z-50: a fejléc a nyitott mobilmenü fölött marad, hogy a bezáró gomb elérhető legyen */
+  .nav{ position:sticky; top:0; z-index:50; background:rgba(20,35,44,.97); backdrop-filter:blur(8px); color:#fff; }
+  .nav-in{ display:flex; align-items:center; justify-content:space-between; gap:var(--s4); padding-block:var(--s3); }
+  .brand{ display:flex; align-items:center; gap:.7rem; font-family:var(--f-head); }
+  .brand b{ font-weight:900; font-size:1.35rem; letter-spacing:.03em; }
+  .brand span{ font-weight:600; font-size:.82rem; letter-spacing:.03em; color:var(--amber); }
+  /* a logó sötét navon ül: a fehér háttere kivilágosodna, ezért kap kis levegőt és kerekítést */
+  .brand .logo{ height:38px; width:auto; background:#fff; border-radius:8px; padding:3px 6px; }
+  @media(max-width:520px){ .brand span{ display:none; } }
+  .nav-right{ display:flex; align-items:center; gap:var(--s6); }
+  .nav-links{ display:flex; gap:var(--s5); }
+  .nav-links a{ font-family:var(--f-head); font-weight:600; font-size:.82rem; letter-spacing:.03em; text-transform:uppercase;
+    color:#E3EBEF; transition:color .14s; padding-block:.6rem; }   /* nagyobb érintőfelület */
+  .nav-links a:hover{ color:var(--amber); }
+  .nav-cta{ display:inline-flex; align-items:center; gap:.5rem; background:var(--action); color:#fff;
+    font-family:var(--f-head); font-weight:700; font-size:.8rem; text-transform:uppercase; letter-spacing:.03em;
+    padding:.6rem 1.1rem; border-radius:var(--r-pill); transition:transform .14s, background-color .14s; }
+  .nav-cta:hover{ background:var(--action-dark); transform:translateY(-1px); }
+
+  /* ---- hamburger ---- */
+  .burger{ display:none; width:44px; height:44px; border-radius:12px; color:#fff;   /* 44px: az ajánlott minimum érintőméret */
+    align-items:center; justify-content:center; background:rgba(255,255,255,.1); }
+  .burger .ic{ width:24px; height:24px; stroke-width:2.2; }
+  .burger .close-i{ display:none; }
+  .burger[aria-expanded="true"] .open-i{ display:none; }
+  .burger[aria-expanded="true"] .close-i{ display:block; }
+
+  .mobile-menu{ position:fixed; inset:0; z-index:45; background:rgba(20,35,44,.98); backdrop-filter:blur(6px);
+    display:flex; flex-direction:column; padding:calc(64px + var(--s6)) var(--s5) var(--s6);
+    opacity:0; visibility:hidden; transform:translateY(-8px);
+    transition:opacity .22s ease, transform .22s ease, visibility .22s; overflow-y:auto; }
+  .mobile-menu.open{ opacity:1; visibility:visible; transform:translateY(0); }
+  .mobile-menu a{ display:flex; align-items:center; justify-content:space-between; gap:var(--s4);
+    font-family:var(--f-head); font-weight:700; font-size:1.15rem; color:#fff;
+    padding:var(--s4) 0; border-bottom:1px solid rgba(255,255,255,.12); }
+  .mobile-menu a .ic{ width:1.1rem; height:1.1rem; color:var(--amber); }
+  .mobile-menu .mm-cta{ justify-content:center; margin-top:var(--s6); border-bottom:none;
+    background:var(--action); border-radius:var(--r-pill); padding:1rem; font-size:.95rem; text-transform:uppercase; }
+  .mobile-menu .mm-phone{ justify-content:center; border-bottom:none; color:var(--amber); font-size:1rem; }
+
+  /* ============ HERO ============ */
+  .hero{ position:relative; color:#fff; text-align:center; overflow:hidden;
+    background:radial-gradient(130% 130% at 50% 0%, #2F97BC 0%, var(--brand) 48%, var(--brand-dark) 100%);
+    padding:var(--s12) var(--s5) calc(var(--s12) + 2rem); }
+  .hero-in{ max-width:820px; margin:0 auto; position:relative; z-index:2; }
+  .kicker{ display:inline-flex; align-items:center; gap:.5rem; font-family:var(--f-head); font-weight:600;
+    font-size:.78rem; letter-spacing:.14em; text-transform:uppercase;
+    background:rgba(255,255,255,.16); padding:.45rem 1.1rem; border-radius:var(--r-pill); margin-bottom:var(--s5); }
+  .hero h1{ font-size:clamp(2.6rem,7vw,4.4rem); font-weight:900; letter-spacing:-.01em; margin-bottom:var(--s3); }
+  .hero .sub{ font-family:var(--f-head); font-weight:700; font-size:clamp(1rem,3vw,1.35rem);
+    text-transform:uppercase; letter-spacing:.14em; margin-bottom:var(--s5); color:rgba(255,255,255,.92); }
+  .hero .lead{ font-size:var(--fs-md); line-height:1.6; max-width:560px; margin:0 auto var(--s6); color:rgba(255,255,255,.94); }
+  .hero-ctas{ display:flex; gap:var(--s3); justify-content:center; flex-wrap:wrap; }
+  .trust{ display:flex; gap:var(--s5); justify-content:center; flex-wrap:wrap; margin-top:var(--s6); }
+  .trust li{ display:inline-flex; align-items:center; gap:.5rem; font-size:.9rem; font-weight:500; color:rgba(255,255,255,.92); }
+  .trust .ic{ width:1.1em; height:1.1em; color:#fff; stroke-width:2.6; }
+  .hero-wave{ position:absolute; left:0; right:0; bottom:-1px; width:100%; height:auto; display:block; z-index:1; }
+  .sec-wave{ position:absolute; left:0; right:0; top:0; width:100%; height:auto; display:block;
+    transform:translateY(-99%); pointer-events:none; }
+
+  /* ============ AJÁNLAT-PILL ============
+     Nem sáv: egyetlen sárga pill a hero alatt, a fehér szekcióba lógva. */
+  .offer{ display:flex; justify-content:center; padding-top:var(--s8); }
+  .offer-pill{ display:inline-flex; align-items:center; justify-content:center; gap:var(--s3); flex-wrap:wrap;
+    background:var(--amber); color:var(--ink); text-align:center;
+    padding:.85rem 1.6rem; border-radius:var(--r-pill); box-shadow:var(--sh-md); }
+  .offer-pill .ic{ width:1.35rem; height:1.35rem; flex-shrink:0; }
+  .offer-pill b{ font-family:var(--f-head); font-weight:800; font-size:1rem; }
+  .offer-pill span{ font-size:.85rem; }
+  .offer-pill code{ font-family:var(--f-head); font-weight:800; font-size:.85rem; letter-spacing:.04em;
+    background:rgba(28,22,17,.12); padding:.15rem .5rem; border-radius:var(--r-pill); }
+
+  /* ============ FEATURES ============ */
+  .features{ padding-block:var(--s8) var(--s10); }   /* fent kevesebb: az ajánlat-pill már ad levegőt */
+  .feat-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:var(--s5); }
+  @media(max-width:860px){ .feat-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:520px){ .feat-grid{ grid-template-columns:1fr; } }
+  .feat{ background:var(--mist); border-radius:var(--r-md); padding:var(--s5); box-shadow:var(--sh-sm); }
+  .feat-ic{ width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center;
+    background:#fff; color:var(--brand); box-shadow:var(--sh-sm); margin-bottom:var(--s4); }
+  .feat-ic .ic{ width:26px; height:26px; }
+  .feat h3{ font-size:var(--fs-md); font-weight:700; margin-bottom:.35rem; }
+  .feat p{ font-size:var(--fs-sm); color:var(--ink-soft); line-height:1.5; }
+
+  /* ============ SECTION HEADS ============ */
+  .sec{ padding-block:var(--s10); position:relative; }
+  .sec-head{ display:flex; align-items:center; gap:var(--s3); margin-bottom:var(--s3); }
+  .sec-head .ic{ width:1.6rem; height:1.6rem; color:var(--brand); }
+  .sec-head h2{ font-size:var(--fs-2xl); font-weight:800; letter-spacing:-.01em; }
+  .sec-sub{ font-size:var(--fs-md); color:var(--ink-soft); max-width:600px; margin-bottom:var(--s8); }
+
+  /* ============ SZÁLLÁSOK ============ */
+  .stay-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:var(--s5); }
+  @media(max-width:900px){ .stay-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:600px){ .stay-grid{ grid-template-columns:1fr; } }
+  .stay{ display:flex; flex-direction:column; background:#fff; border-radius:var(--r-md); box-shadow:var(--sh-sm);
+    overflow:hidden; border:1px solid var(--line); transition:transform .16s, box-shadow .16s; }
+  .stay:hover{ transform:translateY(-3px); box-shadow:var(--sh-md); }
+  /* fotó-helyek: szándékosan üresek, amíg nincsenek valódi képek */
+  /* valódi fotók — a képarány fix, hogy a kártyák ne ugráljanak töltés közben */
+  .shot{ width:100%; aspect-ratio:4/3; object-fit:cover; background:#EAF1F5; }
+  .shot-wide{ aspect-ratio:16/9; }
+  .ph{ aspect-ratio:4/3; background:repeating-linear-gradient(45deg,#EAF1F5,#EAF1F5 10px,#E0EAF0 10px,#E0EAF0 20px);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.4rem; color:var(--ink-soft); text-align:center; padding:var(--s4); }
+  .ph .ic{ width:26px; height:26px; opacity:.55; }
+  .ph b{ font-family:var(--f-head); font-size:.72rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; opacity:.75; }
+  .ph small{ font-size:.72rem; line-height:1.35; opacity:.8; }
+  .ph-wide{ aspect-ratio:16/7; }
+  .stay-body{ display:flex; flex-direction:column; flex:1; padding:var(--s5); }
+  .stay h3{ font-size:var(--fs-lg); font-weight:800; margin-bottom:.3rem; }
+  .stay .cap{ display:inline-flex; align-items:center; gap:.4rem; font-size:var(--fs-sm); color:var(--ink-soft); margin-bottom:var(--s3); }
+  .stay .cap .ic{ width:1rem; height:1rem; }
+  .stay ul{ display:flex; flex-wrap:wrap; gap:.4rem; margin-bottom:var(--s4); }
+  .stay ul li{ font-size:.72rem; font-weight:500; color:var(--ink-soft); background:var(--mist);
+    border-radius:var(--r-pill); padding:.25rem .65rem; }
+  .stay-desc{ font-size:var(--fs-sm); color:var(--ink-soft); line-height:1.5; margin-bottom:var(--s4); }
+  .stay-foot{ display:flex; align-items:center; justify-content:space-between; gap:var(--s3); margin-top:auto;
+    padding-top:var(--s4); border-top:1px solid var(--line); }
+  .price{ line-height:1.15; }
+  .price .from{ display:block; font-size:.68rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); }
+  .price .amt{ font-family:var(--f-head); font-weight:800; font-size:1.25rem; }
+  .price .unit{ font-family:var(--f-body); font-size:.78rem; font-weight:500; color:var(--ink-soft); }
+  .stay .btn{ padding:.7rem 1.1rem; font-size:.75rem; }
+
+  /* ============ KEMPING TÉRKÉP ============ */
+  .cmap-grid{ display:grid; grid-template-columns:1.05fr .95fr; gap:var(--s8); align-items:start; }
+  @media(max-width:900px){ .cmap-grid{ grid-template-columns:1fr; } }
+  /* a fix képarány megakadályozza, hogy töltés közben ugráljon a layout */
+  .cmap-img{ width:100%; aspect-ratio:4/3; object-fit:contain; border-radius:var(--r-md);
+    border:1px solid var(--line); box-shadow:var(--sh-sm); background:#fff; }
+  .spots{ display:flex; flex-direction:column; gap:var(--s3); }
+  .spot{ display:flex; gap:var(--s4); background:#fff; border:1px solid var(--line); border-radius:var(--r-md); padding:var(--s4) var(--s5); box-shadow:var(--sh-sm); }
+  .spot-no{ flex-shrink:0; width:34px; height:34px; border-radius:50%; background:var(--brand); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-family:var(--f-head); font-weight:800; font-size:.9rem; }
+  .spot h3{ font-size:1rem; font-weight:700; margin-bottom:.2rem; }
+  .spot p{ font-size:var(--fs-sm); color:var(--ink-soft); line-height:1.5; }
+
+  /* ============ ÁRLISTA ============ */
+  .prices{ background:var(--mist); }
+  .price-grid{ display:grid; grid-template-columns:1fr 1fr; gap:var(--s5); }
+  @media(max-width:820px){ .price-grid{ grid-template-columns:1fr; } }
+  .pcard{ background:#fff; border-radius:var(--r-md); box-shadow:var(--sh-sm); padding:var(--s5) var(--s6); }
+  .pcard h3{ display:flex; align-items:center; gap:.6rem; font-size:var(--fs-md); font-weight:800;
+    text-transform:uppercase; letter-spacing:.04em; padding-bottom:var(--s3); margin-bottom:var(--s2); border-bottom:2px solid var(--line); }
+  .pcard h3 .ic{ width:1.2rem; height:1.2rem; color:var(--brand); }
+  .prow{ display:flex; align-items:baseline; gap:var(--s4); padding:.6rem 0; border-bottom:1px solid var(--line); }
+  .prow:last-of-type{ border-bottom:none; }
+  .prow .n{ flex:1; font-size:.95rem; }
+  .prow .n small{ display:block; font-size:.75rem; color:var(--ink-soft); }
+  .prow .v{ font-family:var(--f-head); font-weight:700; font-size:.98rem; white-space:nowrap; }
+  .prow .v.free{ color:var(--action-dark); }
+  .pnote{ display:flex; gap:.5rem; margin-top:var(--s4); padding-top:var(--s3); border-top:1px dashed var(--line);
+    font-size:.78rem; color:var(--ink-soft); line-height:1.45; }
+  .pnote .ic{ width:1rem; height:1rem; color:var(--brand); flex-shrink:0; margin-top:.15rem; }
+
+  /* ============ PÉLDASZÁMÍTÁS ============
+     A sátras árazás összeadós (terület + fő/éj + IFA), ezért egy konkrét példa
+     többet ér, mint még egy táblázat. */
+  .example{ margin-top:var(--s6); background:#fff; border:1px solid var(--line); border-left:4px solid var(--brand);
+    border-radius:var(--r-md); box-shadow:var(--sh-sm); padding:var(--s5) var(--s6); }
+  .example h3{ display:flex; align-items:center; gap:.6rem; font-size:var(--fs-md); font-weight:800; margin-bottom:var(--s4); }
+  .example h3 .ic{ width:1.2rem; height:1.2rem; color:var(--brand); }
+  .ex-rows{ display:grid; grid-template-columns:1fr auto; gap:.45rem var(--s5); font-size:.92rem; }
+  .ex-rows .lbl{ color:var(--ink-soft); }
+  .ex-rows .val{ font-family:var(--f-head); font-weight:700; text-align:right; white-space:nowrap; }
+  .ex-rows .sum{ border-top:1px solid var(--line); padding-top:.6rem; margin-top:.35rem; font-weight:700; color:var(--ink); }
+  .ex-rows .sum-val{ border-top:1px solid var(--line); padding-top:.6rem; margin-top:.35rem;
+    font-size:1.25rem; font-weight:800; color:var(--brand); }
+  .example p{ margin-top:var(--s4); font-size:.8rem; color:var(--ink-soft); line-height:1.5; }
+
+  /* ============ AJÁNLATKÉRÉS ============ */
+  .book-grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:var(--s8); align-items:start; }
+  @media(max-width:900px){ .book-grid{ grid-template-columns:1fr; } }
+  .form-card{ background:#fff; border:1px solid var(--line); border-radius:var(--r-md); box-shadow:var(--sh-md); padding:var(--s6); }
+  .frow{ display:grid; grid-template-columns:1fr 1fr; gap:var(--s4); margin-bottom:var(--s4); }
+  @media(max-width:520px){ .frow{ grid-template-columns:1fr; } }
+  .field{ display:flex; flex-direction:column; gap:.35rem; }
+  .field label{ font-size:.78rem; font-weight:600; color:var(--ink-soft); }
+  /* kötelező mező: nem csak szín jelöli, hanem karakter is (színvak-biztos) */
+  .field label .req{ color:var(--brand); font-weight:700; margin-left:.15rem; }
+  .field input, .field select, .field textarea{ font-family:var(--f-body); font-size:.95rem; color:var(--ink);
+    background:#fff; border:1px solid var(--line); border-radius:var(--r-sm); padding:.7rem .8rem; width:100%; }
+  .field textarea{ resize:vertical; min-height:88px; }
+  .field input:focus, .field select:focus, .field textarea:focus{ outline:none; border-color:var(--action); box-shadow:0 0 0 3px rgba(47,162,76,.12); }
+  .extras{ display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:var(--s4); }
+  .extras label{ display:inline-flex; align-items:center; gap:.45rem; font-size:.85rem;
+    border:1px solid var(--line); border-radius:var(--r-pill); padding:.45rem .9rem; cursor:pointer; transition:border-color .14s, background-color .14s; }
+  .extras label:hover{ border-color:var(--ink); }
+  .extras input{ accent-color:var(--action); }
+  .extras input:checked + span{ font-weight:600; }
+  .extras em{ font-style:normal; color:var(--ink-soft); font-size:.78rem; }
+  /* a mezőcímke mellé kiírt egységár: a vendég lássa, mibe kerül, mielőtt beírja */
+  .field label .unit{ font-weight:500; color:var(--ink-soft); font-size:.72rem; margin-left:.2rem; }
+  /* ============ ÁRKALKULÁTOR ============
+     Csak azt adja össze, aminek az árlistán egyértelmű a mértékegysége.
+     Az extrák (parkolás, áram, kisállat, reggeli) mértékegysége nem derül ki
+     az árlistából, ezért azokat külön, összeg nélkül soroljuk fel. */
+  .calc{ background:var(--mist); border:1px solid var(--line); border-radius:var(--r-md);
+    padding:var(--s5); margin-bottom:var(--s4); }
+  .calc-head{ display:flex; align-items:center; gap:.5rem; font-family:var(--f-head); font-weight:700;
+    font-size:.8rem; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:var(--s4); }
+  .calc-head .ic{ width:1.1rem; height:1.1rem; color:var(--brand); }
+  .calc-rows{ display:grid; grid-template-columns:1fr auto; gap:.4rem var(--s4); font-size:.88rem; }
+  .calc-rows .l{ color:var(--ink-soft); }
+  .calc-rows .v{ font-family:var(--f-head); font-weight:700; text-align:right; white-space:nowrap; }
+  .calc-total{ display:flex; align-items:baseline; justify-content:space-between; gap:var(--s4);
+    margin-top:var(--s4); padding-top:var(--s3); border-top:1px solid var(--line); }
+  .calc-total .l{ font-size:.9rem; color:var(--ink-soft); }
+  .calc-total .v{ font-family:var(--f-head); font-weight:800; font-size:1.6rem; color:var(--brand); white-space:nowrap; }
+  .calc-extras{ margin-top:var(--s3); font-size:.78rem; color:var(--ink-soft); line-height:1.5; }
+  .calc-extras b{ color:var(--ink); }
+  .calc-note{ display:flex; gap:.5rem; margin-top:var(--s3); padding-top:var(--s3); border-top:1px dashed var(--line);
+    font-size:.75rem; color:var(--ink-soft); line-height:1.5; }
+  .calc-note .ic{ width:.95rem; height:.95rem; flex-shrink:0; margin-top:.15rem; }
+  /* figyelmeztetés: nem csak szín jelöli, ikon + szöveg is */
+  .calc.warn{ background:#FDF0D6; border-color:#E9CE95; }
+  .calc.warn .calc-head{ color:#8A5B00; }
+  .calc.warn .calc-head .ic{ color:#8A5B00; }
+  .calc-msg{ font-size:.88rem; color:#8A5B00; line-height:1.5; }
+  .calc-coupon{ display:flex; gap:.5rem; align-items:flex-start; margin-top:var(--s3); padding:.6rem .75rem;
+    background:rgba(221,164,78,.18); border-radius:var(--r-sm); font-size:.8rem; color:var(--ink); line-height:1.5; }
+  .calc-coupon .ic{ width:1rem; height:1rem; color:var(--amber-dark); flex-shrink:0; margin-top:.15rem; }
+  .send-row{ display:grid; grid-template-columns:1fr auto; gap:var(--s3); }
+  @media(max-width:520px){ .send-row{ grid-template-columns:1fr; } }
+  .hint{ font-size:.75rem; color:var(--ink-soft); text-align:center; margin-top:var(--s3); line-height:1.45; }
+
+  /* ============ NYITVATARTÁS + KAPCSOLAT ============ */
+  .visit{ background:var(--mist); position:relative; }
+  .visit-grid{ display:grid; grid-template-columns:1fr 1.25fr; gap:var(--s8); align-items:start; }
+  @media(max-width:820px){ .visit-grid{ grid-template-columns:1fr; } }
+  .card{ background:#fff; border-radius:var(--r-md); box-shadow:var(--sh-sm); padding:var(--s6); }
+  .card-title{ display:flex; align-items:center; gap:.6rem; font-size:var(--fs-lg); font-weight:700; margin-bottom:var(--s4); }
+  .card-title .ic{ width:1.3rem; height:1.3rem; color:var(--brand); }
+  table.hours{ width:100%; border-collapse:collapse; }
+  table.hours td{ padding:.7rem .25rem; border-bottom:1px solid var(--line); font-size:.95rem; }
+  table.hours tr:last-child td{ border-bottom:none; }
+  table.hours td:first-child{ font-weight:500; }
+  table.hours td:last-child{ text-align:right; font-family:var(--f-head); font-weight:700; }
+  .hours tr.today td{ color:var(--brand); }
+  .hours tr.today td:first-child::after{ content:"Ma"; margin-left:.5rem; font-family:var(--f-head); font-size:.6rem; font-weight:700;
+    text-transform:uppercase; letter-spacing:.05em; background:var(--brand); color:#fff; padding:.1rem .45rem; border-radius:var(--r-pill); vertical-align:middle; }
+  .gate{ display:flex; gap:.6rem; margin-top:var(--s4); padding-top:var(--s4); border-top:1px dashed var(--line);
+    font-size:.85rem; color:var(--ink-soft); line-height:1.5; }
+  .gate .ic{ width:1.2rem; height:1.2rem; color:var(--action); flex-shrink:0; margin-top:.15rem; }
+  .contact-list{ display:flex; flex-direction:column; gap:var(--s4); margin-bottom:var(--s5); }
+  .contact{ display:flex; align-items:flex-start; gap:var(--s3); }
+  .contact-ic{ width:40px; height:40px; border-radius:11px; background:var(--brand-tint); color:var(--brand);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .contact-ic .ic{ width:20px; height:20px; }
+  .contact .lbl{ font-family:var(--f-head); font-size:.7rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); }
+  .contact .val{ font-size:1rem; font-weight:500; word-break:break-word; }
+  /* a kattintható elérhetőségek különbözzenek a sima szövegtől — a telefon/e-mail link, a cím nem */
+  a.val{ color:var(--brand); text-decoration:underline; text-decoration-color:rgba(27,110,144,.35); text-underline-offset:3px; }
+  a.val:hover{ text-decoration-color:currentColor; }
+  .map-frame{ border-radius:var(--r-md); overflow:hidden; box-shadow:var(--sh-sm); margin-top:var(--s5); border:1px solid var(--line); }
+  .map-frame iframe{ width:100%; height:300px; border:0; display:block; }
+
+  /* ============ GALÉRIA ============ */
+  .gal{ display:grid; grid-template-columns:repeat(4,1fr); gap:var(--s3); }
+  @media(max-width:900px){ .gal{ grid-template-columns:repeat(2,1fr); } }
+  .gal figure{ margin:0; position:relative; border-radius:var(--r-md); overflow:hidden; box-shadow:var(--sh-sm); }
+  .gal img{ width:100%; aspect-ratio:4/3; object-fit:cover; display:block; transition:transform .4s ease; }
+  .gal figure:hover img{ transform:scale(1.04); }
+  .gal figcaption{ position:absolute; left:0; right:0; bottom:0; padding:.9rem .8rem .6rem;
+    font-size:.78rem; font-weight:600; color:#fff;
+    background:linear-gradient(transparent, rgba(16,45,62,.78)); }
+  .gal .tall{ grid-row:span 2; }
+  .gal .tall img{ aspect-ratio:4/6.2; }
+  @media(max-width:900px){ .gal .tall{ grid-row:span 1; } .gal .tall img{ aspect-ratio:4/3; } }
+
+  /* ============ GY.I.K. ============ */
+  .faq{ display:grid; grid-template-columns:1fr 1fr; gap:var(--s4) var(--s6); align-items:start; }
+  @media(max-width:820px){ .faq{ grid-template-columns:1fr; } }
+  .faq details{ background:#fff; border:1px solid var(--line); border-radius:var(--r-md); box-shadow:var(--sh-sm); }
+  .faq summary{ display:flex; align-items:center; gap:var(--s3); cursor:pointer; list-style:none;
+    padding:var(--s4) var(--s5); font-family:var(--f-head); font-weight:700; font-size:1rem; }
+  .faq summary::-webkit-details-marker{ display:none; }
+  .faq summary::after{ content:"+"; margin-left:auto; font-family:var(--f-head); font-weight:700;
+    font-size:1.3rem; line-height:1; color:var(--brand); transition:transform .18s ease; }
+  .faq details[open] summary::after{ content:"–"; }
+  .faq details[open] summary{ color:var(--brand); }
+  .faq .a{ padding:0 var(--s5) var(--s5); font-size:.92rem; color:var(--ink-soft); line-height:1.6; }
+  .faq .a b{ color:var(--ink); }
+  .faq .a p + p{ margin-top:.6rem; }
+
+  /* ============ VÉLEMÉNYEK ============ */
+  .reviews{ background:var(--mist); position:relative; }
+  .rev-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:var(--s5); }
+  @media(max-width:900px){ .rev-grid{ grid-template-columns:1fr; } }
+  .rev{ display:flex; flex-direction:column; background:#fff; border-radius:var(--r-md);
+    box-shadow:var(--sh-sm); padding:var(--s5) var(--s6); }
+  .rev .stars{ color:var(--amber); font-size:.95rem; letter-spacing:.12em; margin-bottom:var(--s3); }
+  .rev blockquote{ margin:0; font-size:.92rem; line-height:1.65; color:var(--ink); }
+  .rev cite{ display:block; margin-top:auto; padding-top:var(--s4); font-style:normal;
+    font-family:var(--f-head); font-weight:700; font-size:.85rem; color:var(--ink-soft); }
+  .rev-note{ text-align:center; font-size:.8rem; color:var(--ink-soft); margin-top:var(--s6); line-height:2; }
+  .rev-link{ display:inline-flex; align-items:center; gap:.4rem; font-weight:600; color:var(--brand);
+    text-decoration:underline; text-underline-offset:3px; }
+  .rev-link .ic{ width:1em; height:1em; }
+  .rev-link:hover{ color:var(--brand-dark); }
+
+  /* ============ IN ENGLISH ============ */
+  .en{ background:var(--ink); color:#E3EBEF; }
+  .en-grid{ display:grid; grid-template-columns:1fr 1fr; gap:var(--s6) var(--s8); align-items:start; }
+  @media(max-width:820px){ .en-grid{ grid-template-columns:1fr; } }
+  .en h2{ display:flex; align-items:center; gap:var(--s3); font-size:var(--fs-xl); font-weight:800; color:#fff; margin-bottom:var(--s4); }
+  .en h2 .ic{ width:1.5rem; height:1.5rem; color:var(--amber); }
+  .en p{ font-size:.95rem; line-height:1.7; color:#C6D3DA; margin-bottom:var(--s4); }
+  .en ul{ display:flex; flex-direction:column; gap:.6rem; }
+  .en ul li{ display:flex; gap:.6rem; font-size:.92rem; color:#C6D3DA; line-height:1.5; }
+  .en ul .ic{ width:1.1em; height:1.1em; color:var(--amber); flex-shrink:0; margin-top:.25rem; }
+  .en a{ color:var(--amber); text-decoration:underline; text-underline-offset:3px; }
+
+  /* ============ 5350 — teljes szélességű piros szekció ============
+     Ez az egyetlen hely az oldalon, ahol a pizzéria pirosa uralkodik: itt ő beszél. */
+  .pizza-band{ position:relative; background:var(--pizza); color:#fff;
+    padding-block:calc(var(--s10) + 1rem) var(--s10); }
+  .band{ display:grid; grid-template-columns:1.05fr .95fr; gap:var(--s8); align-items:center; }
+  @media(max-width:820px){ .band{ grid-template-columns:1fr; gap:var(--s6); } }
+  .band-copy .kicker{ background:rgba(255,255,255,.18); }
+  .band-copy h2{ font-size:var(--fs-2xl); font-weight:800; letter-spacing:-.01em; margin-bottom:var(--s4); }
+  .band-copy p{ font-size:var(--fs-md); color:rgba(255,255,255,.94); line-height:1.6; margin-bottom:var(--s5); max-width:44ch; }
+  .band-list{ display:flex; flex-wrap:wrap; gap:var(--s4); margin-bottom:var(--s6); }
+  .band-list li{ display:inline-flex; align-items:center; gap:.5rem; font-size:.9rem; font-weight:500; color:rgba(255,255,255,.95); }
+  .band-list .ic{ width:1.1em; height:1.1em; stroke-width:2.6; }
+  .band-ctas{ display:flex; gap:var(--s3); flex-wrap:wrap; }
+  .band-photos{ display:grid; grid-template-columns:1fr 1fr; gap:var(--s3); }
+  .band-photos img{ width:100%; border-radius:var(--r-md); object-fit:cover; box-shadow:var(--sh-lg); }
+  .band-photos img:first-child{ grid-column:1 / -1; aspect-ratio:16/9; }
+  .band-photos img:not(:first-child){ aspect-ratio:4/3; }
+
+  /* ============ FOOTER ============ */
+  footer{ background:var(--ink); color:#E3EBEF; padding-block:var(--s8); position:relative; }
+  .foot-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:var(--s6); }
+  @media(max-width:720px){ .foot-grid{ grid-template-columns:1fr; gap:var(--s5); } }
+  .foot-brand b{ font-family:var(--f-head); font-weight:900; font-size:1.5rem; color:#fff; letter-spacing:.03em; }
+  .foot-brand p{ font-size:var(--fs-sm); color:#93A5AF; margin-top:var(--s2); max-width:300px; }
+  .foot-brand .motto{ color:var(--amber); font-size:.85rem; }
+  .foot-brand .motto b{ font-family:var(--f-head); font-size:.95rem; }
+  .foot-col h4{ font-family:var(--f-head); font-size:.72rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--amber); margin-bottom:var(--s3); }
+  .foot-col a,.foot-col p{ display:block; font-size:.9rem; color:#C6D3DA; margin-bottom:.4rem; }
+  .foot-col a:hover{ color:#fff; }
+  .foot-legal{ text-align:center; font-size:.78rem; color:#7A8C96; margin-top:var(--s6); padding-top:var(--s5); border-top:1px solid rgba(255,255,255,.12); }
+
+  /* ============ STICKY MOBIL SÁV ============ */
+  .mbar{ position:fixed; left:0; right:0; bottom:0; z-index:35; display:none; align-items:center; gap:var(--s3);
+    padding:var(--s3) var(--s4); background:var(--ink); color:#fff; box-shadow:0 -6px 20px rgba(0,0,0,.18);
+    padding-bottom:calc(var(--s3) + env(safe-area-inset-bottom)); }   /* iPhone home indicator */
+  .mbar-info{ display:flex; flex-direction:column; line-height:1.2; }
+  .mbar-info .c{ font-size:.72rem; color:#93A5AF; }
+  .mbar-info .t{ font-family:var(--f-head); font-weight:800; font-size:1.05rem; }
+  .mbar .btn{ margin-left:auto; padding:.8rem 1.2rem; }
+
+  /* ============ MOBIL ============ */
+  @media(max-width:900px){
+    .hero{ padding:var(--s10) var(--s5) calc(var(--s10) + 1.5rem); }
+    .sec{ padding-block:var(--s8); }
+    .features{ padding-block:var(--s6) var(--s8); }
+    .sec-sub{ margin-bottom:var(--s6); }
+  }
+  @media(max-width:780px){
+    .mbar{ display:flex; }
+    .nav-links, .nav-cta{ display:none; }        /* helyettük hamburger + a sticky sáv gombja */
+    .burger{ display:flex; }
+    body{ padding-bottom:76px; }                  /* a sticky sáv ne takarja a footert */
+
+    /* a hullámok mobilon laposabbak: 5vw magas hullám egy 380px-es kijelzőn már csak zaj */
+    .hero-wave, .sec-wave{ height:22px; }
+
+    .offer{ padding-top:var(--s6); }
+    .offer-pill{ padding:.9rem 1.2rem; gap:.5rem; }
+    .offer-pill b{ font-size:.95rem; }
+
+    /* táblázat-szerű árlista: a hosszú tétel + ár ne préselődjön össze */
+    .pcard{ padding:var(--s5); }
+    .prow{ gap:var(--s3); }
+    .prow .n{ font-size:.9rem; }
+
+    .example{ padding:var(--s5); }
+    .ex-rows{ font-size:.85rem; gap:.4rem var(--s3); }
+    .form-card{ padding:var(--s5); }
+    .calc-rows{ font-size:.82rem; }
+    .calc-total .v{ font-size:1.35rem; }
+
+    .spot{ padding:var(--s4); }
+    .rev{ padding:var(--s5); }
+    .gal{ gap:var(--s2); }
+    .band-photos{ gap:var(--s2); }
+    .visit-grid, .book-grid, .cmap-grid, .en-grid{ gap:var(--s6); }
+  }
+  @media(max-width:520px){
+    :root{ --fs-2xl:2rem; --fs-xl:1.55rem; }     /* a nagy címek ne törjenek szét */
+    .wrap{ padding-inline:var(--s4); }
+    .hero h1{ font-size:2.4rem; }
+    .hero-ctas .btn, .band-ctas .btn{ width:100%; }   /* teljes szélességű gombok: könnyebb célpont */
+    .trust{ gap:var(--s3); }
+    .trust li{ font-size:.85rem; }
+    .stay-foot{ flex-wrap:wrap; }
+    .stay-foot .btn{ width:100%; }
+    .gal{ grid-template-columns:1fr 1fr; }
+    .band-photos{ grid-template-columns:1fr; }
+    .band-photos img:not(:first-child){ aspect-ratio:16/9; }
+    .foot-legal{ font-size:.72rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== SVG IKON-SPRITE ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21.5s7-6.4 7-11.5a7 7 0 1 0-14 0c0 5.1 7 11.5 7 11.5z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4 12.5 9.5 18 20 6.5"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.5 3.5h3l1.6 4-2.1 1.4a11.5 11.5 0 0 0 5.1 5.1l1.4-2.1 4 1.6v3a2 2 0 0 1-2.1 2A15.5 15.5 0 0 1 4.5 5.6a2 2 0 0 1 2-2.1z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.2l3.4 2"/></symbol>
+  <symbol id="i-fb" viewBox="0 0 24 24"><path d="M14 8.5V7c0-.8.5-1.2 1.2-1.2H17V3h-2.3C12.3 3 11 4.5 11 6.7v1.8H9V11h2v10h3V11h2.2l.5-2.5z"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.5v.2"/></symbol>
+  <symbol id="i-tent" viewBox="0 0 24 24"><path d="M12 4 3 20h18L12 4z"/><path d="M12 4v16M12 12l-4.5 8M12 12l4.5 8"/></symbol>
+  <symbol id="i-van" viewBox="0 0 24 24"><path d="M2 7.5h13.5l4 4.5H22v4H2z"/><circle cx="7" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/><path d="M6 7.5v4.5M11 7.5v4.5"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3.5 10.5 12 3.5l8.5 7"/><path d="M5.5 9.8V20h13V9.8"/><path d="M10 20v-5.5h4V20"/></symbol>
+  <symbol id="i-bed" viewBox="0 0 24 24"><path d="M3 18V7M3 12h18v6M21 18v-4"/><circle cx="7.5" cy="10" r="1.8"/><path d="M11 12V9.5h6a3 3 0 0 1 3 2.5"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 5.2a3.2 3.2 0 0 1 0 5.6M17.5 13.5A6 6 0 0 1 21 20"/></symbol>
+  <symbol id="i-fire" viewBox="0 0 24 24"><path d="M12 3s5 4 5 8.5a5 5 0 0 1-10 0C7 9 9 8 9 6c1.5.8 3 2 3 4 0-2.5 0-5 0-7z"/></symbol>
+  <symbol id="i-shower" viewBox="0 0 24 24"><path d="M6 21V7a3 3 0 0 1 3-3h1"/><path d="M10 4a2 2 0 0 1 4 0"/><circle cx="17" cy="9" r="4"/><path d="M13.5 16v1.5M17 17v1.5M20.5 16v1.5"/></symbol>
+  <symbol id="i-ball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3.5 9.5c5 0 8-3 9-6.5M20.5 9.5c-5 0-8-3-9-6.5M4.5 17.5c3-4 3-8 1.5-11.5M19.5 17.5c-3-4-3-8-1.5-11.5"/></symbol>
+  <symbol id="i-pizza" viewBox="0 0 24 24"><path d="M3 7.5c6-3.2 12-3.2 18 0L12 21.5z"/><path d="M3 7.5 4.5 10"/><circle cx="12" cy="8.5" r=".6" fill="currentColor" stroke="none"/><circle cx="9.5" cy="12" r=".6" fill="currentColor" stroke="none"/><circle cx="14.5" cy="12" r=".6" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><path d="M4 10h16v10H4zM3 6.5h18V10H3zM12 6.5V20"/><path d="M12 6.5C10.5 3 6.5 3.5 7 5.5c.4 1.5 3 1.5 5 1zM12 6.5c1.5-3.5 5.5-3 5 -1-.4 1.5-3 1.5-5 1z"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 7h3.5l1.5-2h6l1.5 2H20v13H4z"/><circle cx="12" cy="13" r="3.6"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></symbol>
+  <symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 3v5M15 3v5M6 8h12v3a6 6 0 0 1-6 6 6 6 0 0 1-6-6z"/><path d="M12 17v4"/></symbol>
+  <symbol id="i-paw" viewBox="0 0 24 24"><circle cx="7" cy="9" r="2"/><circle cx="12" cy="6.5" r="2"/><circle cx="17" cy="9" r="2"/><path d="M12 11c3 0 5 2.5 5 5a3 3 0 0 1-3 3h-4a3 3 0 0 1-3-3c0-2.5 2-5 5-5z"/></symbol>
+  <symbol id="i-water" viewBox="0 0 24 24"><path d="M2 8.5c2.6 0 2.6 2 5.2 2s2.6-2 5.2-2 2.6 2 5.2 2M2 13c2.6 0 2.6 2 5.2 2s2.6-2 5.2-2 2.6 2 5.2 2M2 17.5c2.6 0 2.6 2 5.2 2s2.6-2 5.2-2 2.6 2 5.2 2"/></symbol>
+  <symbol id="i-burger" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+</svg>
+
+<a class="skip" href="#szallasok">Ugrás a tartalomra</a>
+
+<!-- ===== NAV ===== -->
+<header class="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="brand">
+      <img class="logo" src="camping-img/toparti-camping-logo.png" alt="Tóparti Camping" width="203" height="80">
+      <span>Tiszafüred · Tisza-tó</span>
+    </a>
+    <div class="nav-right">
+      <nav class="nav-links">
+        <a href="#szallasok">Szállásaink</a>
+        <a href="#galeria">Galéria</a>
+        <a href="#arak">Árlista</a>
+        <a href="#gyik">GY.I.K.</a>
+        <a href="#nyitvatartas">Helyszín</a>
+      </nav>
+      <a href="#ajanlatkeres" class="nav-cta"><svg class="ic"><use href="#i-mail"/></svg>Ajánlatkérés</a>
+      <button id="burger" class="burger" aria-label="Menü megnyitása" aria-expanded="false" aria-controls="mobileMenu">
+        <svg class="ic open-i" aria-hidden="true"><use href="#i-burger"/></svg>
+        <svg class="ic close-i" aria-hidden="true"><use href="#i-close"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MOBIL MENÜ ===== -->
+<nav id="mobileMenu" class="mobile-menu" aria-label="Mobil menü">
+  <a href="#szallasok">Szállásaink <svg class="ic"><use href="#i-home"/></svg></a>
+  <a href="#terkep">Kemping térkép <svg class="ic"><use href="#i-pin"/></svg></a>
+  <a href="#galeria">Galéria <svg class="ic"><use href="#i-camera"/></svg></a>
+  <a href="#arak">Árlista 2026 <svg class="ic"><use href="#i-list"/></svg></a>
+  <a href="#velemenyek">Vendégvélemények <svg class="ic"><use href="#i-users"/></svg></a>
+  <a href="#gyik">Gyakori kérdések <svg class="ic"><use href="#i-info"/></svg></a>
+  <a href="#nyitvatartas">Recepció és helyszín <svg class="ic"><use href="#i-clock"/></svg></a>
+  <a href="index.html">5350 Biciklis Megálló Pont <svg class="ic"><use href="#i-pizza"/></svg></a>
+  <a href="#ajanlatkeres" class="mm-cta"><svg class="ic"><use href="#i-mail"/></svg>Ajánlatkérés</a>
+  <a href="tel:+36202960956" class="mm-phone"><svg class="ic"><use href="#i-phone"/></svg>+36 20 296 0956</a>
+</nav>
+
+<div id="top"></div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-in">
+    <span class="kicker"><svg class="ic"><use href="#i-pin"/></svg>A Tisza-tó partján · Tiszafüred</span>
+    <h1>Tóparti Camping</h1>
+    <p class="sub">Tiszafüred · Kistisza út 1–3</p>
+    <p class="lead">Sátorral, lakókocsival, lakóautóval vagy csak egy hátizsákkal érkezel — nálunk a Tisza-tó partján van helyed. Családoknak, baráti társaságoknak, horgászoknak, kerékpárosoknak, vízitúrázóknak és ökoturistáknak.</p>
+    <div class="hero-ctas">
+      <a href="#ajanlatkeres" class="btn btn-light"><svg class="ic"><use href="#i-mail"/></svg>Ajánlatot kérek</a>
+      <a href="tel:+36202960956" class="btn btn-ghost"><svg class="ic"><use href="#i-phone"/></svg>+36 20 296 0956</a>
+    </div>
+    <ul class="trust">
+      <li><svg class="ic"><use href="#i-check"/></svg>24 órás belépés</li>
+      <li><svg class="ic"><use href="#i-check"/></svg>Saját vízparti étterem</li>
+      <li><svg class="ic"><use href="#i-check"/></svg>150 sátor- és lakókocsihely</li>
+    </ul>
+  </div>
+  <svg class="hero-wave" viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0,32 C60,14 120,14 180,32 C240,50 300,50 360,32 C420,14 480,14 540,32 C600,50 660,50 720,32 C780,14 840,14 900,32 C960,50 1020,50 1080,32 C1140,14 1200,14 1260,32 C1320,50 1380,50 1440,32 L1440,70 L0,70 Z" fill="#FFFFFF"/></svg>
+</section>
+
+<!-- ===== 3+1 AJÁNLAT ===== -->
+<div class="offer">
+  <div class="offer-pill">
+    <svg class="ic"><use href="#i-gift"/></svg>
+    <b>Foglalj 3 éjszakát, a 4. ajándék!</b>
+    <span>Hétfőtől legalább péntekig · kuponkód: <code>3+1HP</code></span>
+  </div>
+</div>
+
+<!-- ===== SZOLGÁLTATÁSOK ===== -->
+<section class="features">
+  <div class="wrap feat-grid">
+    <div class="feat">
+      <div class="feat-ic"><svg class="ic"><use href="#i-pizza"/></svg></div>
+      <h3>Vízparti étterem</h3>
+      <p>Saját éttermünk és büfénk a vízparton — a kempingből kilépve, a Jászkeszeg Kikötőnél.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-ic"><svg class="ic"><use href="#i-shower"/></svg></div>
+      <h3>24 órás vizesblokk</h3>
+      <p>Melegvizes vizesblokk éjjel-nappal, és nonstop belépés a kempingbe.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-ic"><svg class="ic"><use href="#i-fire"/></svg></div>
+      <h3>Tűzrakóhelyek</h3>
+      <p>Kijelölt tűzrakóhelyek, árnyas parcellák, parkolás és áramvételi lehetőség.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-ic"><svg class="ic"><use href="#i-ball"/></svg></div>
+      <h3>Játék és sport</h3>
+      <p>Játszótér trambulinnal, asztalitenisz és strandröplabda a családoknak.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-ic"><svg class="ic"><use href="#i-water"/></svg></div>
+      <h3>Strand 3 percre</h3>
+      <p>A kempingnek nincs fürdésre alkalmas saját vízpartja — a szabadvízi strand (fizetős) 3 perc séta a gáton. SUP, vízibicikli, csónakbérlés a közelben.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-ic"><svg class="ic"><use href="#i-users"/></svg></div>
+      <h3>Fakultatív programok</h3>
+      <p>Előzetes egyeztetés alapján programlehetőségeket is kínálunk, és szólunk, mi zajlik éppen a városban.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SZÁLLÁSAINK ===== -->
+<section id="szallasok" class="sec">
+  <div class="wrap">
+    <div class="sec-head"><svg class="ic"><use href="#i-home"/></svg><h2>Szállásaink</h2></div>
+    <p class="sec-sub">Fedett szállás 11+1 főnek, mellette 150 sátor- és lakókocsihely. Válaszd ki, mi illik hozzátok, és küldd el az ajánlatkérést — a részleteket telefonon vagy e-mailben egyeztetjük.</p>
+
+    <div class="stay-grid">
+
+      <article class="stay">
+        <img class="shot" src="camping-img/sweethome-mobilhaz.jpg" alt="Sweethome mobilház a Tóparti Campingben" loading="lazy">
+        <div class="stay-body">
+          <h3>Sweethome mobilház</h3>
+          <span class="cap"><svg class="ic"><use href="#i-users"/></svg>1–6 fő · 25 m²</span>
+          <ul><li>2 hálófülke</li><li>Saját fürdő + WC</li><li>Konyhasarok</li><li>Légkondi</li></ul>
+          <p class="stay-desc">A kemping legkényelmesebb szállása: két hálófülke, nappali sarokgarnitúrával (egy fő részére fekhellyé alakítható), étkező, konyhasarok, zuhanyzós fürdőszoba.</p>
+          <div class="stay-foot">
+            <div class="price"><span class="from">Már ettől</span><span class="amt">30 000 Ft</span><span class="unit">/éj</span></div>
+            <button class="btn btn-action" data-stay="sweethome">Ajánlatot kérek</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="stay">
+        <img class="shot" src="camping-img/lucia-apartman.jpg" alt="Lucia apartman a Tóparti Campingben" loading="lazy">
+        <div class="stay-body">
+          <h3>Lucia apartman</h3>
+          <span class="cap"><svg class="ic"><use href="#i-users"/></svg>1–4 fő</span>
+          <ul><li>Komfortos</li><li>Nagy, kényelmes ágy</li><li>Takarítás 2 000 Ft</li></ul>
+          <p class="stay-desc">Egy hálóból álló apartman — pároknak és kisebb családoknak.</p>
+          <div class="stay-foot">
+            <div class="price"><span class="from">Már ettől</span><span class="amt">30 000 Ft</span><span class="unit">/éj</span></div>
+            <button class="btn btn-action" data-stay="lucia">Ajánlatot kérek</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="stay">
+        <img class="shot" src="camping-img/haromagyas-szoba.jpg" alt="Komfort nélküli háromágyas szoba a Tóparti Campingben" loading="lazy">
+        <div class="stay-body">
+          <h3>Háromágyas szoba</h3>
+          <span class="cap"><svg class="ic"><use href="#i-users"/></svg>1–3 fő</span>
+          <ul><li>Franciaágy + egyszemélyes</li><li>Saját hűtő</li><li>Szúnyoghálós ablak</li></ul>
+          <p class="stay-desc">Ha nem a földön aludnál, de maradnál a kemping hangulatánál. Fürdés a közös vizesblokkban. <b>Csak egy ilyen szobánk van</b> — érdemes előre szólni.</p>
+          <div class="stay-foot">
+            <div class="price"><span class="from">Már ettől</span><span class="amt">23 000 Ft</span><span class="unit">/éj</span></div>
+            <button class="btn btn-action" data-stay="harom">Ajánlatot kérek</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="stay">
+        <img class="shot" src="camping-img/ketagyas-szoba.jpg" alt="Kétágyas szoba franciaággyal a Tóparti Campingben" loading="lazy">
+        <div class="stay-body">
+          <h3>Kétágyas szoba</h3>
+          <span class="cap"><svg class="ic"><use href="#i-users"/></svg>1–3 fő</span>
+          <ul><li>Komfort nélküli</li><li>Franciaágy</li><li>Min. 2 éjszaka</li></ul>
+          <p class="stay-desc">Kényelmes franciaágy pároknak. Fürdés a közös vizesblokkban, ahol folyamatos a melegvíz.</p>
+          <div class="stay-foot">
+            <div class="price"><span class="from">Már ettől</span><span class="amt">20 000 Ft</span><span class="unit">/éj</span></div>
+            <button class="btn btn-action" data-stay="ketto">Ajánlatot kérek</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="stay">
+        <img class="shot" src="camping-img/telepitett-lakokocsi.jpg" alt="TibiLak — telepített lakókocsi fedett elősátorral" loading="lazy">
+        <div class="stay-body">
+          <h3>Telepített lakókocsi elősátorral</h3>
+          <span class="cap"><svg class="ic"><use href="#i-users"/></svg>2 fő</span>
+          <ul><li>Fedett elősátor</li><li>Asztal, székek</li><li>Fekvőhely 150×190 cm</li></ul>
+          <p class="stay-desc">Kedvező árú megoldás azoknak, akik kényelmesebben aludnának sátor helyett. Közös vizesblokk-használattal.</p>
+          <div class="stay-foot">
+            <div class="price"><span class="from">Már ettől</span><span class="amt">10 000 Ft</span><span class="unit">/éj</span></div>
+            <button class="btn btn-action" data-stay="tlakokocsi">Ajánlatot kérek</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="stay">
+        <img class="shot" src="camping-img/turazo-satorhely.jpg" alt="Túrázó sátorhely fa árnyékában a Tóparti Campingben" loading="lazy">
+        <div class="stay-body">
+          <h3>Sátor- és lakóautóhely</h3>
+          <span class="cap"><svg class="ic"><use href="#i-users"/></svg>1 főtől · 150 hely</span>
+          <ul><li>Túrázó</li><li>Családi</li><li>Óriás</li><li>Sátras utánfutó</li><li>Lakókocsi</li><li>Lakóautó</li><li>Tetősátras</li></ul>
+          <p class="stay-desc">Nem parcellázott, 1,5 hektáros terület — érkezési sorrendben foglalható el a hely. Árnyas fák, tűzrakóhelyek, áramvétel, kémiai WC kiöntő. Kisállat hozható.</p>
+          <div class="stay-foot">
+            <div class="price"><span class="from">Területdíj ettől</span><span class="amt">2 700 Ft</span><span class="unit">/éj</span></div>
+            <button class="btn btn-action" data-stay="turazo">Ajánlatot kérek</button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== KEMPING TÉRKÉP ===== -->
+<section id="terkep" class="sec">
+  <div class="wrap">
+    <div class="sec-head"><svg class="ic"><use href="#i-pin"/></svg><h2>Mi hol van a kempingben?</h2></div>
+    <p class="sec-sub">A recepciótól a vizesblokkokig — így néz ki a terület. A számok a térkép pontjait követik.</p>
+
+    <div class="cmap-grid">
+      <img class="cmap-img" src="camping-img/kemping-terkep.png" alt="A Tóparti Camping térképe a számozott pontokkal" loading="lazy">
+
+      <div class="spots">
+        <div class="spot">
+          <span class="spot-no">1</span>
+          <div>
+            <h3>Recepció és bár</h3>
+            <p>A bejelentkezés helye — egyben bár is. Friss kávé, reggeli, üdítők egész nap, és helyi információk, programajánló.</p>
+          </div>
+        </div>
+        <div class="spot">
+          <span class="spot-no">2–3</span>
+          <div>
+            <h3>Komfort nélküli szobák</h3>
+            <p>Egy háromágyas (franciaágy + egyszemélyes ágy) és egy kétágyas (franciaágy) szoba, saját hűtővel, szúnyoghálós ablakkal. Fürdés a közös vizesblokkban.</p>
+          </div>
+        </div>
+        <div class="spot">
+          <span class="spot-no">5</span>
+          <div>
+            <h3>Lucia apartman</h3>
+            <p>A kemping komfortos apartmanja.</p>
+          </div>
+        </div>
+        <div class="spot">
+          <span class="spot-no">6–7</span>
+          <div>
+            <h3>Közös használatú vizesblokkok</h3>
+            <p>2 női és 2 férfi mellékhelyiség, 1–1 zuhanyzó, folyamatos melegvíz, tükör és konnektor, valamint külön helyiség mosogatáshoz.</p>
+          </div>
+        </div>
+        <div class="spot">
+          <span class="spot-no">8</span>
+          <div>
+            <h3>Sweethome mobilház</h3>
+            <p>A legkényelmesebb szállás: több helyiség, nappali rész, kényelmes ágyak — természetközeli környezetben.</p>
+          </div>
+        </div>
+        <div class="spot">
+          <span class="spot-no">9</span>
+          <div>
+            <h3>Kémiai WC kiöntő</h3>
+            <p>Kulturáltan kialakított, vízcsappal ellátott kazettaürítő a lakóautóval és lakókocsival érkezőknek.</p>
+          </div>
+        </div>
+        <div class="spot">
+          <span class="spot-no">10</span>
+          <div>
+            <h3>TibiLak — telepített lakókocsi</h3>
+            <p>Fedett elősátor asztallal és székekkel, 150×190 cm-es fekvőhely, közös vizesblokk-használat.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GALÉRIA ===== -->
+<section id="galeria" class="sec">
+  <div class="wrap">
+    <div class="sec-head"><svg class="ic"><use href="#i-camera"/></svg><h2>Galéria</h2></div>
+    <p class="sec-sub">A kemping, a Tisza-tó és a vízparti étterem — ahogy a vendégeink látják.</p>
+
+    <div class="gal">
+      <figure><img src="camping-img/kemping-bejarat.jpg" alt="A Tóparti Camping bejárata" loading="lazy"><figcaption>Bejárat</figcaption></figure>
+      <figure><img src="camping-img/kemping-legifoto.png" alt="A Tóparti Camping madártávlatból" loading="lazy"><figcaption>Fentről</figcaption></figure>
+      <figure><img src="camping-img/jatszoter.jpg" alt="Játszótér a kempingben" loading="lazy"><figcaption>Játszótér</figcaption></figure>
+      <figure class="tall"><img src="camping-img/bar.jpg" alt="A kemping bárja" loading="lazy"><figcaption>Bár</figcaption></figure>
+      <figure><img src="camping-img/turazo-satorhely-2.jpg" alt="Túrázó sátorhely" loading="lazy"><figcaption>Túrázó sátorhely</figcaption></figure>
+      <figure><img src="camping-img/csaladi-satorhely.jpg" alt="Családi sátorhely" loading="lazy"><figcaption>Családi sátorhely</figcaption></figure>
+      <figure><img src="camping-img/tuzrako-hely.jpg" alt="Tűzrakóhely" loading="lazy"><figcaption>Tűzrakó</figcaption></figure>
+      <figure><img src="camping-img/lakokocsi-hely.jpg" alt="Lakókocsi hely" loading="lazy"><figcaption>Lakókocsi hely</figcaption></figure>
+      <figure><img src="camping-img/lakoauto-hely.jpg" alt="Lakóautó hely" loading="lazy"><figcaption>Lakóautó hely</figcaption></figure>
+      <figure><img src="camping-img/satras-utanfuto-hely.jpg" alt="Sátras utánfutó hely" loading="lazy"><figcaption>Sátras utánfutó hely</figcaption></figure>
+      <figure><img src="camping-img/orias-satorhely.jpg" alt="Óriás sátorhely" loading="lazy"><figcaption>Óriás sátorhely</figcaption></figure>
+      <figure><img src="camping-img/etterem-asztalok-tisza-to.jpg" alt="Asztalok a Tisza-tó felett" loading="lazy"><figcaption>Asztalaink a Tisza-tó felett</figcaption></figure>
+      <figure><img src="camping-img/strandroplabda.jpg" alt="Strandröplabda pálya" loading="lazy"><figcaption>Strandröplabda</figcaption></figure>
+      <figure><img src="camping-img/zuhanyzo.jpg" alt="Zuhanyzó a vizesblokkban" loading="lazy"><figcaption>Zuhanyzó</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ÁRLISTA 2026 ===== -->
+<section id="arak" class="sec prices">
+  <svg class="sec-wave" viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0,32 C60,14 120,14 180,32 C240,50 300,50 360,32 C420,14 480,14 540,32 C600,50 660,50 720,32 C780,14 840,14 900,32 C960,50 1020,50 1080,32 C1140,14 1200,14 1260,32 C1320,50 1380,50 1440,32 L1440,70 L0,70 Z" fill="#F1F6F8"/></svg>
+  <div class="wrap">
+    <div class="sec-head"><svg class="ic"><use href="#i-list"/></svg><h2>Árlista 2026</h2></div>
+    <p class="sec-sub">Sátor- és lakóautóhelynél a területdíj és a személyi díj összeadódik. A szállásoknál az ár a teljes egységre értendő.</p>
+
+    <div class="price-grid">
+
+      <div class="pcard">
+        <h3><svg class="ic"><use href="#i-tent"/></svg>Területhasználati díj / éj</h3>
+        <div class="prow"><span class="n">Túrázóhely sátor <small>1–2 fő</small></span><span class="v">2 700 Ft</span></div>
+        <div class="prow"><span class="n">Családi sátorhely <small>3–5 fő</small></span><span class="v">3 000 Ft</span></div>
+        <div class="prow"><span class="n">Óriás sátorhely <small>6 főtől</small></span><span class="v">3 400 Ft</span></div>
+        <div class="prow"><span class="n">Sátras utánfutó</span><span class="v">2 800 Ft</span></div>
+        <div class="prow"><span class="n">Lakókocsi hely</span><span class="v">3 500 Ft</span></div>
+        <div class="prow"><span class="n">Lakóautó / lakóbusz hely</span><span class="v">3 900 Ft</span></div>
+        <div class="prow"><span class="n">Tetősátras autóhely</span><span class="v">3 900 Ft</span></div>
+        <div class="pnote"><svg class="ic"><use href="#i-info"/></svg>A területdíj mellé minden vendég után személyi díj is fizetendő.</div>
+      </div>
+
+      <div class="pcard">
+        <h3><svg class="ic"><use href="#i-users"/></svg>Személyi díj / éj</h3>
+        <div class="prow"><span class="n">Felnőtt <small>18 éves kortól</small></span><span class="v">3 200 Ft</span></div>
+        <div class="prow"><span class="n">Gyerek <small>3–17 év</small></span><span class="v">2 800 Ft</span></div>
+        <div class="prow"><span class="n">Baba <small>3 éves korig</small></span><span class="v free">Ingyenes</span></div>
+        <div class="pnote"><svg class="ic"><use href="#i-info"/></svg>Idegenforgalmi adó: 500 Ft / 18 év feletti fő / éjszaka.</div>
+      </div>
+
+      <div class="pcard">
+        <h3><svg class="ic"><use href="#i-home"/></svg>Komfortos szállások / éj</h3>
+        <div class="prow"><span class="n">Lucia apartman <small>1–3 fő</small></span><span class="v">30 000 Ft</span></div>
+        <div class="prow"><span class="n">Lucia apartman <small>4 fő</small></span><span class="v">35 000 Ft</span></div>
+        <div class="prow"><span class="n">Sweethome mobilház <small>1–3 fő</small></span><span class="v">30 000 Ft</span></div>
+        <div class="prow"><span class="n">Sweethome mobilház <small>4 fő</small></span><span class="v">35 000 Ft</span></div>
+        <div class="prow"><span class="n">Sweethome mobilház <small>5 fő</small></span><span class="v">40 000 Ft</span></div>
+        <div class="prow"><span class="n">Sweethome mobilház <small>6 fő</small></span><span class="v">45 000 Ft</span></div>
+        <div class="pnote"><svg class="ic"><use href="#i-plug"/></svg>Áramhasználat: 2 500 Ft / nap (10 kW-ig), felette 250 Ft / kWh. Takarítás: 2 000 Ft / tartózkodás.</div>
+      </div>
+
+      <div class="pcard">
+        <h3><svg class="ic"><use href="#i-bed"/></svg>Komfort nélküli szállások / éj</h3>
+        <div class="prow"><span class="n">Kétágyas szoba <small>1–2 fő</small></span><span class="v">20 000 Ft</span></div>
+        <div class="prow"><span class="n">Kétágyas szoba <small>3 fő</small></span><span class="v">23 200 Ft</span></div>
+        <div class="prow"><span class="n">Háromágyas szoba <small>1–3 fő</small></span><span class="v">23 000 Ft</span></div>
+        <div class="prow"><span class="n">Telepített lakókocsi <small>1–2 fő</small></span><span class="v">10 000 Ft</span></div>
+        <div class="pnote"><svg class="ic"><use href="#i-info"/></svg>Minimum 2 éjszaka foglalható. Takarítás: 2 000 Ft / tartózkodás.</div>
+      </div>
+
+      <div class="pcard">
+        <h3><svg class="ic"><use href="#i-plug"/></svg>Kiegészítő díjak</h3>
+        <div class="prow"><span class="n">Parkolás</span><span class="v">1 700 Ft</span></div>
+        <div class="prow"><span class="n">Kisállat</span><span class="v">1 600 Ft</span></div>
+        <div class="prow"><span class="n">Reggeli</span><span class="v">1 950 Ft</span></div>
+        <div class="prow"><span class="n">Áramvétel <small>saját hosszabbítóval</small></span><span class="v">2 500 Ft</span></div>
+        <div class="prow"><span class="n">Idegenforgalmi adó <small>18 év felett / éj</small></span><span class="v">500 Ft</span></div>
+      </div>
+
+      <div class="pcard">
+        <h3><svg class="ic"><use href="#i-gift"/></svg>3 + 1 kupon</h3>
+        <div class="prow"><span class="n">Hétfőtől legalább péntekig foglalsz <small>a csütörtöki éjszaka ára nálad marad</small></span><span class="v free">4. éj ajándék</span></div>
+        <div class="prow"><span class="n">Kuponkód <small>írd be az ajánlatkérésbe</small></span><span class="v">3+1HP</span></div>
+        <div class="pnote"><svg class="ic"><use href="#i-info"/></svg>A kupon mellett az idegenforgalmi adó, az egyszeri takarítási díj és az áramfogyasztás díjköteles. <b>A Sweethome mobilházra az ajánlat nem érvényes.</b></div>
+        <div class="pnote"><svg class="ic"><use href="#i-paw"/></svg>Kisállat csak a nyitott szállásterületre (sátor, lakókocsi, lakóautó) hozható — a szobákba és a mobilházba allergiai okokból nem.</div>
+      </div>
+
+    </div>
+
+    <!-- konkrét példa: a sátras ár összeadós, ezt senki nem szereti fejben számolni -->
+    <div class="example">
+      <h3><svg class="ic"><use href="#i-info"/></svg>Mennyi ez a gyakorlatban?</h3>
+      <p style="margin-top:0; margin-bottom:var(--s4); font-size:.92rem; color:var(--ink);"><b>2 felnőtt, 3 éjszaka, túrázó sátorhely, egy autóval:</b></p>
+      <div class="ex-rows">
+        <span class="lbl">Területdíj — túrázó sátorhely (2 700 Ft × 3 éj)</span><span class="val">8 100 Ft</span>
+        <span class="lbl">Személyi díj (3 200 Ft × 2 fő × 3 éj)</span><span class="val">19 200 Ft</span>
+        <span class="lbl">Idegenforgalmi adó (500 Ft × 2 fő × 3 éj)</span><span class="val">3 000 Ft</span>
+        <span class="lbl">Parkolás (1 700 Ft × 1 autó × 3 éj)</span><span class="val">5 100 Ft</span>
+        <span class="sum">Összesen</span><span class="sum-val">35 400 Ft</span>
+      </div>
+      <p>Tájékoztató jellegű számítás a fenti árlista alapján — a végleges árat az ajánlatkérésre küldött válaszban erősítjük meg. Áram (2 500 Ft/nap), kisállat és reggeli külön díjas. <b>Az ajánlatkérőnél a kalkulátor a te adataiddal számol.</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AJÁNLATKÉRÉS ===== -->
+<section id="ajanlatkeres" class="sec">
+  <div class="wrap">
+    <div class="sec-head"><svg class="ic"><use href="#i-mail"/></svg><h2>Ajánlatkérés</h2></div>
+    <p class="sec-sub">Töltsd ki az adatokat, és az űrlap összeállít egy kész e-mailt — csak el kell küldened. Foglalást visszaigazolás után tudunk rögzíteni.</p>
+
+    <div class="book-grid">
+      <div class="form-card">
+        <form id="bookForm">
+          <div class="frow">
+            <div class="field">
+              <label for="from">Érkezés <span class="req" aria-hidden="true">*</span></label>
+              <input type="date" id="from" required>
+            </div>
+            <div class="field">
+              <label for="to">Távozás <span class="req" aria-hidden="true">*</span></label>
+              <input type="date" id="to" required>
+            </div>
+          </div>
+
+          <div class="frow">
+            <div class="field">
+              <label for="stay">Szállástípus</label>
+              <select id="stay">
+                <optgroup label="Kempinghelyek (kisállat hozható)">
+                  <option value="turazo">Túrázó sátorhely (1–2 fő)</option>
+                  <option value="csaladi">Családi sátorhely (3–5 fő)</option>
+                  <option value="orias">Óriás sátorhely (6 főtől)</option>
+                  <option value="utanfuto">Sátras utánfutó hely</option>
+                  <option value="lakokocsi">Lakókocsi hely</option>
+                  <option value="lakoauto">Lakóautó / lakóbusz hely</option>
+                  <option value="tetosator">Tetősátras autóhely</option>
+                </optgroup>
+                <optgroup label="Fedett szállások (min. 2 éj, kisállat nélkül)">
+                  <option value="sweethome">Sweethome mobilház (1–6 fő)</option>
+                  <option value="lucia">Lucia apartman (1–4 fő)</option>
+                  <option value="harom">Háromágyas szoba (1–3 fő)</option>
+                  <option value="ketto">Kétágyas szoba (1–3 fő)</option>
+                  <option value="tlakokocsi">Telepített lakókocsi (1–2 fő)</option>
+                </optgroup>
+                <option value="nemtudom">Még nem tudom — kérek segítséget</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="name">Név <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="name" placeholder="Kovács Anna" required>
+            </div>
+          </div>
+
+          <div class="frow">
+            <div class="field">
+              <label for="adults">Felnőtt (18+)</label>
+              <input type="number" id="adults" min="0" value="2">
+            </div>
+            <div class="field">
+              <label for="kids">Gyerek (3–17)</label>
+              <input type="number" id="kids" min="0" value="0">
+            </div>
+          </div>
+
+          <div class="frow">
+            <div class="field">
+              <label for="babies">Baba (3 év alatt)</label>
+              <input type="number" id="babies" min="0" value="0">
+            </div>
+            <div class="field">
+              <label for="email">E-mail vagy telefon <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="email" placeholder="anna@pelda.hu / 06 30 …" required>
+            </div>
+          </div>
+
+          <div class="frow">
+            <div class="field">
+              <label for="cars">Parkoló autók száma <span class="unit">1 700 Ft / autó / éj</span></label>
+              <input type="number" id="cars" min="0" max="9" value="1">
+            </div>
+            <div class="field">
+              <label for="pets">Kisállat <span class="unit">1 600 Ft / állat / éj</span></label>
+              <input type="number" id="pets" min="0" max="5" value="0">
+            </div>
+          </div>
+
+          <div class="extras">
+            <label><input type="checkbox" id="x-power"><span>Áramvétel <em>2 500 Ft / nap</em></span></label>
+            <label><input type="checkbox" id="x-bfast"><span>Reggelit kérnénk <em>1 950 Ft / adag</em></span></label>
+          </div>
+
+          <div class="frow">
+            <div class="field">
+              <label for="coupon">Kuponkód (ha van)</label>
+              <input type="text" id="coupon" placeholder="pl. 3+1HP">
+            </div>
+            <div class="field">
+              <label for="msg">Megjegyzés</label>
+              <textarea id="msg" placeholder="Pl. két sátrat hoznánk, árnyékos helyet kérnénk."></textarea>
+            </div>
+          </div>
+
+          <div class="calc warn" id="calc" aria-live="polite">
+            <div class="calc-head"><svg class="ic"><use href="#i-clock"/></svg><span id="calcTitle">Becsült ár</span></div>
+            <div id="calcBody"><p class="calc-msg">Add meg az érkezés és a távozás dátumát, és itt azonnal látod a becsült árat.</p></div>
+          </div>
+
+          <div class="send-row">
+            <button type="submit" class="btn btn-action btn-block"><svg class="ic"><use href="#i-mail"/></svg>Ajánlatkérés e-mailben</button>
+            <a href="tel:+36202960956" class="btn btn-outline"><svg class="ic"><use href="#i-phone"/></svg>Hívás</a>
+          </div>
+          <p class="hint">A <span class="req">*</span>-gal jelölt mezők kötelezők. Ajánlatkérést az érkezés előtt legalább <b>5 munkanappal</b> küldj — ennél közelebbi időpontra kérünk, telefonon érdeklődj. Az űrlap megnyitja a levelezőprogramodat az összeállított üzenettel; az oldal nem tárol adatot és nem foglal automatikusan.</p>
+        </form>
+      </div>
+
+      <div>
+        <img class="shot shot-wide" src="camping-img/recepcio-bar.jpg" alt="A Tóparti Camping recepciója és bárja" loading="lazy" style="border-radius:var(--r-md); margin-bottom:var(--s5)">
+        <div class="card">
+          <h3 class="card-title"><svg class="ic"><use href="#i-info"/></svg>Jó tudni</h3>
+          <div class="gate"><svg class="ic"><use href="#i-check"/></svg><span>A fedett szállások (szobák, mobilház, apartman, telepített lakókocsi) minimum <b>2 éjszakára</b> foglalhatók, és a végösszeg előre utalandó.</span></div>
+          <div class="gate"><svg class="ic"><use href="#i-check"/></svg><span>Sátor- és lakóautóhelynél a területdíjhoz hozzáadódik a személyi díj és az idegenforgalmi adó; a fizetés érkezéskor történik.</span></div>
+          <div class="gate"><svg class="ic"><use href="#i-check"/></svg><span>Készpénzt és bankkártyát fogadunk el. <b>SZÉP kártyát sajnos nem.</b></span></div>
+          <div class="gate"><svg class="ic"><use href="#i-check"/></svg><span>Távozás a távozási napon <b>11:00-ig</b>. A nagykapu 20:00–08:00 között zárva, gyalogosan a kaucionált kulccsal 0–24 lehet közlekedni.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VENDÉGVÉLEMÉNYEK (valós Google-értékelések, változtatás nélkül) ===== -->
+<section id="velemenyek" class="sec reviews">
+  <svg class="sec-wave" viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0,32 C60,14 120,14 180,32 C240,50 300,50 360,32 C420,14 480,14 540,32 C600,50 660,50 720,32 C780,14 840,14 900,32 C960,50 1020,50 1080,32 C1140,14 1200,14 1260,32 C1320,50 1380,50 1440,32 L1440,70 L0,70 Z" fill="#F1F6F8"/></svg>
+  <div class="wrap">
+    <div class="sec-head"><svg class="ic"><use href="#i-users"/></svg><h2>Vendégeink mondták</h2></div>
+    <p class="sec-sub">Valódi értékelések — változtatás nélkül közöljük őket.</p>
+
+    <div class="rev-grid">
+      <div class="rev">
+        <div class="stars">★★★★★</div>
+        <blockquote>„Elképesztően magas szintű kedvesség – figyelmesség és vendég várás zajlik a területen 🙂 Ide megéri betérni. Kicsikkel voltunk két napig."</blockquote>
+        <cite>— Wildner Tamás</cite>
+      </div>
+      <div class="rev">
+        <div class="stars">★★★★★</div>
+        <blockquote>„Szívből ajánlom a kempinget. A tulajdonos és a személyzet minden tagja kedves, udvarias, segítőkész. Kiemelném, hogy valóban betartatják a házirendet a nyugodt éjszakai pihenés érdekében. A vizesblokkokat rendszeresen takarítják. A szabadstrand ideális távolságra, egy kényelmes sétával gyorsan elérhető."</blockquote>
+        <cite>— Kullainé Kurucz Kata</cite>
+      </div>
+      <div class="rev">
+        <div class="stars">★★★★★</div>
+        <blockquote>„Kellemes, árnyékos sátorhelyek, tiszta mosdók, rendkívül barátságos és segítőkész személyzet. […] Személyzet nappal figyel a sorompónál, éjszakára meg bezárják a kaput, csak a vendégek tudnak kulccsal közlekedni."</blockquote>
+        <cite>— Balogh Ádám</cite>
+      </div>
+      <div class="rev">
+        <div class="stars">★★★★★</div>
+        <blockquote>„Ismét Tisza-tó kerékpár körútra mentem a párommal. Nem volt kérdés, hogy hol szálljunk meg. […] A személyzet segítőkész és tök jó fejek. Nem is kell másik kempinget keresni, ez tökéletes."</blockquote>
+        <cite>— Joe S</cite>
+      </div>
+      <div class="rev">
+        <div class="stars">★★★★★</div>
+        <blockquote>„A kemping területe rendkívül tiszta és rendezett volt. […] A kempinghez tartozó étterem is fantasztikus élményt nyújtott. Összességében a Tóparti Camping minden szempontból tökéletes választásnak bizonyult."</blockquote>
+        <cite>— Majoros Zita</cite>
+      </div>
+      <div class="rev">
+        <div class="stars">★★★★★</div>
+        <blockquote>„Nagyon jól éreztük magunk. A vendéglátó profi, rugalmas, mindenkivel megtalálja a hangot, nem csak magyarul 😁. A strand 3 perc sétára. Pároknak és kisgyermekes családoknak is bátran ajánlom."</blockquote>
+        <cite>— Csajbók Edó</cite>
+      </div>
+    </div>
+    <p class="rev-note">
+      A […] jelölés rövidítést jelent — a véleményeket egyébként szó szerint közöljük.<br>
+      <a class="rev-link" href="https://www.google.com/maps/search/?api=1&amp;query=T%C3%B3parti%20Camping%20Tiszaf%C3%BCred" target="_blank" rel="noopener">
+        Olvasd el az összes értékelést a Google-on
+        <svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>
+      </a>
+    </p>
+  </div>
+</section>
+
+<!-- ===== GY.I.K. ===== -->
+<section id="gyik" class="sec">
+  <div class="wrap">
+    <div class="sec-head"><svg class="ic"><use href="#i-info"/></svg><h2>Gyakori kérdések</h2></div>
+    <p class="sec-sub">A leggyakrabban felmerülő kérdések — érkezés előtt érdemes átfutni.</p>
+
+    <div class="faq">
+      <details>
+        <summary>A kempingnek van saját vízpartja?</summary>
+        <div class="a">
+          <p>Tiszafüreden nincs olyan kemping, aminek saját, fürdésre alkalmas vízpartja lenne — ennek oka egy gát és a sok kikötő. <b>Fürdeni csak a szabadvízi strandon lehet, ami tőlünk 3 perc séta a gáton.</b></p>
+          <p>Az éttermünknek van vízpartja, de onnan a tóba fürdeni bemenni nem lehet. SUP-pal, csónakkal érkező vendégeinket kérjük, telefonon keressenek minket.</p>
+        </div>
+      </details>
+      <details>
+        <summary>SZÉP kártyával lehet fizetni?</summary>
+        <div class="a"><p>Készpénzzel és bankkártyával lehet fizetni. <b>SZÉP kártyát nem tudunk elfogadni.</b></p></div>
+      </details>
+      <details>
+        <summary>Parcellázott a hely?</summary>
+        <div class="a"><p>Nem. Érkezési sorrendben lehet elfoglalni a kívánt szállásterületet <b>1,5 hektáron</b>.</p></div>
+      </details>
+      <details>
+        <summary>Van tűzrakóhely? Lehet grillezni, bográcsozni?</summary>
+        <div class="a"><p>Területünkön <b>6 darab tűzrakóhely</b> található. Tüzet rakni csak az erre kialakított helyen lehet, a tűzrakási szabályok betartásával.</p></div>
+      </details>
+      <details>
+        <summary>Van zártkapus időszak?</summary>
+        <div class="a"><p>Igen. A nagykapu <b>20:00–08:00 között zárva</b> tart, ez idő alatt autóval közlekedni csak különösen indokolt esetben lehet. Gyalogosan 0–24 lehet közlekedni a bejelentkezéskor kapott kulccsal (2 000 Ft kaució, távozáskor visszajár).</p></div>
+      </details>
+      <details>
+        <summary>Kisállatot lehet vinni?</summary>
+        <div class="a"><p>A fedett szálláshelyekre (szobák, mobilház) allergiai okokból <b>nem</b>. A nyitott szállásterületre sátrazáshoz, lakókocsizáshoz <b>igen</b>, díj ellenében.</p></div>
+      </details>
+      <details>
+        <summary>Van áramvételi lehetőség?</summary>
+        <div class="a"><p>Igen, díj ellenében. Több áramvételi doboz van a kempingben. Áramvételhez a vendégnek <b>minden esetben rendelkeznie kell hosszabbítóval</b> — minél hosszabb, annál jobb.</p></div>
+      </details>
+      <details>
+        <summary>Lehet bulit, leány- vagy legénybúcsút tartani?</summary>
+        <div class="a">
+          <p><b>Nem.</b> A házirend értelmében 22:00–07:00 között csendes pihenő van, amit hangos zajjal, zenével, kiabálással tilos megzavarni.</p>
+          <p>Minden esetben, figyelmeztetés nélkül, rendőri intézkedés mellett döntünk az azonnali szálláselhagyásról. Kivétel nincs.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Mik a lemondási feltételek?</summary>
+        <div class="a">
+          <p><b>Fedett szálláshelynél:</b> az ajánlat elfogadása után 24 óra áll rendelkezésre az utalásra. A foglalás díjmentesen lemondható az érkezés előtti 14. napig, ilyenkor a teljes összeget visszatérítjük. 14 napon belüli lemondásnál a pénzt nem tudjuk visszautalni.</p>
+          <p><b>Nem fedett szálláshelynél</b> nincs díjbekérés, így lemondási feltétel sincs.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Mikorra kell kérni az ajánlatot?</summary>
+        <div class="a"><p>Ajánlatkérést az érkezés előtt <b>legalább 5 munkanappal</b> küldj. Ennél közelebbi időpontra telefonon érdeklődj.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NYITVATARTÁS + HELYSZÍN ===== -->
+<section id="nyitvatartas" class="sec visit">
+  <svg class="sec-wave" viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0,32 C60,14 120,14 180,32 C240,50 300,50 360,32 C420,14 480,14 540,32 C600,50 660,50 720,32 C780,14 840,14 900,32 C960,50 1020,50 1080,32 C1140,14 1200,14 1260,32 C1320,50 1380,50 1440,32 L1440,70 L0,70 Z" fill="#F1F6F8"/></svg>
+  <div class="wrap">
+    <div class="sec-head"><svg class="ic"><use href="#i-pin"/></svg><h2>Recepció és helyszín</h2></div>
+    <p class="sec-sub">Megtalálsz Tiszafüreden, a Kistisza úton, a Tisza-tó partján. Vendégeink 24 órás belépést kapnak.</p>
+    <div class="visit-grid">
+      <div class="card" id="hoursCard">
+        <h3 class="card-title"><svg class="ic"><use href="#i-clock"/></svg>Recepció nyitvatartása</h3>
+        <table class="hours">
+          <tr data-day="1"><td>Hétfő</td><td>08:00–20:00</td></tr>
+          <tr data-day="2"><td>Kedd</td><td>08:00–20:00</td></tr>
+          <tr data-day="3"><td>Szerda</td><td>08:00–20:00</td></tr>
+          <tr data-day="4"><td>Csütörtök</td><td>08:00–20:00</td></tr>
+          <tr data-day="5"><td>Péntek</td><td>08:00–20:00</td></tr>
+          <tr data-day="6"><td>Szombat</td><td>08:00–20:00</td></tr>
+          <tr data-day="0"><td>Vasárnap</td><td>08:00–20:00</td></tr>
+        </table>
+        <div class="gate"><svg class="ic"><use href="#i-check"/></svg><span>Ünnepnapokon is nyitva. Vendégeink részére <b>24 órás belépést</b> biztosítunk — a recepció a fenti idősávban áll rendelkezésre.</span></div>
+      </div>
+
+      <div>
+        <div class="card" id="helyszin">
+          <h3 class="card-title"><svg class="ic"><use href="#i-pin"/></svg>Elérhetőség</h3>
+          <div class="contact-list">
+            <div class="contact"><div class="contact-ic"><svg class="ic"><use href="#i-pin"/></svg></div><div><div class="lbl">Cím</div><div class="val">5350 Tiszafüred, Kistisza út 1–3.</div></div></div>
+            <div class="contact"><div class="contact-ic"><svg class="ic"><use href="#i-phone"/></svg></div><div><div class="lbl">Telefon</div><a class="val" href="tel:+36202960956">+36 20 296 0956</a></div></div>
+            <div class="contact"><div class="contact-ic"><svg class="ic"><use href="#i-mail"/></svg></div><div><div class="lbl">E-mail</div><a class="val" href="mailto:toparticamping.tiszafured@gmail.com">toparticamping.tiszafured@gmail.com</a></div></div>
+            <div class="contact"><div class="contact-ic"><svg class="ic"><use href="#i-fb"/></svg></div><div><div class="lbl">Facebook</div><a class="val" href="https://www.facebook.com/toparticamping" target="_blank" rel="noopener">Tóparti Camping</a></div></div>
+          </div>
+          <a class="btn btn-amber btn-block" href="https://www.google.com/maps/dir/?api=1&destination=Tiszaf%C3%BCred%2C%20Kistisza%20%C3%BAt%201-3%2C%205350" target="_blank" rel="noopener"><svg class="ic"><use href="#i-pin"/></svg>Útvonaltervezés</a>
+          <div class="map-frame"><iframe src="https://www.google.com/maps?q=Tiszaf%C3%BCred%2C%20Kistisza%20%C3%BAt%201-3%2C%205350&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Tóparti Camping térkép"></iframe></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== IN ENGLISH =====
+     Nem teljes fordítás: a külföldi vendégnek a tények, az ár és a foglalás módja kell. -->
+<section id="english" class="sec en" lang="en">
+  <div class="wrap en-grid">
+    <div>
+      <h2><svg class="ic"><use href="#i-info"/></svg>In English</h2>
+      <p><b>Tóparti Camping</b> is a campsite on the shore of Lake Tisza in Tiszafüred, Hungary. Pitches for tents, caravans and motorhomes on 1.5 hectares (not marked out — pick your spot on arrival), plus a mobile home, an apartment and two simple rooms. Our own restaurant sits right by the water.</p>
+      <p>To book, email <a href="mailto:toparticamping.tiszafured@gmail.com">toparticamping.tiszafured@gmail.com</a> or call <a href="tel:+36202960956">+36 20 296 0956</a> at least 5 working days before arrival. Please dial the number in this exact format from a foreign phone.</p>
+    </div>
+    <div>
+      <ul>
+        <li><svg class="ic"><use href="#i-check"/></svg><span><b>Prices per night:</b> tent pitch from 2 700 HUF + 3 200 HUF per adult, 2 800 HUF per child (3–17); under 3 free. Tourist tax 500 HUF per adult per night. Rooms from 20 000 HUF, mobile home from 30 000 HUF.</span></li>
+        <li><svg class="ic"><use href="#i-check"/></svg><span><b>Facilities:</b> hot showers 24/7, fire pits, playground, table tennis, beach volleyball, electricity (bring your own extension cable), chemical toilet disposal point.</span></li>
+        <li><svg class="ic"><use href="#i-check"/></svg><span><b>Swimming:</b> the campsite has no bathing shore of its own — the public beach is a 3-minute walk along the dyke.</span></li>
+        <li><svg class="ic"><use href="#i-check"/></svg><span><b>Good to know:</b> reception 8:00–20:00 daily, 24-hour access for guests. Main gate closed 20:00–08:00 (pedestrian key, 2 000 HUF deposit). Quiet hours 22:00–07:00, strictly enforced. Cash and card only — <b>no SZÉP card</b>. Pets welcome on open pitches, not in rooms or the mobile home.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 5350 ===== -->
+<section class="pizza-band">
+  <!-- a hullám a pizzéria pirosába folyik: innentől ő beszél -->
+  <svg class="sec-wave" viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0,32 C60,14 120,14 180,32 C240,50 300,50 360,32 C420,14 480,14 540,32 C600,50 660,50 720,32 C780,14 840,14 900,32 C960,50 1020,50 1080,32 C1140,14 1200,14 1260,32 C1320,50 1380,50 1440,32 L1440,70 L0,70 Z" fill="#E2231A"/></svg>
+  <div class="wrap band">
+    <div class="band-copy">
+      <span class="kicker"><svg class="ic"><use href="#i-pizza"/></svg>Saját éttermünk a vízparton</span>
+      <h2>5350 Biciklis Megálló Pont</h2>
+      <p>Olasz receptek alapján, kézzel nyújtott, házi paradicsomszósszal készült, vékonytésztás pizzák — a Jászkeszeg Kikötőnél, a kempingből pár lépésre.</p>
+      <ul class="band-list">
+        <li><svg class="ic"><use href="#i-check"/></svg>Kézzel nyújtott tészta</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>Házi paradicsomszósz</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>Asztalok a Tisza-tó felett</li>
+      </ul>
+      <div class="band-ctas">
+        <a class="btn btn-light" href="index.html"><svg class="ic"><use href="#i-pizza"/></svg>Étlap és rendelés</a>
+        <a class="btn btn-ghost" href="tel:+36304760417"><svg class="ic"><use href="#i-phone"/></svg>06 30 476 0417</a>
+      </div>
+    </div>
+    <div class="band-photos">
+      <img src="camping-img/etterem-asztalok-tisza-to.jpg" alt="Az étterem asztalai a Tisza-tó felett" loading="lazy">
+      <img src="camping-img/5350-etterem-bejarat.jpg" alt="Az 5350 étterem bejárata" loading="lazy">
+      <img src="camping-img/magyaros-pizza.jpg" alt="Magyaros pizza fokhagymás és erős olívaolajjal" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <b>Tóparti Camping</b>
+        <p>Kemping a Tisza-tó partján, Tiszafüreden — sátorhelyek, lakóautóhelyek, mobilház, apartman és szobák. Fedett szálláson 11+1 fő, mellette 150 sátor- és lakókocsihely.</p>
+        <p class="motto">Mottónk: <b>Hakuna Matata!</b></p>
+      </div>
+      <div class="foot-col">
+        <h4>Oldalak</h4>
+        <a href="#szallasok">Szállásaink</a>
+        <a href="#terkep">Kemping térkép</a>
+        <a href="#galeria">Galéria</a>
+        <a href="#arak">Árlista 2026</a>
+        <a href="#gyik">GY.I.K.</a>
+        <a href="#velemenyek">Vendégvélemények</a>
+        <a href="#ajanlatkeres">Ajánlatkérés</a>
+        <a href="#english" lang="en">In English</a>
+        <a href="index.html">5350 Biciklis Megálló Pont</a>
+      </div>
+      <div class="foot-col">
+        <h4>Kapcsolat</h4>
+        <a href="tel:+36202960956">+36 20 296 0956</a>
+        <a href="mailto:toparticamping.tiszafured@gmail.com">toparticamping.tiszafured@gmail.com</a>
+        <a href="https://www.facebook.com/toparticamping" target="_blank" rel="noopener">Facebook</a>
+        <p>5350 Tiszafüred, Kistisza út 1–3.</p>
+        <p>Recepció: 8:00–20:00, minden nap</p>
+        <a href="https://toparticamping.hu/hazirend/" target="_blank" rel="noopener">Házirend</a>
+        <a href="https://toparticamping.hu/adatkezelesi-tajekoztato/" target="_blank" rel="noopener">Adatkezelési tájékoztató</a>
+      </div>
+    </div>
+    <p class="foot-legal">© <span id="year">2026</span> Tóparti Camping · Jászkeszeg Kikötő Kft. · Tiszafüred</p>
+  </div>
+</footer>
+
+<!-- ===== STICKY MOBIL SÁV ===== -->
+<div class="mbar">
+  <div class="mbar-info">
+    <span class="c">Tóparti Camping</span>
+    <span class="t">Szabad hely?</span>
+  </div>
+  <a href="#ajanlatkeres" class="btn btn-action"><svg class="ic"><use href="#i-mail"/></svg>Ajánlatkérés</a>
+</div>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var EMAIL = "toparticamping.tiszafured@gmail.com";
+
+  $("year").textContent = new Date().getFullYear();
+
+  /* ---------- MOBIL MENÜ ---------- */
+  var burger = $("burger"), menu = $("mobileMenu");
+  function menuNyit(nyit){
+    menu.classList.toggle("open", nyit);
+    burger.setAttribute("aria-expanded", nyit ? "true" : "false");
+    burger.setAttribute("aria-label", nyit ? "Menü bezárása" : "Menü megnyitása");
+    document.body.style.overflow = nyit ? "hidden" : "";   /* a háttér ne görögjön a menü alatt */
+    if(nyit){ menu.querySelector("a").focus(); } else { burger.focus(); }
+  }
+  burger.addEventListener("click", function(){ menuNyit(!menu.classList.contains("open")); });
+  menu.querySelectorAll("a").forEach(function(a){
+    a.addEventListener("click", function(){ menuNyit(false); });   /* menüpontra kattintva záródjon */
+  });
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape" && menu.classList.contains("open")) menuNyit(false);
+  });
+  /* ha desktopra vált a méret, a menü ne maradjon nyitva és ne zárolja a görgetést */
+  window.matchMedia("(min-width:781px)").addEventListener("change", function(e){
+    if(e.matches && menu.classList.contains("open")) menuNyit(false);
+  });
+
+  /* mai nap kiemelése a nyitvatartásban */
+  var today = document.querySelector('.hours tr[data-day="' + new Date().getDay() + '"]');
+  if(today) today.classList.add("today");
+
+  /* dátummezők: ma előtti nap nem választható */
+  var iso = function(d){ return d.toISOString().slice(0,10); };
+  var from = $("from"), to = $("to");
+  from.min = iso(new Date());
+  to.min = iso(new Date());
+
+  function nights(){
+    if(!from.value || !to.value) return null;
+    var ms = new Date(to.value) - new Date(from.value);
+    return Math.round(ms / 86400000);
+  }
+
+  /* ---------- ÁRAK (Árlista 2026) ----------
+     Egy helyen, hogy a kalkulátor és a kiírt árlista ne csúszhasson szét. */
+  var PITCH = {   // területhasználati díj / éj
+    turazo:{ ar:2700, nev:"Túrázó sátorhely", max:2 },
+    csaladi:{ ar:3000, nev:"Családi sátorhely", max:5 },
+    orias:{ ar:3400, nev:"Óriás sátorhely", max:99 },
+    utanfuto:{ ar:2800, nev:"Sátras utánfutó hely", max:99 },
+    lakokocsi:{ ar:3500, nev:"Lakókocsi hely", max:99 },
+    lakoauto:{ ar:3900, nev:"Lakóautó / lakóbusz hely", max:99 },
+    tetosator:{ ar:3900, nev:"Tetősátras autóhely", max:99 }
+  };
+  var FO_FELNOTT = 3200, FO_GYEREK = 2800, IFA = 500, TAKARITAS = 2000, MIN_EJ_FEDETT = 2;
+  var ROOM = {    // fedett szállás: ár/éj a teljes egységre, létszám-sávosan
+    sweethome:{ nev:"Sweethome mobilház", sav:{3:30000, 4:35000, 5:40000, 6:45000}, max:6 },
+    lucia:{ nev:"Lucia apartman", sav:{3:30000, 4:35000}, max:4 },
+    harom:{ nev:"Háromágyas szoba", sav:{3:23000}, max:3 },
+    ketto:{ nev:"Kétágyas szoba", sav:{2:20000, 3:23200}, max:3 },
+    tlakokocsi:{ nev:"Telepített lakókocsi", sav:{2:10000}, max:2 }
+  };
+  /* Kiegészítő díjak. Az áram az árlistán kimondottan napi tétel ("2 500 Ft / nap"),
+     ezért a parkolást és a kisállatot is éjszakánként számoljuk — a szorzás minden sorban
+     ki van írva, hogy a vendég lássa a feltételezést. A reggeli adagszáma nem kiszámítható,
+     azt csak jelezzük az ajánlatkérésben. */
+  var PARKOLAS = 1700, KISALLAT = 1600, ARAM = 2500, REGGELI = 1950;
+
+  var ft = function(n){ return n.toLocaleString("hu-HU").replace(/ /g," ") + " Ft"; };
+
+  /* a sávos ár: a legkisebb sáv, amibe a létszám belefér */
+  function savosAr(room, fo){
+    var kulcsok = Object.keys(room.sav).map(Number).sort(function(a,b){ return a-b; });
+    for(var i=0;i<kulcsok.length;i++){ if(fo <= kulcsok[i]) return room.sav[kulcsok[i]]; }
+    return null;
+  }
+
+  var calc = $("calc"), calcTitle = $("calcTitle"), calcBody = $("calcBody");
+  var utolsoOsszeg = null;   /* az e-mailbe is bekerül, hogy a tulaj lássa, mire számít a vendég */
+
+  function uzenet(txt){
+    utolsoOsszeg = null;
+    calc.classList.add("warn");
+    calcTitle.textContent = "Becsült ár";
+    calcBody.innerHTML = '<p class="calc-msg">' + txt + "</p>";
+  }
+
+  function szamol(){
+    var n = nights();
+    var tipus = $("stay").value;
+    var felnott = +$("adults").value || 0, gyerek = +$("kids").value || 0, baba = +$("babies").value || 0;
+    var fo = felnott + gyerek + baba;
+
+    if(n === null){ uzenet("Add meg az érkezés és a távozás dátumát, és itt azonnal látod a becsült árat."); return; }
+    if(n <= 0){ uzenet("A távozás dátuma az érkezés <b>utánra</b> essen."); return; }
+    if(tipus === "nemtudom"){ uzenet("<b>" + n + " éjszaka, " + fo + " fő.</b> Válassz szállástípust, és kiszámolom a becsült árat — vagy küldd el így, és segítünk választani."); return; }
+    if(fo === 0){ uzenet("Add meg, hányan érkeztek."); return; }
+
+    var sorok = [], osszeg = 0, fedett = !!ROOM[tipus];
+
+    if(fedett){
+      var room = ROOM[tipus];
+      /* a 3 év alatti baba nem számít bele a létszám-sávba (ahogy a személyi díjba sem) */
+      var fizetos = felnott + gyerek;
+      if(fizetos > room.max){ uzenet("A(z) <b>" + room.nev + "</b> legfeljebb <b>" + room.max + " fő</b> részére foglalható. Válassz nagyobb szállást, vagy jelezd a megjegyzésben, hogy több egységet kérnél."); return; }
+      if(n < MIN_EJ_FEDETT){ uzenet("A fedett szállások <b>minimum " + MIN_EJ_FEDETT + " éjszakára</b> foglalhatók."); return; }
+      var ejAr = savosAr(room, fizetos);
+      var cimke = room.nev + " (" + fizetos + " fő" + (baba ? " + " + baba + " baba" : "") + ") — " + ft(ejAr) + " × " + n + " éj";
+      sorok.push([cimke, ejAr * n]);
+      sorok.push(["Takarítás (egyszeri)", TAKARITAS]);
+    } else {
+      var p = PITCH[tipus];
+      if(fo > p.max){ uzenet("A(z) <b>" + p.nev + "</b> " + p.max + " főig foglalható — nagyobb létszámhoz válassz családi vagy óriás sátorhelyet."); return; }
+      sorok.push([p.nev + " — " + ft(p.ar) + " × " + n + " éj", p.ar * n]);
+      if(felnott) sorok.push(["Személyi díj, felnőtt (" + ft(FO_FELNOTT) + " × " + felnott + " fő × " + n + " éj)", FO_FELNOTT * felnott * n]);
+      if(gyerek)  sorok.push(["Személyi díj, gyerek (" + ft(FO_GYEREK) + " × " + gyerek + " fő × " + n + " éj)", FO_GYEREK * gyerek * n]);
+      if(baba)    sorok.push([baba + " baba (3 év alatt)", 0]);
+    }
+    if(felnott) sorok.push(["Idegenforgalmi adó (" + ft(IFA) + " × " + felnott + " fő × " + n + " éj)", IFA * felnott * n]);
+
+    /* kiegészítők */
+    var autok = +$("cars").value || 0, allatok = +$("pets").value || 0;
+    if(autok)    sorok.push(["Parkolás (" + ft(PARKOLAS) + " × " + autok + " autó × " + n + " éj)", PARKOLAS * autok * n]);
+    if(allatok)  sorok.push(["Kisállat (" + ft(KISALLAT) + " × " + allatok + " állat × " + n + " éj)", KISALLAT * allatok * n]);
+    if($("x-power").checked) sorok.push(["Áramvétel (" + ft(ARAM) + " × " + n + " nap)", ARAM * n]);
+
+    sorok.forEach(function(s){ osszeg += s[1]; });
+
+    var html = '<div class="calc-rows">';
+    sorok.forEach(function(s){
+      html += '<span class="l">' + s[0] + '</span><span class="v">' + (s[1] === 0 ? "ingyenes" : ft(s[1])) + "</span>";
+    });
+    html += '</div><div class="calc-total"><span class="l">Becsült összeg</span><span class="v">' + ft(osszeg) + "</span></div>";
+
+    /* a reggeli adagszáma nem vezethető le a foglalásból — csak jelezzük */
+    if($("x-bfast").checked){
+      html += '<p class="calc-extras"><b>Reggeli:</b> ' + ft(REGGELI) + " / adag — az adagok számát az ajánlatban egyeztetjük, ezért nincs benne a fenti összegben.</p>";
+    }
+    if(allatok && ROOM[tipus]){
+      html += '<p class="calc-extras"><b>Figyelem:</b> a fedett szállásokra (szobák, mobilház, apartman) allergiai okokból <b>nem hozható kisállat</b> — a kempinghelyekre igen.</p>';
+    }
+
+    /* 3+1: a kupon feltétele hétfőtől legalább péntekig tartó tartózkodás, a mobilházra nem érvényes */
+    var erkNap = new Date(from.value).getDay();          // 1 = hétfő
+    var tavNap = new Date(to.value).getDay();            // 5 = péntek
+    if(erkNap === 1 && n >= 4 && tipus !== "sweethome"){
+      html += '<div class="calc-coupon"><svg class="ic"><use href="#i-gift"/></svg><span>Erre a foglalásra elérhető lehet a <b>3+1 kupon</b> (a 4. éjszaka ajándék). Írd be a <b>3+1HP</b> kódot a kuponkód mezőbe — a kedvezményt az ajánlatban számoljuk.</span></div>';
+    }
+
+    html += '<div class="calc-note"><svg class="ic"><use href="#i-info"/></svg><span>Tájékoztató jellegű becslés az <b>Árlista 2026</b> alapján; a parkolást és a kisállatot — az áramhoz hasonlóan — éjszakánként számoljuk. A végleges árat a visszaküldött ajánlat tartalmazza.</span></div>';
+
+    utolsoOsszeg = osszeg;
+    calc.classList.remove("warn");
+    calcTitle.textContent = n + " éjszaka · " + fo + " fő";
+    calcBody.innerHTML = html;
+  }
+
+  ["from","to","stay","adults","kids","babies","cars","pets","x-power","x-bfast"].forEach(function(id){
+    $(id).addEventListener("input", szamol);
+    $(id).addEventListener("change", szamol);
+  });
+  szamol();
+
+  /* szálláskártya gombjai: kiválasztják a típust, újraszámolnak és az űrlaphoz görgetnek */
+  document.querySelectorAll("[data-stay]").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      $("stay").value = btn.getAttribute("data-stay");
+      szamol();
+      document.getElementById("ajanlatkeres").scrollIntoView({ behavior:"smooth" });
+    });
+  });
+
+  /* az űrlapból összeálló e-mail */
+  $("bookForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    var n = nights();
+    if(n === null || n <= 0){ szamol(); from.focus(); return; }
+    var stayLabel = $("stay").options[$("stay").selectedIndex].text;
+
+    var extras = [];
+    var autokE = +$("cars").value || 0, allatokE = +$("pets").value || 0;
+    if(autokE)   extras.push(autokE + " parkoló autó");
+    if(allatokE) extras.push(allatokE + " kisállat");
+    if($("x-power").checked) extras.push("áramvétel");
+    if($("x-bfast").checked) extras.push("reggelit kérnénk");
+
+    var L = [
+      "Ajánlatot szeretnék kérni a Tóparti Campingbe.",
+      "",
+      "Érkezés: " + from.value,
+      "Távozás: " + to.value + " (" + n + " éjszaka)",
+      "Szállástípus: " + stayLabel,
+      "Létszám: " + (+$("adults").value || 0) + " felnőtt, " + (+$("kids").value || 0) + " gyerek, " + (+$("babies").value || 0) + " baba",
+      "Extrák: " + (extras.length ? extras.join(", ") : "—"),
+      "",
+      "Név: " + $("name").value,
+      "Elérhetőség: " + $("email").value
+    ];
+    if($("coupon").value.trim()){ L.push("Kuponkód: " + $("coupon").value.trim()); }
+    if(utolsoOsszeg !== null){ L.push("Az oldal kalkulátora szerint becsült ár: " + ft(utolsoOsszeg) + " (reggeli nélkül)"); }
+    if($("msg").value.trim()){ L.push("", "Megjegyzés: " + $("msg").value.trim()); }
+
+    var subject = "Ajánlatkérés – " + from.value + " → " + to.value + " (" + stayLabel + ")";
+    window.location.href = "mailto:" + EMAIL +
+      "?subject=" + encodeURIComponent(subject) +
+      "&body=" + encodeURIComponent(L.join("\n"));
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -364,8 +364,7 @@
   .map-load:hover span{ text-decoration:underline; }
 
   /* ============ FOOTER ============ */
-  footer{ background:#120E0B; color:#EDE6DA; padding:var(--s8) 0 calc(var(--s8) + 76px); }
-  @media(min-width:900px){ footer{ padding-bottom:var(--s8); } }
+  footer{ background:#120E0B; color:#EDE6DA; padding:var(--s8) 0 calc(var(--s8) + env(safe-area-inset-bottom)); }
   .foot-grid{ display:grid; gap:var(--s6); grid-template-columns:1fr; }
   @media(min-width:760px){ .foot-grid{ grid-template-columns:1.4fr 1fr 1fr; } }
   .foot-brand b{ font-family:var(--f-head); font-weight:800; font-size:2.6rem; line-height:.9; font-weight:900; color:#fff; letter-spacing:.04em; display:block; }
@@ -375,16 +374,6 @@
   .foot-col a:hover{ text-decoration:underline; text-underline-offset:3px; }
   .foot-warn{ display:flex; align-items:center; gap:.6rem; margin-top:var(--s6); padding-top:var(--s5); border-top:1px solid rgba(255,255,255,.12); font-weight:600; color:var(--amber); }
   .foot-legal{ font-size:.85rem; color:#8C8377; margin-top:var(--s4); }
-
-  /* ============ MOBIL ALSÓ SÁV: ÉTLAP | ÚTVONAL ============ */
-  .mbar{ position:fixed; left:0; right:0; bottom:0; z-index:50; display:none; grid-template-columns:1fr 1fr; gap:6px;
-    padding:8px max(10px, env(safe-area-inset-left)) calc(8px + env(safe-area-inset-bottom));
-    background:rgba(255,255,255,.97); border-top:1px solid var(--line); box-shadow:0 -6px 22px rgba(29,27,23,.08);
-    transition:opacity .2s; }
-  .mbar a{ display:flex; flex-direction:row; align-items:center; justify-content:center; gap:.5rem; min-height:48px;
-    border-radius:14px; font-family:var(--f-head); font-weight:700; font-size:.82rem; letter-spacing:.03em; text-transform:uppercase; color:var(--ink); background:var(--cream); }
-  .mbar .ic{ width:1.3rem; height:1.3rem; }
-  @media(max-width:899px){ .mbar{ display:grid; } body{ padding-bottom:calc(64px + env(safe-area-inset-bottom)); } footer{ padding-bottom:var(--s8); } }
 
   /* ============ SCROLL REVEAL ============ */
   .js [data-reveal]{ opacity:0; transform:translateY(20px);
@@ -701,12 +690,6 @@
     <div class="foot-legal">© 2026 5350 Biciklis Megálló Pont — Jászkeszeg Kikötő, Tiszafüred</div>
   </div>
 </footer>
-
-<!-- ===== MOBIL ALSÓ SÁV (a hívás a fejlécben van) ===== -->
-<nav id="mbar" class="mbar" aria-label="Gyorsműveletek">
-  <a href="#etlap"><svg class="ic" aria-hidden="true"><use href="#i-pizza"/></svg>Étlap</a>
-  <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Tiszaf%C3%BCred%2C%20Kistisza%20utca%206%2C%205350" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-route"/></svg>Útvonal</a>
-</nav>
 
 <script>
 /* ===== nyitva / zárva + mai nap kiemelése ===== */
